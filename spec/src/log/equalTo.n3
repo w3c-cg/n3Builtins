@@ -17,6 +17,41 @@ Not to be confused with owl:sameAs.""" ;
     fno:example ( 
             [ a fno:Test ;
                 dcterms:description """
+Determine <http://famous.web.site> is equal to itself .
+            """ ;
+                rdfs:seeAlso <> ;
+                fno:expression """
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://famous.web.site> owl:sameAs <http://mirror.famous.web.site> .
+
+{
+    <http://famous.web.site> log:equalTo <http://famous.web.site> .
+
+    # But not
+    #
+    # <http://famous.web.site> log:equalTo <http://mirror.famous.web.site> .
+    #
+    # and not
+    #
+    # <http://famous.web.site#123> log:equalTo <http://famous.web.site> .
+    #
+}
+=>
+{
+    :result :is true .
+} . 
+            """ ;
+                fno:result """
+@prefix : <http://example.org/>.
+:result :is true. 
+            """ 
+            ] 
+
+            [ a fno:Test ;
+                dcterms:description """
 Determine if 1 is equal to 1 and "Cat" is equal to "Cat" and { :A :B :C . :D :E :F } is equal to { :D :E :F . :A :B :C }.
             """ ;
                 rdfs:seeAlso <> ;

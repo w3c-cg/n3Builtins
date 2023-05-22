@@ -11,10 +11,12 @@ crypto:sha a fno:Function ;
     vs:term_status  "testing" ;
     fnon:tldr "Gets as object the SHA-1 hash of the subject." ;
     dcterms:comment "`true` if and only if `$o` is the SHA-1 hash of `$s`." ;
-    fno:example ( [ a fno:Test ;
+    fno:example   (
+            [ a fno:Test ;
                 dcterms:description """
 Calculate the SHA-1 of the string "hello world".
             """ ;
+                rdfs:seeAlso <> ;
                 fno:expression """
 @prefix : <http://example.org/> .
 @prefix crypto: <http://www.w3.org/2000/10/swap/crypto#> .
@@ -32,6 +34,7 @@ Calculate the SHA-1 of the string "hello world".
             dcterms:description "" ;
             fno:mode "+" ;
             fno:predicate "$s" ;
+            fno:type xsd:string ;
             fnon:position fnon:subject ;
         ] [ a fno:Parameter ;
             dcterms:description "" ;

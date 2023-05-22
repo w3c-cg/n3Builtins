@@ -10,7 +10,7 @@
 log:conjunction a fno:Function ;
     vs:term_status  "testing" ;
     fnon:tldr "Merges the graph terms from the subject list into a single graph term as object." ;
-    dcterms:comment """`true` if and only if `$o` is a graph term that includes the contents of each of the graph terms `$s.i`.""" ;
+    dcterms:comment """`true` if and only if `$o` is a graph term that is the logical conjunction of each of the graph terms `$s.i` (i.e., includes all their triples, removing any duplicates) .""" ;
     fno:example ( 
             [ a fno:Test ;
                 dcterms:description """

@@ -8,7 +8,7 @@
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version 3383f409d, updated Fri Apr 28 15:49:22 2023 -0700" name="generator">
   <link href="https://w3c-cg.github.io/n3Builtins/" rel="canonical">
-  <meta content="152d1f4fcc29962a8c9f00ce2def1c704c56071a" name="document-revision">
+  <meta content="92257ffe5cdde746695cb75f71a9ae0da3880f2e" name="document-revision">
 <style>
 table {
   margin: 25px auto;
@@ -468,10 +468,10 @@ dfn > a.self-link::before      { content: "#"; }
       <dd><a href="https://github.com/w3c-cg/n3Builtins/issues/">GitHub</a>
       <dt class="editor">Editors:
       <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:william.van.woensel@gmail.com">William Van Woensel</a> (<span class="p-org org"><a href="https://www.uottawa.ca/">University of Ottawa</a></span>)
-      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:Patrick.Hochstenbach@ugent.be">Patrick Hochstenbach</a> (<span class="p-org org"><a href="https://knows.idlab.ugent.be/">IDLab - Ghent University</a></span>)
+      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:patrick.hochstenbach@ugent.be">Patrick Hochstenbach</a> (<span class="p-org org"><a href="https://knows.idlab.ugent.be/">IDLab - Ghent University</a></span>)
       <dt>Contributors:
       <dd>Tim Duval, <a href="http://unifylogic.ai">UnifyLogic</a>, tim.duval@unifylogic.ai
-      <dd>Dominik Tomaszuk, <a href="https://uwb.edu.pl/">University of Bialystok</a>, dominik.tomaszuk@gmail.com
+      <dd>Dominik Tomaszuk, <a href="https://uwb.edu.pl/">University of Bialystok</a>, d.tomaszuk@uwb.edu.pl
      </dl>
     </div>
    </details>
@@ -612,7 +612,7 @@ dfn > a.self-link::before      { content: "#"; }
         <li><a href="#sha"><span class="secno">6.6.1</span> <span class="content">crypto:sha</span></a>
        </ol>
      </ol>
-    <li><a href="#ack"><span class="secno">7</span> <span class="content">Acknowledgements</span></a>
+    <li><a href="#acknowledgements"><span class="secno">7</span> <span class="content">Acknowledgements</span></a>
    </ol>
   </nav>
   <main>
@@ -668,7 +668,8 @@ dfn > a.self-link::before      { content: "#"; }
           promote or substitute the numeric value datatype:</p>
    <p><b>Numeric type promotion</b>: A numeric value datatype that <a href="https://www.w3.org/TR/xmlschema-2/#dt-derived">is derived from</a> the domain datatype can
           be promoted to the latter (e.g., <code>xs:integer</code> is derived from <code>xs:decimal</code>). This is done by casting
-          the original value to the required datatype.</p>
+          the original value to the required datatype.
+        Refer to <a href="https://www.w3.org/TR/xmlschema-2/#built-in-datatypes">XML Schema Part 2</a> for details on these datatypes.</p>
    <p>If there is no direct derivation relation between the value and domain datatype, the following
           numeric type promotions can take place: </p>
    <ul>
@@ -724,7 +725,7 @@ dfn > a.self-link::before      { content: "#"; }
         taking into account options for datatype casting, promotion, or substitution
         (see <a href="#arg_domains">Argument domains</a>)
         the N3 <a href="#builtins">builtin statement</a> will be considered true. </p>
-   <p>For eample, for the <code>math:sum</code> builtin, the <a href="#builtintheorybox">builtin theory box</a> includes all grounded builtin
+   <p>For example, for the <code>math:sum</code> builtin, the <a href="#builtintheorybox">builtin theory box</a> includes all grounded builtin
         statements of the form <code>($s.1 .. $s.n) math:sum $o .</code>, where argument values have datatype <code>xs:numeric</code> and, for each statement, the sum of <code>$s.1 .. $s.n</code> equals <code>$o</code>.
         Below, we give several examples of how this theory box is used to evaluate builtin
         statements.</p>
@@ -747,7 +748,7 @@ dfn > a.self-link::before      { content: "#"; }
    <p>The BGP search is <i>constrained</i> in order to avoid infinite numbers of results and
         intractable calculations; in other cases, constraints weigh utility vs. difficulty
         of implementation.
-        For example, the <a data-link-type="dfn">builtin statement</a> <code>(?a 1) math:sum 2</code> would match an infinite
+        For example, the <a data-link-type="dfn">builtin statement</a> <code>(?a ?b) math:sum 2</code> would match an infinite
         number of grounded builtin statements.
         In other cases, the BGP search is restricted due to practical considerations.
         For instance, <a data-link-type="dfn">builtin statement</a> <code>(1 ?x) math:sum 6</code> would match only a single grounded
@@ -965,10 +966,11 @@ dfn > a.self-link::before      { content: "#"; }
    </div>
    <h3 class="heading settled" data-level="6.2" id="log"><span class="secno">6.2. </span><span class="content">log</span><a class="self-link" href="#log"></a></h3>
    <h4 class="heading settled" data-level="6.2.1" id="equalTo"><span class="secno">6.2.1. </span><span class="content">log:equalTo</span><a class="self-link" href="#equalTo"></a></h4>
-    Checks whether the subject and object N3 resources are the same. 
+    Checks whether the subject and object N3 terms are the same (comparison occurs on the syntax level). 
 Can also be used to bind values to variables (see examples). 
-   <p><code>true</code> if and only if <code>$s</code> and <code>$o</code> are the same N3 resource.
-Not to be confused with owl:sameAs.</p>
+   <p><code>true</code> if and only if <code>$s</code> and <code>$o</code> are the same N3 term.
+Not to be confused with owl:sameAs.
+Literals will be compared exactly: their datatypes must be identical (in case of strings, language tags must be identical).</p>
    <p><strong>Schema</strong><br><code>$s? log:equalTo $o?</code><strong>Examples</strong><br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++_%3Ax+log%3AequalTo+42+.%0A++++%3Fq++log%3AequalTo+%22Cat%22%40en+.%0A%0A++++%23+This+will+fail+because+_%3Ax+is+already+assigned+to+42+.%0A++++%23+_%3Ax+log%3AequalTo+17+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fq+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
    <div class="example" id="example-ec3c9a8b">
     <a class="self-link" href="#example-ec3c9a8b"></a> 
@@ -994,30 +996,6 @@ Not to be confused with owl:sameAs.</p>
 :result :is "Cat"@en .
 </pre>
    </div>
-   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%28+%3Fx+%3Fy+%3Fz+%29+log%3AequalTo+%28+1+2+3+%29%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fx+%2C+%3Fy+%2C+%3Fz+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
-   <div class="example" id="example-e330cc77">
-    <a class="self-link" href="#example-e330cc77"></a> 
-    <p> Assign values from the object list to universal variables given in the subject list. 
-This can be compared to "destructuring" or "unpacking" in programming languages such as JavaScript or Python.
-In contrast to those languages, however, it works in either direction in N3.
-In general, this works because an effort is made to ensure the truth of builtin statements in N3. </p>
-    <p><b>Formula:</b> </p>
-<pre>@prefix : &lt;http://example.org/>.
-@prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
-
-{
-    ( ?x ?y ?z ) log:equalTo ( 1 2 3 )
-}
-=>
-{
-    :result :is ?x , ?y , ?z .
-} . 
-</pre>
-    <p><b>Result:</b> </p>
-<pre>@prefix : &lt;http://example.org/>.
-:result :is 1 , 2 , 3 . # objects can be in any order
-</pre>
-   </div>
    <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%23+This+will+fail%0A++++%22Cat%22+log%3AequalTo+%22Cat%22%40en+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
    <div class="example" id="example-f9068547">
     <a class="self-link" href="#example-f9068547"></a> 
@@ -1038,29 +1016,6 @@ In general, this works because an effort is made to ensure the truth of builtin 
     <p><b>Result:</b> </p>
 <pre>@prefix : &lt;http://example.org/>.
 # no results
-</pre>
-   </div>
-   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++1+log%3AequalTo+1+.%0A++++%22Cat%22+log%3AequalTo+%22Cat%22+.%0A++++%7B+%3AA+%3AB+%3AC+.+%3AD+%3AE+%3AF+.+%7D+log%3AequalTo+%7B+%3AD+%3AE+%3AF+.+%3AA+%3AB+%3AC+.+%7D+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
-   <div class="example" id="example-634de13c">
-    <a class="self-link" href="#example-634de13c"></a> 
-    <p> Determine if 1 is equal to 1 and "Cat" is equal to "Cat" and { :A :B :C . :D :E :F } is equal to { :D :E :F . :A :B :C }. </p>
-    <p><b>Formula:</b> </p>
-<pre>@prefix : &lt;http://example.org/>.
-@prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
-
-{
-    1 log:equalTo 1 .
-    "Cat" log:equalTo "Cat" .
-    { :A :B :C . :D :E :F . } log:equalTo { :D :E :F . :A :B :C . } .
-}
-=>
-{
-    :result :is true .
-} . 
-</pre>
-    <p><b>Result:</b> </p>
-<pre>@prefix : &lt;http://example.org/>.
-:result :is true. 
 </pre>
    </div>
    <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%28+%22War+and+Peace%22+%22Leo+Tolstoy%22+1225+%29+log%3AequalTo+%28+%3Ftitle+%3Fauthor+%3FnumPages+%29+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Ftitle+%2C+%3Fauthor+%2C+%3FnumPages+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
@@ -1087,6 +1042,89 @@ In general, this works because an effort is made to ensure the truthfulness of b
 :result :is "War and Peace" , "Leo Tolstoy" , 1225 . # objects can be in any order
 </pre>
    </div>
+   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%28+%3Fx+%3Fy+%3Fz+%29+log%3AequalTo+%28+1+2+3+%29%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fx+%2C+%3Fy+%2C+%3Fz+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
+   <div class="example" id="example-e330cc77">
+    <a class="self-link" href="#example-e330cc77"></a> 
+    <p> Assign values from the object list to universal variables given in the subject list. 
+This can be compared to "destructuring" or "unpacking" in programming languages such as JavaScript or Python.
+In contrast to those languages, however, it works in either direction in N3.
+In general, this works because an effort is made to ensure the truth of builtin statements in N3. </p>
+    <p><b>Formula:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+@prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
+
+{
+    ( ?x ?y ?z ) log:equalTo ( 1 2 3 )
+}
+=>
+{
+    :result :is ?x , ?y , ?z .
+} . 
+</pre>
+    <p><b>Result:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+:result :is 1 , 2 , 3 . # objects can be in any order
+</pre>
+   </div>
+   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%40prefix+owl%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E+.%0A%0A%3Chttp%3A%2F%2Ffamous.web.site%3E+owl%3AsameAs+%3Chttp%3A%2F%2Fmirror.famous.web.site%3E+.%0A%0A%7B%0A++++%3Chttp%3A%2F%2Ffamous.web.site%3E+log%3AequalTo+%3Chttp%3A%2F%2Ffamous.web.site%3E+.%0A%0A++++%23+But+not%0A++++%23%0A++++%23+%3Chttp%3A%2F%2Ffamous.web.site%3E+log%3AequalTo+%3Chttp%3A%2F%2Fmirror.famous.web.site%3E+.%0A++++%23%0A++++%23+and+not%0A++++%23%0A++++%23+%3Chttp%3A%2F%2Ffamous.web.site%23123%3E+log%3AequalTo+%3Chttp%3A%2F%2Ffamous.web.site%3E+.%0A++++%23%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
+   <div class="example" id="example-9735357d">
+    <a class="self-link" href="#example-9735357d"></a> 
+    <p>
+      Determine 
+     <httpU0003A famous.web.site> is equal to itself . </httpU0003A>
+    </p>
+    <p><b>Formula:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+@prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
+@prefix owl: &lt;http://www.w3.org/2002/07/owl#> .
+
+&lt;http://famous.web.site> owl:sameAs &lt;http://mirror.famous.web.site> .
+
+{
+    &lt;http://famous.web.site> log:equalTo &lt;http://famous.web.site> .
+
+    # But not
+    #
+    # &lt;http://famous.web.site> log:equalTo &lt;http://mirror.famous.web.site> .
+    #
+    # and not
+    #
+    # &lt;http://famous.web.site#123> log:equalTo &lt;http://famous.web.site> .
+    #
+}
+=>
+{
+    :result :is true .
+} . 
+</pre>
+    <p><b>Result:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+:result :is true. 
+</pre>
+   </div>
+   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++1+log%3AequalTo+1+.%0A++++%22Cat%22+log%3AequalTo+%22Cat%22+.%0A++++%7B+%3AA+%3AB+%3AC+.+%3AD+%3AE+%3AF+.+%7D+log%3AequalTo+%7B+%3AD+%3AE+%3AF+.+%3AA+%3AB+%3AC+.+%7D+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
+   <div class="example" id="example-634de13c">
+    <a class="self-link" href="#example-634de13c"></a> 
+    <p> Determine if 1 is equal to 1 and "Cat" is equal to "Cat" and { :A :B :C . :D :E :F } is equal to { :D :E :F . :A :B :C }. </p>
+    <p><b>Formula:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+@prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
+
+{
+    1 log:equalTo 1 .
+    "Cat" log:equalTo "Cat" .
+    { :A :B :C . :D :E :F . } log:equalTo { :D :E :F . :A :B :C . } .
+}
+=>
+{
+    :result :is true .
+} . 
+</pre>
+    <p><b>Result:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+:result :is true. 
+</pre>
+   </div>
    <h4 class="heading settled" data-level="6.2.2" id="skolem"><span class="secno">6.2.2. </span><span class="content">log:skolem</span><a class="self-link" href="#skolem"></a></h4>
     Gets as object a skolem IRI that is a function of the subject (commonly a list); the same subject will always result in the same skolem IRI. 
    <p><code>true</code> if and only if <code>$o</code> is a skolem IRI that is a function of the subject.</p>
@@ -1106,15 +1144,36 @@ In general, this works because an effort is made to ensure the truthfulness of b
 </pre>
    </div>
    <h4 class="heading settled" data-level="6.2.3" id="notIncludes"><span class="secno">6.2.3. </span><span class="content">log:notIncludes</span><a class="self-link" href="#notIncludes"></a></h4>
-    Checks whether the subject quoted graph _does not_ include the object quoted graph (taking into account variables) 
+    Checks whether the subject graph term _does not_ include the object graph term (taking into account variables) 
    <p><code>true</code> if and only if <code>$s log:includes $o</code> is <code>false</code>.</p>
    <p><strong>Schema</strong><br><code>$s+ log:notIncludes $o+</code></p>
    <div class="schema_where">
     where:
     <div class="schema_datatypes"><code>$s</code>: <code>log:Formula</code><br><code>$o</code>: <code>log:Formula</code></div>
    </div>
-   <br><strong>Examples</strong><br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%23+Dynamic+evaluation+of+%3FX+and+%3FY%0A++++%3FX+log%3AnotIncludes+%3FY+.%0A++++%3FX+log%3AequalTo+%7B+%3Aa+%3Ab+%3Ac+%7D.%0A++++%3FY+log%3AequalTo+%7B+%3Aa+%3Ab+%3Ad+%7D.%0A%7D+%0A%3D%3E++++++++++++++%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a>
+   <br><strong>Examples</strong><br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%7B+%3AFelix+a+%3ACat+%7D+log%3AnotIncludes+%7B+%3FX+%3Aeats+%3FY+%7D+.%0A%7D+%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a>
    <p></p>
+   <div class="example" id="example-d207eca9">
+    <a class="self-link" href="#example-d207eca9"></a> 
+    <p> Check whether the formula { :Felix a :Cat } does not include { ?X :eats ?Y }. </p>
+    <p><b>Formula:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+@prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
+
+{ 
+    { :Felix a :Cat } log:notIncludes { ?X :eats ?Y } .
+} 
+=>
+{
+    :result :is true .
+} .
+</pre>
+    <p><b>Result:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+:result :is true.
+</pre>
+   </div>
+   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%23+Dynamic+evaluation+of+%3FX+and+%3FY%0A++++%3FX+log%3AnotIncludes+%3FY+.%0A++++%3FX+log%3AequalTo+%7B+%3Aa+%3Ab+%3Ac+%7D.%0A++++%3FY+log%3AequalTo+%7B+%3Aa+%3Ab+%3Ad+%7D.%0A%7D+%0A%3D%3E++++++++++++++%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
    <div class="example" id="example-0765c9ab">
     <a class="self-link" href="#example-0765c9ab"></a> 
     <p> Check whether the formula { :a :b :c } does not include { :a :b :d }. </p>
@@ -1129,27 +1188,6 @@ In general, this works because an effort is made to ensure the truthfulness of b
     ?Y log:equalTo { :a :b :d }.
 } 
 =>              
-{
-    :result :is true .
-} .
-</pre>
-    <p><b>Result:</b> </p>
-<pre>@prefix : &lt;http://example.org/>.
-:result :is true.
-</pre>
-   </div>
-   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%7B+%3AFelix+a+%3ACat+%7D+log%3AnotIncludes+%7B+%3FX+%3Aeats+%3FY+%7D+.%0A%7D+%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
-   <div class="example" id="example-d207eca9">
-    <a class="self-link" href="#example-d207eca9"></a> 
-    <p> Check whether the formula { :Felix a :Cat } does not include { ?X :eats ?Y }. </p>
-    <p><b>Formula:</b> </p>
-<pre>@prefix : &lt;http://example.org/>.
-@prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
-
-{ 
-    { :Felix a :Cat } log:notIncludes { ?X :eats ?Y } .
-} 
-=>
 {
     :result :is true .
 } .
@@ -1227,7 +1265,7 @@ This is a scoped universal quantification.</p>
 </pre>
    </div>
    <h4 class="heading settled" data-level="6.2.6" id="parsedAsN3"><span class="secno">6.2.6. </span><span class="content">log:parsedAsN3</span><a class="self-link" href="#parsedAsN3"></a></h4>
-    Parses the subject string into an object quoted graph. 
+    Parses the subject string into an object graph term. 
    <p><code>true</code> if and only if <code>$s</code>, when parsed as N3, gives <code>$o</code>. <code>$s</code> should be a syntactically valid string in N3 format.</p>
    <p><strong>Schema</strong><br><code>$s+ log:parsedAsN3 $o-</code></p>
    <div class="schema_where">
@@ -1263,8 +1301,8 @@ This is a scoped universal quantification.</p>
 </pre>
    </div>
    <h4 class="heading settled" data-level="6.2.7" id="notEqualTo"><span class="secno">6.2.7. </span><span class="content">log:notEqualTo</span><a class="self-link" href="#notEqualTo"></a></h4>
-    Checks whether the subject and object N3 resources are _not_ the same. 
-   <p><code>true</code> if and only if <code>$s log:equalTo $o</code> is false.</p>
+    Checks whether the subject and object N3 terms are _not_ the same (comparison occurs on the syntax level). 
+   <p><code>true</code> if and only if <code>$s</code> and <code>$o</code> are _not_ the same N3 term.</p>
    <p><strong>Schema</strong><br><code>$s+ log:notEqualTo $o+</code><strong>Examples</strong><br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++1+log%3AnotEqualTo+2+.%0A++++%22Cat%22+log%3AnotEqualTo+%22CAT%22+.%0A++++%7B+%3AA+%3AB+%3AC+.+%7D+log%3AnotEqualTo+%7B+%3AC+%3AB+%3AA+.+%7D+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
    <div class="example" id="example-1ba2a5f7">
     <a class="self-link" href="#example-1ba2a5f7"></a> 
@@ -1331,6 +1369,28 @@ This is a scoped universal quantification.</p>
 # no result (the variables _:x and ?q are not bounded) 
 </pre>
    </div>
+   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A+++%0A++++%7B+%3AA+%3AB+%3AC+.+%7D+log%3AnotEqualTo+%7B+%3AA+%3AB+%3Fc+%7D+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
+   <div class="example" id="example-f386d2ff">
+    <a class="self-link" href="#example-f386d2ff"></a> 
+    <p> Check whether two graph terms, one containing a universal variable, are not equal. </p>
+    <p><b>Formula:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+@prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
+
+{
+   
+    { :A :B :C . } log:notEqualTo { :A :B ?c } .
+}
+=>
+{
+    :result :is true .
+} .
+</pre>
+    <p><b>Result:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+# no result (?c can be unified with :C)
+</pre>
+   </div>
    <h4 class="heading settled" data-level="6.2.8" id="dtlit"><span class="secno">6.2.8. </span><span class="content">log:dtlit</span><a class="self-link" href="#dtlit"></a></h4>
     Creates a datatyped literal as object, based on the string value and datatype IRI in the subject list. 
    <p><code>true</code> if and only if <code>$o</code> is a datatyped literal with string value corresponding to <code>$s.1</code> and datatype IRI corresponding to <code>$s.2</code>.</p>
@@ -1339,25 +1399,8 @@ This is a scoped universal quantification.</p>
     where:
     <div class="schema_datatypes"><code>$s.1</code>: <code>xsd:string</code>, <code>$s.2</code>: <code>log:Uri</code><br><code>$o</code>: <code>log:Literal</code></div>
    </div>
-   <br><strong>Examples</strong><br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%28+%221971-05-05%22+xsd%3Adate+%29+log%3Adtlit+%3Ftyped+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Ftyped+.+%7D+." target="_blank">Try in Notation3 Editor 🚀</a>
+   <br><strong>Examples</strong><br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%28+%3Fstring+%3Ftype+%29+log%3Adtlit+%221971-05-05%22%5E%5Exsd%3Adate+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%28+%3Fstring+%3Ftype+%29+.+%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a>
    <p></p>
-   <div class="example" id="example-c6fcb05a">
-    <a class="self-link" href="#example-c6fcb05a"></a> 
-    <p> Create a datatyped literal from the string "1971-05-05" and the type xsd:date. </p>
-    <p><b>Formula:</b> </p>
-<pre>@prefix : &lt;http://example.org/>.
-@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#> .
-@prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
-
-{ ( "1971-05-05" xsd:date ) log:dtlit ?typed } => { :result :is ?typed . } .
-</pre>
-    <p><b>Result:</b> </p>
-<pre>@prefix : &lt;http://example.org/>.
-@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#> .
-:result :is "1971-05-05"^^xsd:date.
-</pre>
-   </div>
-   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%28+%3Fstring+%3Ftype+%29+log%3Adtlit+%221971-05-05%22%5E%5Exsd%3Adate+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%28+%3Fstring+%3Ftype+%29+.+%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
    <div class="example" id="example-a2cb4e23">
     <a class="self-link" href="#example-a2cb4e23"></a> 
     <p> Parse the datatyped literal "1971-05-05"^^xsd:date into a string and data type IRI. </p>
@@ -1380,13 +1423,29 @@ This is a scoped universal quantification.</p>
 :result :is ("1971-05-05" xsd:date).
 </pre>
    </div>
+   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%28+%221971-05-05%22+xsd%3Adate+%29+log%3Adtlit+%3Ftyped+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Ftyped+.+%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
+   <div class="example" id="example-c6fcb05a">
+    <a class="self-link" href="#example-c6fcb05a"></a> 
+    <p> Create a datatyped literal from the string "1971-05-05" and the type xsd:date. </p>
+    <p><b>Formula:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#> .
+@prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
+
+{ ( "1971-05-05" xsd:date ) log:dtlit ?typed } => { :result :is ?typed . } .
+</pre>
+    <p><b>Result:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#> .
+:result :is "1971-05-05"^^xsd:date.
+</pre>
+   </div>
    <h4 class="heading settled" data-level="6.2.9" id="includes"><span class="secno">6.2.9. </span><span class="content">log:includes</span><a class="self-link" href="#includes"></a></h4>
-    Checks whether the subject quoted graph includes the object quoted graph (taking into account variables). 
+    Checks whether the subject graph term includes the object graph term (taking into account variables). 
 Can also be used to bind variables to values within the graph contents (see examples). 
-   <p><code>true</code> if and only if there exists some substitution which, when applied to <code>$o</code>,
-creates a quoted graph <code>$o</code>' such that every statement in <code>$o</code>' is also in <code>$s</code>;
-whereby every variable, universally or existentially quantified in <code>$o</code>', is quantified in the same way in <code>$s</code>. 
-Variable substitution is applied recursively to nested compound terms such as quoted graphs ans lists.</p>
+   <p><code>true</code> if and only if there exists some substitution which, when applied to <code>$s</code> and <code>$o</code>,
+creates graph terms <code>$s</code>' and <code>$o</code>' such that every statement in <code>$o</code>' is also in <code>$s</code>''. 
+Variable substitution is applied recursively to nested compound terms such as graph terms and lists.</p>
    <p><strong>Schema</strong><br><code>$s+ log:includes $o+</code></p>
    <div class="schema_where">
     where:
@@ -1415,8 +1474,8 @@ Variable substitution is applied recursively to nested compound terms such as qu
 </pre>
    </div>
    <h4 class="heading settled" data-level="6.2.10" id="semanticsOrError"><span class="secno">6.2.10. </span><span class="content">log:semanticsOrError</span><a class="self-link" href="#semanticsOrError"></a></h4>
-    Either gets as object the quoted graph that results from parsing an online (N3) string, found by dereferencing the subject IRI; or an error message that explains what went wrong. 
-   <p><code>true</code> if and only if (a) <code>$o</code> is a quoted graph that results from parsing the string that results from dereferencing <code>$s</code>; or (b) an error message explaining what went wrong.</p>
+    Either gets as object the graph term that results from parsing an online (N3) string, found by dereferencing the subject IRI; or an error message that explains what went wrong. 
+   <p><code>true</code> if and only if (a) <code>$o</code> is a graph term that results from parsing the string that results from dereferencing <code>$s</code>; or (b) an error message explaining what went wrong.</p>
    <p><strong>Schema</strong><br><code>$s+ log:semanticsOrError $o?</code></p>
    <div class="schema_where">
     where:
@@ -1474,10 +1533,10 @@ Variable substitution is applied recursively to nested compound terms such as qu
     where:
     <div class="schema_datatypes"><code>$o</code>: <code>xsd:string</code></div>
    </div>
-   <br><strong>Examples</strong><br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A_%3A2+log%3AoutputString+%22This+is+the+second+line%0A%22+.%0A_%3A1+log%3AoutputString+%22This+is+the+first+line%0A%22+." target="_blank">Try in Notation3 Editor 🚀</a>
+   <br><strong>Examples</strong><br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A_%3A2+log%3AoutputString+%22This+is+the+second+line%5Cn%22+.%0A_%3A1+log%3AoutputString+%22This+is+the+first+line%5Cn%22+." target="_blank">Try in Notation3 Editor 🚀</a>
    <p></p>
-   <div class="example" id="example-7824d933">
-    <a class="self-link" href="#example-7824d933"></a> 
+   <div class="example" id="example-cebf4581">
+    <a class="self-link" href="#example-cebf4581"></a> 
     <p> Print the two string "This is the first line
 " , "This is the second line
 " to the output. </p>
@@ -1485,10 +1544,8 @@ Variable substitution is applied recursively to nested compound terms such as qu
 <pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
-_:2 log:outputString "This is the second line
-" .
-_:1 log:outputString "This is the first line
-" .
+_:2 log:outputString "This is the second line\n" .
+_:1 log:outputString "This is the first line\n" .
 </pre>
     <p><b>Result:</b> </p>
 <pre># If the reasoner support the outputString options
@@ -1522,14 +1579,38 @@ This is the second line
    <h4 class="heading settled" data-level="6.2.14" id="rawType"><span class="secno">6.2.14. </span><span class="content">log:rawType</span><a class="self-link" href="#rawType"></a></h4>
     Gets the type of the N3 resource. 
    <p><code>true</code> if and only if the N3 resource type of <code>$s</code> is <code>$o</code>.
-N3 resource types include <code>log:Formula</code>, <code>log:Literal</code>, <code>log:List</code>, <code>log:Set</code> or <code>log:Other</code>.</p>
+N3 resource types include <code>log:Formula</code>, <code>log:Literal</code>, <code>rdf:List</code> or <code>log:Other</code>.</p>
    <p><strong>Schema</strong><br><code>$s+ log:rawType $o-</code></p>
    <div class="schema_where">
     where:
     <div class="schema_datatypes"><code>$o</code>: <code>log:Uri</code></div>
    </div>
-   <br><strong>Examples</strong><br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%3Chttp%3A%2F%2Fwww.w3c.org%3E+log%3ArawType+%3FresourceType+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3FresourceType+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a>
+   <br><strong>Examples</strong><br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%281+2+3+4%29+log%3ArawType+%3FlistType+.%0A++++%7B+%3As+%3Ap+%3Ao+%7D+log%3ArawType+%3FgraphType+.%0A%7D+%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%28+%3FlistType+%3FgraphType+%29+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a>
    <p></p>
+   <div class="example" id="example-fff13110">
+    <a class="self-link" href="#example-fff13110"></a> 
+    <p> Get the type of lists and graph terms. </p>
+    <p><b>Formula:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+@prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
+
+{
+    (1 2 3 4) log:rawType ?listType .
+    { :s :p :o } log:rawType ?graphType .
+} 
+=>
+{
+    :result :is ( ?listType ?graphType ) .
+} .
+</pre>
+    <p><b>Result:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
+:result :is ( rdf:List log:Formula ) .
+</pre>
+   </div>
+   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%3Chttp%3A%2F%2Fwww.w3c.org%3E+log%3ArawType+%3FresourceType+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3FresourceType+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
    <div class="example" id="example-8ee0d674">
     <a class="self-link" href="#example-8ee0d674"></a> 
     <p> Get the type of resources. </p>
@@ -1576,33 +1657,9 @@ N3 resource types include <code>log:Formula</code>, <code>log:Literal</code>, <c
 :result :is ( log:Literal log:Literal log:Literal log:Literal ) .
 </pre>
    </div>
-   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%281+2+3+4%29+log%3ArawType+%3FlistType+.%0A++++%7B+%3As+%3Ap+%3Ao+%7D+log%3ArawType+%3FgraphType+.%0A%7D+%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%28+%3FlistType+%3FgraphType+%29+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
-   <div class="example" id="example-61fa2a9e">
-    <a class="self-link" href="#example-61fa2a9e"></a> 
-    <p> Get the type of lists and quoted graphs. </p>
-    <p><b>Formula:</b> </p>
-<pre>@prefix : &lt;http://example.org/>.
-@prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
-
-{
-    (1 2 3 4) log:rawType ?listType .
-    { :s :p :o } log:rawType ?graphType .
-} 
-=>
-{
-    :result :is ( ?listType ?graphType ) .
-} .
-</pre>
-    <p><b>Result:</b> </p>
-<pre>@prefix : &lt;http://example.org/>.
-@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
-@prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
-:result :is ( rdf:List log:Formula ) .
-</pre>
-   </div>
    <h4 class="heading settled" data-level="6.2.15" id="semantics"><span class="secno">6.2.15. </span><span class="content">log:semantics</span><a class="self-link" href="#semantics"></a></h4>
-    Gets as object the quoted graph that results from parsing an online (N3) string, found by dereferencing the subject IRI. 
-   <p><code>true</code> if and only if <code>$o</code> is a quoted graph that results from parsing the string that results from dereferencing <code>$s</code>.</p>
+    Gets as object the graph term that results from parsing an online (N3) string, found by dereferencing the subject IRI. 
+   <p><code>true</code> if and only if <code>$o</code> is a graph term that results from parsing the string that results from dereferencing <code>$s</code>.</p>
    <p><strong>Schema</strong><br><code>$s+ log:semantics $o?</code></p>
    <div class="schema_where">
     where:
@@ -1629,8 +1686,8 @@ We assume <code>&lt;semantics.data></code> contains the text: </p>
 </pre>
    </div>
    <h4 class="heading settled" data-level="6.2.16" id="conjunction"><span class="secno">6.2.16. </span><span class="content">log:conjunction</span><a class="self-link" href="#conjunction"></a></h4>
-    Merges the quoted graphs from the subject list into a single quoted graph as object. 
-   <p><code>true</code> if and only if <code>$o</code> is a quoted graph that includes the contents of each of the quoted graphs <code>$s.i</code>.</p>
+    Merges the graph terms from the subject list into a single graph term as object. 
+   <p><code>true</code> if and only if <code>$o</code> is a graph term that is the logical conjunction of each of the graph terms <code>$s.i</code> (i.e., includes all their triples, removing any duplicates) .</p>
    <p><strong>Schema</strong><br><code>( $s.i+ )+ log:conjunction $o?</code></p>
    <div class="schema_where">
     where:
@@ -1666,7 +1723,7 @@ We assume <code>&lt;semantics.data></code> contains the text: </p>
 </pre>
    </div>
    <h4 class="heading settled" data-level="6.2.17" id="conclusion"><span class="secno">6.2.17. </span><span class="content">log:conclusion</span><a class="self-link" href="#conclusion"></a></h4>
-    Gets all possible conclusions from the subject quoted graph, including rule inferences (deductive closure), as the object quoted graph. 
+    Gets all possible conclusions from the subject graph term, including rule inferences (deductive closure), as the object graph term. 
    <p><code>true</code> if and only if <code>$o</code> is the set of conclusions which can be drawn from <code>$s</code> (deductive closure),
 by applying any rules it contains to the data it contains.</p>
    <p><strong>Schema</strong><br><code>$s+ log:conclusion $o?</code></p>
@@ -2564,32 +2621,8 @@ You can use this as an equivalent of a lessThanOrEqual operator.
     where:
     <div class="schema_datatypes"><code>$s.i</code>: (<code>xsd:decimal</code> | <code>xsd:double</code> | <code>xsd:float</code>)<br><code>$o</code>: (<code>xsd:decimal</code> | <code>xsd:double</code> | <code>xsd:float</code>)</div>
    </div>
-   <br><strong>Examples</strong><br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%282+21%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aproduct+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a>
+   <br><strong>Examples</strong><br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%282+4+6+8%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aproduct+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a>
    <p></p>
-   <div class="example" id="example-719e5cf5">
-    <a class="self-link" href="#example-719e5cf5"></a> 
-    <p> Calculate the product of 2 and 21. </p>
-    <p><b>Formula:</b> </p>
-<pre>@prefix : &lt;http://example.org/>.
-@prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
-
-:Let :param (2 21) .
-
-{
-    :Let :param ?param .
-    ?param math:product ?result .
-}
-=>
-{
-    :result :is ?result .
-} .
-</pre>
-    <p><b>Result:</b> </p>
-<pre>@prefix : &lt;http://example.org/>.
-:result :is 42.
-</pre>
-   </div>
-   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%282+4+6+8%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aproduct+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
    <div class="example" id="example-95ba860f">
     <a class="self-link" href="#example-95ba860f"></a> 
     <p> Calculate the product of 2,4,6, and 8 . </p>
@@ -2611,6 +2644,30 @@ You can use this as an equivalent of a lessThanOrEqual operator.
     <p><b>Result:</b> </p>
 <pre>@prefix : &lt;http://example.org/>.
 :result :is 384.
+</pre>
+   </div>
+   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%282+21%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aproduct+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
+   <div class="example" id="example-719e5cf5">
+    <a class="self-link" href="#example-719e5cf5"></a> 
+    <p> Calculate the product of 2 and 21. </p>
+    <p><b>Formula:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+@prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
+
+:Let :param (2 21) .
+
+{
+    :Let :param ?param .
+    ?param math:product ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+</pre>
+    <p><b>Result:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+:result :is 42.
 </pre>
    </div>
    <h4 class="heading settled" data-level="6.4.11" id="atan"><span class="secno">6.4.11. </span><span class="content">math:atan</span><a class="self-link" href="#atan"></a></h4>
@@ -2989,8 +3046,29 @@ You can also use this to calculate the logarithm of the object, with as base the
     where:
     <div class="schema_datatypes"><code>$s.1</code>: (<code>xsd:decimal</code> | <code>xsd:double</code> | <code>xsd:float</code>), <code>$s.2</code>: (<code>xsd:decimal</code> | <code>xsd:double</code> | <code>xsd:float</code>)<br><code>$o</code>: (<code>xsd:decimal</code> | <code>xsd:double</code> | <code>xsd:float</code>)</div>
    </div>
-   <br><strong>Examples</strong><br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%287+2%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aexponentiation+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a>
+   <br><strong>Examples</strong><br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%7B%0A++++%287+%3Fresult%29+math%3Aexponentiation+49+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a>
    <p></p>
+   <div class="example" id="example-2eb751e2">
+    <a class="self-link" href="#example-2eb751e2"></a> 
+    <p> Calculate the logarithm of 49 base 2 . </p>
+    <p><b>Formula:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+@prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
+
+{
+    (7 ?result) math:exponentiation 49 .
+}
+=>
+{
+    :result :is ?result .
+} .
+</pre>
+    <p><b>Result:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+:result :is 2.0 .
+</pre>
+   </div>
+   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%287+2%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aexponentiation+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
    <div class="example" id="example-e72f6dbe">
     <a class="self-link" href="#example-e72f6dbe"></a> 
     <p> Calculate the value of 7 raised to the power of 2 . </p>
@@ -3012,27 +3090,6 @@ You can also use this to calculate the logarithm of the object, with as base the
     <p><b>Result:</b> </p>
 <pre>@prefix : &lt;http://example.org/>.
 :result :is 49 .
-</pre>
-   </div>
-   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%7B%0A++++%287+%3Fresult%29+math%3Aexponentiation+49+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
-   <div class="example" id="example-2eb751e2">
-    <a class="self-link" href="#example-2eb751e2"></a> 
-    <p> Calculate the logarithm of 49 base 2 . </p>
-    <p><b>Formula:</b> </p>
-<pre>@prefix : &lt;http://example.org/>.
-@prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
-
-{
-    (7 ?result) math:exponentiation 49 .
-}
-=>
-{
-    :result :is ?result .
-} .
-</pre>
-    <p><b>Result:</b> </p>
-<pre>@prefix : &lt;http://example.org/>.
-:result :is 2.0 .
 </pre>
    </div>
    <h4 class="heading settled" data-level="6.4.23" id="tanh"><span class="secno">6.4.23. </span><span class="content">math:tanh</span><a class="self-link" href="#tanh"></a></h4>
@@ -3142,7 +3199,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
    <h3 class="heading settled" data-level="6.5" id="list"><span class="secno">6.5. </span><span class="content">list</span><a class="self-link" href="#list"></a></h3>
    <h4 class="heading settled" data-level="6.5.1" id="first"><span class="secno">6.5.1. </span><span class="content">list:first</span><a class="self-link" href="#first"></a></h4>
     Gets the first element of the subject list as object. 
-   <p><code>true</code> if and only if <code>$</code> is a list and <code>$o</code> is the first member of that list.</p>
+   <p><code>true</code> if and only if <code>$s</code> is a list and <code>$o</code> is the first member of that list.</p>
    <p><strong>Schema</strong><br><code>$s+ list:first $o-</code></p>
    <div class="schema_where">
     where:
@@ -3214,31 +3271,14 @@ If there are two such numbers, then the one closest to positive infinity is retu
    </div>
    <h4 class="heading settled" data-level="6.5.3" id="member"><span class="secno">6.5.3. </span><span class="content">list:member</span><a class="self-link" href="#member"></a></h4>
     Checks whether the subject list contains the object. 
-   <p><code>true</code> if and only <code>$s</code> is a list and <code>o</code> is a member of that list.</p>
+   <p><code>true</code> if and only if <code>$s</code> is a list and <code>o</code> is a member of that list.</p>
    <p><strong>Schema</strong><br><code>$s+ list:member $o-[*]</code></p>
    <div class="schema_where">
     where:
     <div class="schema_datatypes"><code>$s</code>: <code>rdf:List</code></div>
    </div>
-   <br><strong>Examples</strong><br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28%22dog%22+%22penguin%22+%22cat%22%29+list%3Amember+%3Fmember+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fmember+.+%7D+." target="_blank">Try in Notation3 Editor 🚀</a>
+   <br><strong>Examples</strong><br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.%0A++++%3Fparam+list%3Amember+%22cat%22+.+%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+true+.+%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a>
    <p></p>
-   <div class="example" id="example-bf32ebbe">
-    <a class="self-link" href="#example-bf32ebbe"></a> 
-    <p> Determine the members of the list ("dog" "penguin" "cat"). </p>
-    <p><b>Formula:</b> </p>
-<pre>@prefix : &lt;http://example.org/>.
-@prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
-
-{ ("dog" "penguin" "cat") list:member ?member . } => { :result :is ?member . } .
-</pre>
-    <p><b>Result:</b> </p>
-<pre>@prefix : &lt;http://example.org/>.
-:result :is "dog".
-:result :is "penguin".
-:result :is "cat".
-</pre>
-   </div>
-   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.%0A++++%3Fparam+list%3Amember+%22cat%22+.+%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+true+.+%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
    <div class="example" id="example-83d2a4f5">
     <a class="self-link" href="#example-83d2a4f5"></a> 
     <p> Is "cat" a member of the list ("dog" "penguin" "cat")? </p>
@@ -3262,6 +3302,23 @@ If there are two such numbers, then the one closest to positive infinity is retu
 :result :is true.
 </pre>
    </div>
+   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28%22dog%22+%22penguin%22+%22cat%22%29+list%3Amember+%3Fmember+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fmember+.+%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
+   <div class="example" id="example-bf32ebbe">
+    <a class="self-link" href="#example-bf32ebbe"></a> 
+    <p> Determine the members of the list ("dog" "penguin" "cat"). </p>
+    <p><b>Formula:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+@prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
+
+{ ("dog" "penguin" "cat") list:member ?member . } => { :result :is ?member . } .
+</pre>
+    <p><b>Result:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+:result :is "dog".
+:result :is "penguin".
+:result :is "cat".
+</pre>
+   </div>
    <h4 class="heading settled" data-level="6.5.4" id="append"><span class="secno">6.5.4. </span><span class="content">list:append</span><a class="self-link" href="#append"></a></h4>
     Appends the lists from the subject list into a single list as object. 
    <p><code>true</code> if and only if <code>$o</code> is the concatenation of all lists <code>$s.i</code>.</p>
@@ -3270,23 +3327,8 @@ If there are two such numbers, then the one closest to positive infinity is retu
     where:
     <div class="schema_datatypes"><code>$s.i</code>: <code>rdf:List</code><br><code>$o</code>: <code>rdf:List</code></div>
    </div>
-   <br><strong>Examples</strong><br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281+2%29+%283+4%29+%29+list%3Aappend+%3Flist+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Flist+.+%7D+." target="_blank">Try in Notation3 Editor 🚀</a>
+   <br><strong>Examples</strong><br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%3Fwhat+%283+4%29+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fwhat+.+%7D+." target="_blank">Try in Notation3 Editor 🚀</a>
    <p></p>
-   <div class="example" id="example-28c33490">
-    <a class="self-link" href="#example-28c33490"></a> 
-    <p> Append (3 4) to the list (1 2). </p>
-    <p><b>Formula:</b> </p>
-<pre>@prefix : &lt;http://example.org/>.
-@prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
-
-{ ( (1 2) (3 4) ) list:append ?list . } => { :result :is ?list . } .
-</pre>
-    <p><b>Result:</b> </p>
-<pre>@prefix : &lt;http://example.org/>.
-:result :is (1 2 3 4). 
-</pre>
-   </div>
-   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%3Fwhat+%283+4%29+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fwhat+.+%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
    <div class="example" id="example-c63298f6">
     <a class="self-link" href="#example-c63298f6"></a> 
     <p> What do we need to prepend to (3 4) to get (1 2 3 4)? </p>
@@ -3301,19 +3343,19 @@ If there are two such numbers, then the one closest to positive infinity is retu
 :result :is (1 2). 
 </pre>
    </div>
-   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281%29+%282+3%29+%284%29+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+true+.+%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
-   <div class="example" id="example-eb436c47">
-    <a class="self-link" href="#example-eb436c47"></a> 
-    <p> Is the list (1 2 3 4) equal to appending (1), (2 3) , (4)? </p>
+   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281+2%29+%283+4%29+%29+list%3Aappend+%3Flist+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Flist+.+%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
+   <div class="example" id="example-28c33490">
+    <a class="self-link" href="#example-28c33490"></a> 
+    <p> Append (3 4) to the list (1 2). </p>
     <p><b>Formula:</b> </p>
 <pre>@prefix : &lt;http://example.org/>.
 @prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
 
-{ ( (1) (2 3) (4) ) list:append (1 2 3 4) . } => { :result :is true . } .
+{ ( (1 2) (3 4) ) list:append ?list . } => { :result :is ?list . } .
 </pre>
     <p><b>Result:</b> </p>
 <pre>@prefix : &lt;http://example.org/>.
-:result :is true. 
+:result :is (1 2 3 4). 
 </pre>
    </div>
    <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281+2%29+%3Fwhat+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fwhat+.+%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
@@ -3329,6 +3371,21 @@ If there are two such numbers, then the one closest to positive infinity is retu
     <p><b>Result:</b> </p>
 <pre>@prefix : &lt;http://example.org/>.
 :result :is (3 4). 
+</pre>
+   </div>
+   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281%29+%282+3%29+%284%29+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+true+.+%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
+   <div class="example" id="example-eb436c47">
+    <a class="self-link" href="#example-eb436c47"></a> 
+    <p> Is the list (1 2 3 4) equal to appending (1), (2 3) , (4)? </p>
+    <p><b>Formula:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+@prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
+
+{ ( (1) (2 3) (4) ) list:append (1 2 3 4) . } => { :result :is true . } .
+</pre>
+    <p><b>Result:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+:result :is true. 
 </pre>
    </div>
    <h4 class="heading settled" data-level="6.5.5" id="memberAt"><span class="secno">6.5.5. </span><span class="content">list:memberAt</span><a class="self-link" href="#memberAt"></a></h4>
@@ -3390,7 +3447,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
    </div>
    <h4 class="heading settled" data-level="6.5.6" id="in"><span class="secno">6.5.6. </span><span class="content">list:in</span><a class="self-link" href="#in"></a></h4>
-    Checks whether the subject is found in the object list. 
+    Checks whether the subject is a member of the object list. 
    <p><code>true</code> if and only if <code>$o</code> is a list and <code>$s</code> is a member of that list.</p>
    <p><strong>Schema</strong><br><code>$s-[*] list:in $o+</code></p>
    <div class="schema_where">
@@ -3438,31 +3495,8 @@ If there are two such numbers, then the one closest to positive infinity is retu
     where:
     <div class="schema_datatypes"><code>$s</code>: <code>rdf:List</code><br><code>$o.1</code>: <code>xsd:integer</code></div>
    </div>
-   <br><strong>Examples</strong><br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%7B%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%3Fparam+list%3Aiterate+%28%3Findex+%22cat%22%29+.++%0A%7D%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Findex+.+%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a>
+   <br><strong>Examples</strong><br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%7B%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%3Fparam+list%3Aiterate+%282+%22cat%22%29+.++%0A%7D%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+true+.+%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a>
    <p></p>
-   <div class="example" id="example-98e66a9f">
-    <a class="self-link" href="#example-98e66a9f"></a> 
-    <p> What is the index of "cat" in the list ("dog" "penguin" "cat")? </p>
-    <p><b>Formula:</b> </p>
-<pre>@prefix : &lt;http://example.org/>.
-@prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
-
-:let :param ("dog" "penguin" "cat") .
-{
-    :let :param ?param . 
-    ?param list:iterate (?index "cat") .  
-}
-=> 
-{ 
-    :result :is ?index . 
-} .
-</pre>
-    <p><b>Result:</b> </p>
-<pre>@prefix : &lt;http://example.org/>.
-:result :is 2 .
-</pre>
-   </div>
-   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%7B%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%3Fparam+list%3Aiterate+%282+%22cat%22%29+.++%0A%7D%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+true+.+%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
    <div class="example" id="example-e92f4ae7">
     <a class="self-link" href="#example-e92f4ae7"></a> 
     <p> Is "cat" the third item in the list ("dog" "penguin" "cat")? </p>
@@ -3483,6 +3517,29 @@ If there are two such numbers, then the one closest to positive infinity is retu
     <p><b>Result:</b> </p>
 <pre>@prefix : &lt;http://example.org/>.
 :result :is true .
+</pre>
+   </div>
+   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%7B%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%3Fparam+list%3Aiterate+%28%3Findex+%22cat%22%29+.++%0A%7D%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Findex+.+%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
+   <div class="example" id="example-98e66a9f">
+    <a class="self-link" href="#example-98e66a9f"></a> 
+    <p> What is the index of "cat" in the list ("dog" "penguin" "cat")? </p>
+    <p><b>Formula:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+@prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
+
+:let :param ("dog" "penguin" "cat") .
+{
+    :let :param ?param . 
+    ?param list:iterate (?index "cat") .  
+}
+=> 
+{ 
+    :result :is ?index . 
+} .
+</pre>
+    <p><b>Result:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+:result :is 2 .
 </pre>
    </div>
    <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28%22dog%22+%22penguin%22+%22cat%22%29+list%3Aiterate+%28%3Findex+%3Fmember%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%28%3Findex+%3Fmember%29+.+%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
@@ -3527,8 +3584,8 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
    </div>
    <h4 class="heading settled" data-level="6.5.9" id="remove"><span class="secno">6.5.9. </span><span class="content">list:remove</span><a class="self-link" href="#remove"></a></h4>
-    Removes the subject member from the subject list, and returns the resulting list as object. 
-   <p><code>true</code> if and only if <code>$s.1</code> is a list, and <code>$o</code> is a list composed of the members of <code>$s.1</code> with member <code>$s.2</code> removed (if it was present; else, <code>$o</code> will be the same list).</p>
+    Removes each occurrence of the subject member from the subject list, and returns the resulting list as object. 
+   <p><code>true</code> if and only if <code>$s.1</code> is a list, and <code>$o</code> is a list composed of the members of <code>$s.1</code> with all occurrences of <code>$s.2</code> removed (if it was present; else, <code>$o</code> will be the same list).</p>
    <p><strong>Schema</strong><br><code>( $s.1+ $s.2+ )+ list:remove $o-</code></p>
    <div class="schema_where">
     where:
@@ -3558,6 +3615,29 @@ If there are two such numbers, then the one closest to positive infinity is retu
 :result :is ("dog" "cat").
 </pre>
    </div>
+   <p><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22+%22penguin%22%29+.%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%28+%3Fparam+%22parakeet%22+%29+list%3Aremove+%3Flist+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Flist+.+%0A%7D+." target="_blank">Try in Notation3 Editor 🚀</a></p>
+   <div class="example" id="example-9c4bd3be">
+    <a class="self-link" href="#example-9c4bd3be"></a> 
+    <p> Remove non-existent "parakeet" from the list ("dog" "penguin" "cat" "penguin"). </p>
+    <p><b>Formula:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+@prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
+
+:let :param ("dog" "penguin" "cat" "penguin") .
+{ 
+    :let :param ?param . 
+    ( ?param "parakeet" ) list:remove ?list .
+} 
+=> 
+{ 
+    :result :is ?list . 
+} .
+</pre>
+    <p><b>Result:</b> </p>
+<pre>@prefix : &lt;http://example.org/>.
+:result :is ("dog" "penguin" "cat" "penguin").
+</pre>
+   </div>
    <h3 class="heading settled" data-level="6.6" id="crypto"><span class="secno">6.6. </span><span class="content">crypto</span><a class="self-link" href="#crypto"></a></h3>
    <h4 class="heading settled" data-level="6.6.1" id="sha"><span class="secno">6.6.1. </span><span class="content">crypto:sha</span><a class="self-link" href="#sha"></a></h4>
     Gets as object the SHA-1 hash of the subject. 
@@ -3583,7 +3663,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 :result :is "2aae6c35c94fcfb415dbe95f408b9ce91ee846ed" .
 </pre>
    </div>
-   <h2 class="appendix heading settled" data-level="7" id="ack"><span class="secno">7. </span><span class="content">Acknowledgements</span><a class="self-link" href="#ack"></a></h2>
+   <h2 class="appendix heading settled" data-level="7" id="acknowledgements"><span class="secno">7. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
    <p>The editors acknowledge valuable contributions from...</p>
   </main>
 <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>

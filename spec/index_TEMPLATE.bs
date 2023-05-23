@@ -139,7 +139,8 @@ Builtin arguments {#builtinarguments}
 
 				<p><b>Numeric type promotion</b>: A numeric value datatype that [is derived from](https://www.w3.org/TR/xmlschema-2/#dt-derived) the domain datatype can
 					be promoted to the latter (e.g., `xs:integer` is derived from `xs:decimal`). This is done by casting
-					the original value to the required datatype.</p>
+					the original value to the required datatype.
+				Refer to [XML Schema Part 2](https://www.w3.org/TR/xmlschema-2/#built-in-datatypes) for details on these datatypes.</p>
 				<p>If there is no direct derivation relation between the value and domain datatype, the following
 					numeric type promotions can take place:
 				<ul>
@@ -216,7 +217,7 @@ Builtin Evaluation {#builtinevaluation}
 				the N3 [builtin statement](#builtins) will be considered true.
 			</p>
 
-			<p>For eample, for the `math:sum` builtin, the [builtin theory box](#builtintheorybox) includes all grounded builtin
+			<p>For example, for the `math:sum` builtin, the [builtin theory box](#builtintheorybox) includes all grounded builtin
 				statements of the form `($s.1 .. $s.n) math:sum $o .`, where argument values have datatype `xs:numeric`
 				and, for each statement, the sum of `$s.1 .. $s.n` equals `$o`.
 				Below, we give several examples of how this theory box is used to evaluate builtin
@@ -251,7 +252,7 @@ Builtin Evaluation {#builtinevaluation}
 			<p>The BGP search is <i>constrained</i> in order to avoid infinite numbers of results and
 				intractable calculations; in other cases, constraints weigh utility vs. difficulty
 				of implementation.
-				For example, the <a>builtin statement</a> `(?a 1) math:sum 2` would match an infinite
+				For example, the <a>builtin statement</a> `(?a ?b) math:sum 2` would match an infinite
 				number of grounded builtin statements.
 				In other cases, the BGP search is restricted due to practical considerations.
 				For instance, <a>builtin statement</a> `(1 ?x) math:sum 6` would match only a single grounded

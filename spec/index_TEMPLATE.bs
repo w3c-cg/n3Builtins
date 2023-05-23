@@ -276,6 +276,6 @@ Builtins {#builtins}
 
 
 <h2 id="acknowledgements" class="appendix informative">Acknowledgements</h2>
-    <p>TIn addition to the editors, the following people have contributed to this specification: 
-    Dörthe Arndt, Pierre-Antoine Champin, and Jos De Roo</p>
+    <p>In addition to the editors, the following people have contributed to this specification: 
+    Dörthe Arndt, Pierre-Antoine Champin, and Jos De Roo.</p>
 </p>

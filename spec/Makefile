@@ -1,5 +1,6 @@
 help:
 	@echo "Generate HTML from a Bikeshed source document:"
+	@echo
 	@echo " [builtins.n3]"
 	@echo
 	@echo "  make builtins Generate builtins.n3 from src/ input files"
@@ -9,11 +10,15 @@ help:
 	@echo
 	@echo "  make index    Generate index.bs"
 	@echo
-	@echo "  Choose one of:"
+	@echo "  And, choose one of:"
 	@echo
-	@echo "  make spec     Generate index.html from index.bs"
-	@echo "  make watch    Generate index.html each time the source index.bs changes"
+	@echo "  make spec     Generate index.html from index.bs (with docker)"
+	@echo "  make watch    Generate index.html each time the source index.bs changes (with docker)"
 	@echo "  make web      Generate index.html (without docker)"
+	@echo 
+	@echo "Development only: generate python code from Jupyter notebook code:"
+	@echo
+	@echo "  make python"
 
 index:
 	@ ./gen_bs.sh
@@ -32,3 +37,6 @@ builtins:
 
 valid:
 	@ find src -type f -name '*.n3' | xargs -n 1 ./example_tester.sh 
+
+python:
+	@ jupyter nbconvert --to script 'create-markdown.ipynb' --output 'create-markdown'

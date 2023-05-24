@@ -91,11 +91,7 @@ N3 defines a core set of [builtins](#builtins):
 Builtin arguments {#builtinarguments}
 =====================
 <p>An N3 [builtin](#builtins) operates on its arguments. An <dfn>argument</dfn> is a placeholder that refers to an
-<<<<<<< HEAD
-      N3 triple element from the [builtin statement](), i.e., the N3 statement where the
-=======
       N3 triple element from the [builtin statement](#builtin-statement), i.e., the N3 statement where the
->>>>>>> main
       builtin acts as a predicate.
     </p>
     <p>In the simplest case, there are two arguments that respectively refer to the subject and object of the

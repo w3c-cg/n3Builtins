@@ -40,3 +40,35 @@ Choose one of:
 - `make spec` : generate HTML `index.html` from `index.bs` (docker)
 - `make watch` : run a watcher program on `index.bs` (continuous development)
 - `make web` : generate HTML `index.html` from `index.bs` (without using docker)
+
+# Editing
+
+## HTML
+
+Edit the `index_TEMPLATE.bs` file and run:
+
+```
+make index
+make web
+```
+
+## N3 examples
+
+Edit the `src/*` files and run:
+
+```
+make valid
+make builtins
+make index
+make web
+```
+
+## Layout
+
+Edit the Jupyter `create-markdown.ipynb` code and run:
+
+```
+make python
+make index
+make web
+```

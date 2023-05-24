@@ -146,8 +146,10 @@ for p in prefixes:
             ?s a fno:Function ;
                 fno:name ?name ;
                 fnon:tldr ?tldr ;
-                dcterms:comment ?comment ;
-                rdfs:seeAlso ?seeAlso ;
+                dcterms:comment ?comment .
+            OPTIONAL {
+                ?s rdfs:seeAlso ?seeAlso .
+            }
             .
             filter(strstarts(str(?s), "$NAMESPACE"))            
         }
@@ -159,8 +161,9 @@ for p in prefixes:
         md_string += "### " + p + ":" + func.name + " ### {#" + str(func.name) + "}\n"
         md_string += func.tldr + "\n\n"
         md_string += func.comment + "\n\n"
-        md_string += "**See also**<br>"
-        md_string += func.seeAlso.replace("http://www.w3.org/2000/10/swap/","").replace("#",":") + "\n\n"
+        if func.seeAlso:
+            md_string += "**See also**<br>"
+            md_string += func.seeAlso.replace("http://www.w3.org/2000/10/swap/","").replace("#",":") + "\n\n"
         md_string += "**Schema**<br>"
         # PARAMETERS
 

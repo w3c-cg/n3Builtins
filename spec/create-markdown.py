@@ -12,7 +12,6 @@ import rdflib
 import rdflib.plugins.sparql as sparql
 import urllib
 
-
 # ### organize prefixes
 
 # In[599]:
@@ -161,7 +160,7 @@ for p in prefixes:
         md_string += func.tldr + "\n\n"
         md_string += func.comment + "\n\n"
         md_string += "**See also**<br>"
-        md_string += func.seeAlso + "\n\n"
+        md_string += func.seeAlso.replace("http://www.w3.org/2000/10/swap/","").replace("#",":") + "\n\n"
         md_string += "**Schema**<br>"
         # PARAMETERS
 

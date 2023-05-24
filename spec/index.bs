@@ -91,7 +91,11 @@ N3 defines a core set of [builtins](#builtins):
 Builtin arguments {#builtinarguments}
 =====================
 <p>An N3 [builtin](#builtins) operates on its arguments. An <dfn>argument</dfn> is a placeholder that refers to an
+<<<<<<< HEAD
       N3 triple element from the [builtin statement](), i.e., the N3 statement where the
+=======
+      N3 triple element from the [builtin statement](#builtin-statement), i.e., the N3 statement where the
+>>>>>>> main
       builtin acts as a predicate.
     </p>
     <p>In the simplest case, there are two arguments that respectively refer to the subject and object of the
@@ -103,7 +107,7 @@ Builtin arguments {#builtinarguments}
 </p>
 
 ## Argument modes ## {#argumentmodes}
-<p>For a given builtin, an argument will have a defined >argument mode
+<p>For a given builtin, an argument will have a defined <dfn>argument mode</dfn>
         that stipulates whether it should be bound or not in the builtin statement.
         This binding requirement determines whether the argument can serve as builtin input, output, or both.
         Note that these modes are mostly based on [Prolog argument modes](https://www.swi-prolog.org/pldoc/man?section=argmode).
@@ -118,23 +122,23 @@ Builtin arguments {#builtinarguments}
       </ul>
 
 ## Argument domains ## {#arg_domains}
-      <p>An N3 builtin often has an expected datatype for its arguments, called the [domain datatype](). If
-        the datatype of an argument value, called the [value datatype](), does not match the
+      <p>An N3 builtin often has an expected datatype for its arguments, called the <dfn>domain datatype</dfn>. If
+        the datatype of an argument value, called the <dfn>value datatype</dfn>, does not match the
         domain datatype, it may be possible to cast the value's datatype to, or substitute it for, the domain
         datatype.</p>
       <p>The expected datatypes of arguments, i.e., domain datatypes, are defined per N3 builtin.</p>
-      <p>If the [value datatype]() and [domain datatype]() do not match, and no casting or substitution is
+      <p>If the [value datatype](#value-datatype) and [domain datatype](#domain-datatype) do not match, and no casting or substitution is
         possible, the builtin statement will be considered false. (We point out that this is in line with the
-        concept of the [builtin theory box](): a BPG search using the builtin statement will not match any
+        concept of the [builtin theory box](#builtintheorybox): a BPG search using the builtin statement will not match any
         statement in the theory box when literal datatypes do not match.)
       </p>
 
       <p>Below, we elaborate on the type casting, promotion or substitution that may be applied to align
-        [domain datatypes]() with [value datatypes]().
+        [domain datatypes](#domain-datatype) with [value datatypes](#value-datatype).
       </p>
 
 ### Numeric datatype promotion and substitution ### {#numericdatatypepromotion}
-  <p>If the numeric [value datatype]() does not match the [domain datatype](), it may be possible to
+  <p>If the numeric [value datatype](#value-datatype) does not match the [domain datatype](#domain-datatype), it may be possible to
           promote or substitute the numeric value datatype:</p>
 
         <p><b>Numeric type promotion</b>: A numeric value datatype that [is derived from](https://www.w3.org/TR/xmlschema-2/#dt-derived) the domain datatype can
@@ -176,7 +180,7 @@ Builtin arguments {#builtinarguments}
         </ul>
         </p>
 ### Other kinds of datatype casting ### {#typesofdatatypecasting}
-        <p>If the non-numeric [value datatype]() does not match the [domain datatype](), it may be
+        <p>If the non-numeric [value datatype](#value-datatype) does not match the [domain datatype](#domain-datatype), it may be
           possible to cast the value datatype to the domain datatype:</p>
 
         <p>
@@ -208,16 +212,16 @@ Builtin arguments {#builtinarguments}
 Builtin Evaluation {#builtinevaluation}
 =====================
 ## Builtin theory box ## {#builtintheorybox}
-      <p>A [builtin statement](#builtins) can be seen as a <i>constrained</i> basic graph pattern
-        (BGP) search on the N3 [builtin theory box]().
-        This builtin theory box is defined to include all truthful builtin statements for the N3 builtin.
+      <p>A <dfn>builtin statement</dfn> can be seen as a <i>constrained</i> basic graph pattern
+        (BGP) search on the N3 [builtin theory box](#builtin-theory-box).
+        This <dfn>builtin theory box</dfn> is defined to include all truthful builtin statements for the N3 builtin.
         In case this BGP search matches one or more statements in the theory box,
         taking into account options for datatype casting, promotion, or substitution
         (see [Argument domains](#arg_domains))
-        the N3 [builtin statement](#builtins) will be considered true.
+        the N3 [builtin statement](#builtin-statement) will be considered true.
       </p>
 
-      <p>For example, for the `math:sum` builtin, the [builtin theory box](#builtintheorybox) includes all grounded builtin
+      <p>For example, for the `math:sum` builtin, the [builtin theory box](#builtin-theory-box) includes all grounded builtin
         statements of the form `($s.1 .. $s.n) math:sum $o .`, where argument values have datatype `xs:numeric`
         and, for each statement, the sum of `$s.1 .. $s.n` equals `$o`.
         Below, we give several examples of how this theory box is used to evaluate builtin
@@ -231,7 +235,7 @@ Builtin Evaluation {#builtinevaluation}
       </ul>
 
       <p>Hence, in both cases, the builtin statement will be considered true,
-        and the set of matching triples from the theory box will be used to instantiate the [builtin statement](#).
+        and the set of matching triples from the theory box will be used to instantiate the [builtin statement](#builtin-statement).
         In the first case, this will lead to a single instance of the builtin statement,
         where variable `?x` will be bound to value `6`.
         In the second case, the grounded builtin statement will itself serve as such an instance.</p>
@@ -242,7 +246,7 @@ Builtin Evaluation {#builtinevaluation}
         statement.
         Consider the following example for the `list:member` builtin:<br><br>
         `( 1 2 3 ) list:member ?x .`<br>
-        This will yield the following matching triples from the [builtin theory box](#builtintheorybox):<br>
+        This will yield the following matching triples from the [builtin theory box](#builtin-theory-box):<br>
         <br>
         `( 1 2 3 ) list:member 1 .`<br>
         `( 1 2 3 ) list:member 2 .`<br>
@@ -252,16 +256,16 @@ Builtin Evaluation {#builtinevaluation}
       <p>The BGP search is <i>constrained</i> in order to avoid infinite numbers of results and
         intractable calculations; in other cases, constraints weigh utility vs. difficulty
         of implementation.
-        For example, the <a>builtin statement</a> `(?a ?b) math:sum 2` would match an infinite
+        For example, the [builtin statement](#builtin-statement) `(?a ?b) math:sum 2` would match an infinite
         number of grounded builtin statements.
         In other cases, the BGP search is restricted due to practical considerations.
-        For instance, <a>builtin statement</a> `(1 ?x) math:sum 6` would match only a single grounded
+        For instance, [builtin statement](#builtin-statement) `(1 ?x) math:sum 6` would match only a single grounded
         builtin statement in the theory box, but this would complicate the implementation of the builtin for
         only limited utility (as other builtins can be used instead to subtract 1 from 6).
       </p>
-      <p>These constraints are encoded in terms of <a>argument modes</a> and <a>domain datatypes</a>
+      <p>These constraints are encoded in terms of [argument modes](#argument-mode) and [domain datatypes](#domain-datatype)
         in the respective builtin definitions.
-        In case these constraints are not met, the <a>builtin statement</a> will evaluate to false.
+        In case these constraints are not met, the [builtin statement](#builtin-statement) will evaluate to false.
       </p>
 
 
@@ -306,37 +310,7 @@ Calculates the object as the product of the numbers given in the subject list.
 
 `true` if and only if `$o` is the arithmetic product of all numbers `$s.i`
 
-**Schema**<br>`( $s.i+ )+ math:product $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.i`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%282+21%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aproduct+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
-
-
-    <div class=example>
-        <p>
-Calculate the product of 2 and 21.
-            
-        <p><b>Formula:</b>
-        ```
-@prefix : <http://example.org/>.
-@prefix math: <http://www.w3.org/2000/10/swap/math#> .
-
-:Let :param (2 21) .
-
-{
-    :Let :param ?param .
-    ?param math:product ?result .
-}
-=>
-{
-    :result :is ?result .
-} .
-            ```
-        <p><b>Result:</b>
-        ```
-@prefix : <http://example.org/>.
-:result :is 42.
-            ```
-    </div>            
-    
-<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%282+4+6+8%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aproduct+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+**Schema**<br>`( $s.i+ )+ math:product $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.i`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%282+4+6+8%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aproduct+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
     <div class=example>
@@ -366,12 +340,44 @@ Calculate the product of 2,4,6, and 8 .
             ```
     </div>            
     
+<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%282+21%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aproduct+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Calculate the product of 2 and 21.
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :param (2 21) .
+
+{
+    :Let :param ?param .
+    ?param math:product ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+:result :is 42.
+            ```
+    </div>            
+    
 
 ### math:notGreaterThan ### {#notGreaterThan}
 Checks whether the subject is a number that is not greater than the object.
 You can use this as an equivalent of a lessThanOrEqual operator.
 
 `true` if and only if `$s` is a number that is not greater than `$o`.
+
+**See also**<br>math:greaterThan
 
 **Schema**<br>`$s+ math:notGreaterThan $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2841+42%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%28%3FX+%3FY%29+.%0A++++%3FX+math%3AnotGreaterThan+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
@@ -445,6 +451,8 @@ Checks whether the subject is a number that is greater than the object.
 
 `true` if and only if `$s` is a number that is greater than `$o`.
 
+**See also**<br>math:notGreaterThan
+
 **Schema**<br>`$s+ math:greaterThan $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2842+41%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%28%3FX+%3FY%29+.%0A++++%3FX+math%3AgreaterThan+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
@@ -482,6 +490,8 @@ You can use this as an equivalent of a greaterThanOrEqual operator.
 
 `true` if and only if `$s` is a number that is not less than `$o`.
 
+**See also**<br>math:lessThan
+
 **Schema**<br>`$s+ math:notLessThan $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2842+41%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%28%3FX+%3FY%29+.%0A++++%3FX+math%3AnotLessThan+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
@@ -517,6 +527,48 @@ Check if 42 is not less than 41 .
 Calculates the object as the sine value of the subject.
 
 `true` if and only if `$o` is the sine value of `$s`.
+
+**See also**<br>math:sinh
+
+**Schema**<br>`$s? math:sin $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%0A%3ALet+%3Aparam+%221.57079632679%22%5E%5Exsd%3Adouble+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Asin+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Calculate the sin of pi/2 (1.57079632679) .
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:Let :param "1.57079632679"^^xsd:double .
+
+{
+    :Let :param ?param .
+    ?param math:sin ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+:result :is "1.0"^^xsd:double . 
+            ```
+    </div>            
+    
+
+### math:sin ### {#sin}
+Calculates the object as the sine value of the subject.
+
+`true` if and only if `$o` is the sine value of `$s`.
+
+**See also**<br>math:asin
 
 **Schema**<br>`$s? math:sin $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%0A%3ALet+%3Aparam+%221.57079632679%22%5E%5Exsd%3Adouble+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Asin+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
@@ -555,6 +607,8 @@ Calculate the sin of pi/2 (1.57079632679) .
 Checks whether the subject is a number that is less than the object.
 
 `true` if and only if `$s` is a number that is less than `$o`.
+
+**See also**<br>math:notLessThan
 
 **Schema**<br>`$s+ math:lessThan $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2841+42%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%28%3FX+%3FY%29+.%0A++++%3FX+math%3AlessThan+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
@@ -631,6 +685,46 @@ Calculates the object as the arc tangent value of the subject.
 
 `true` if and only if `$o` is the arc tangent value of `$s`.
 
+**See also**<br>math:tanh
+
+**Schema**<br>`$s? math:atan $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+1+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aatan+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Calculate the arc tangent of the value 1.
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :param 1 .
+
+{
+    :Let :param ?param .
+    ?param math:atan ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+:result :is 0.7853981633974483 .
+            ```
+    </div>            
+    
+
+### math:atan ### {#atan}
+Calculates the object as the arc tangent value of the subject.
+
+`true` if and only if `$o` is the arc tangent value of `$s`.
+
+**See also**<br>math:tan
+
 **Schema**<br>`$s? math:atan $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+1+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aatan+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
@@ -667,6 +761,46 @@ Calculates the object as the arc cosine value of the subject.
 
 `true` if and only if `$o` is the arc cosine value of `$s`.
 
+**See also**<br>math:cosh
+
+**Schema**<br>`$s? math:acos $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+1+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aacos+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Calculate the arc cosine of the value 1.
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :param 1 .
+
+{
+    :Let :param ?param .
+    ?param math:acos ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+:result :is 0.0 .
+            ```
+    </div>            
+    
+
+### math:acos ### {#acos}
+Calculates the object as the arc cosine value of the subject.
+
+`true` if and only if `$o` is the arc cosine value of `$s`.
+
+**See also**<br>math:cos
+
 **Schema**<br>`$s? math:acos $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+1+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aacos+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
@@ -702,6 +836,46 @@ Calculate the arc cosine of the value 1.
 Calculates the object as the hyperbolic cosine value of the subject.
 
 `true` if and only if `$o` is the hyperbolic cosine value of `$s`.
+
+**See also**<br>math:cos
+
+**Schema**<br>`$s? math:cosh $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+0+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Acosh+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Calculate the hyperbolic cosine of the value 0.
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :param 0 .
+
+{
+    :Let :param ?param .
+    ?param math:cosh ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+:result :is 1.0 .
+            ```
+    </div>            
+    
+
+### math:cosh ### {#cosh}
+Calculates the object as the hyperbolic cosine value of the subject.
+
+`true` if and only if `$o` is the hyperbolic cosine value of `$s`.
+
+**See also**<br>math:acos
 
 **Schema**<br>`$s? math:cosh $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+0+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Acosh+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
@@ -774,6 +948,47 @@ Calculate the negation of the value 42 .
 Calculates the object as the hyperbolic sine value of the subject.
 
 `true` if and only if `$o` is the hyperbolic sine value of `$s`.
+
+**See also**<br>math:asin
+
+**Schema**<br>`$s? math:sinh $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%0A%3ALet+%3Aparam+%220.88137358701954302%22%5E%5Exsd%3Adouble.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Asinh+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Calculate the sinh of log(1 + sqrt(2)) (0.88137358701954302).
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:Let :param "0.88137358701954302"^^xsd:double.
+
+{
+    :Let :param ?param .
+    ?param math:sinh ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+:result :is 1.0.
+            ```
+    </div>            
+    
+
+### math:sinh ### {#sinh}
+Calculates the object as the hyperbolic sine value of the subject.
+
+`true` if and only if `$o` is the hyperbolic sine value of `$s`.
+
+**See also**<br>math:sin
 
 **Schema**<br>`$s? math:sinh $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%0A%3ALet+%3Aparam+%220.88137358701954302%22%5E%5Exsd%3Adouble.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Asinh+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
@@ -884,6 +1099,48 @@ Calculates the object as the hyperbolic tangent value of the subject.
 
 `true` if and only if `$o` is the hyperbolic tangent value of `$s`.
 
+**See also**<br>math:atan
+
+**Schema**<br>`$s? math:tanh $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%0A%3ALet+%3Aparam+%220.549306%22%5E%5Exsd%3Adouble+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Atanh+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Calculate the hyperbolic tanget of 0.549306 .
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:Let :param "0.549306"^^xsd:double .
+
+{
+    :Let :param ?param .
+    ?param math:tanh ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+:result :is "0.49999989174945103"^^xsd:double. 
+            ```
+    </div>            
+    
+
+### math:tanh ### {#tanh}
+Calculates the object as the hyperbolic tangent value of the subject.
+
+`true` if and only if `$o` is the hyperbolic tangent value of `$s`.
+
+**See also**<br>math:tan
+
 **Schema**<br>`$s? math:tanh $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%0A%3ALet+%3Aparam+%220.549306%22%5E%5Exsd%3Adouble+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Atanh+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
@@ -923,34 +1180,7 @@ You can also use this to calculate the logarithm of the object, with as base the
 
 `true` if and only if `$o` is the result of raising `$s.1` to the power of `$s.2`
 
-**Schema**<br>`( $s.1+ $s.2? )+ math:exponentiation $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.1`: (`xsd:decimal` | `xsd:double` | `xsd:float`), `$s.2`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%7B%0A++++%287+%3Fresult%29+math%3Aexponentiation+49+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
-
-
-    <div class=example>
-        <p>
-Calculate the logarithm of 49 base 2 .
-            
-        <p><b>Formula:</b>
-        ```
-@prefix : <http://example.org/>.
-@prefix math: <http://www.w3.org/2000/10/swap/math#> .
-
-{
-    (7 ?result) math:exponentiation 49 .
-}
-=>
-{
-    :result :is ?result .
-} .
-            ```
-        <p><b>Result:</b>
-        ```
-@prefix : <http://example.org/>.
-:result :is 2.0 .
-            ```
-    </div>            
-    
-<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%287+2%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aexponentiation+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+**Schema**<br>`( $s.1+ $s.2? )+ math:exponentiation $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.1`: (`xsd:decimal` | `xsd:double` | `xsd:float`), `$s.2`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%287+2%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aexponentiation+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
     <div class=example>
@@ -980,11 +1210,40 @@ Calculate the value of 7 raised to the power of 2 .
             ```
     </div>            
     
+<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%7B%0A++++%287+%3Fresult%29+math%3Aexponentiation+49+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Calculate the logarithm of 49 base 2 .
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+{
+    (7 ?result) math:exponentiation 49 .
+}
+=>
+{
+    :result :is ?result .
+} .
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+:result :is 2.0 .
+            ```
+    </div>            
+    
 
 ### math:notEqualTo ### {#notEqualTo}
 Checks whether the subject and object are not the same number.
 
 `true` if and only if `$s` is the not same number as `$o`.
+
+**See also**<br>math:equalTo
 
 **Schema**<br>`$s+ math:notEqualTo $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2841+42%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%28%3FX+%3FY%29+.%0A++++%3FX+math%3AnotEqualTo+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
@@ -1058,6 +1317,8 @@ Checks whether the subject and object are the same number.
 
 `true` if and only if `$s` is the same number as `$o`.
 
+**See also**<br>math:notEqualTo
+
 **Schema**<br>`$s? math:equalTo $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2842+42%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%28%3FX+%3FY%29+.%0A++++%3FX+math%3AequalTo+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
@@ -1094,6 +1355,46 @@ Calculates the object as the cosine value of the subject.
 
 `true` if and only if `$o` is the cosine value of `$s`.
 
+**See also**<br>math:acos
+
+**Schema**<br>`$s? math:cos $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+0+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Acos+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Calculate the cosine of the value 0.
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :param 0 .
+
+{
+    :Let :param ?param .
+    ?param math:cos ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+:result :is 1.0 .
+            ```
+    </div>            
+    
+
+### math:cos ### {#cos}
+Calculates the object as the cosine value of the subject.
+
+`true` if and only if `$o` is the cosine value of `$s`.
+
+**See also**<br>math:cosh
+
 **Schema**<br>`$s? math:cos $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+0+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Acos+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
@@ -1129,6 +1430,48 @@ Calculate the cosine of the value 0.
 Calculates the object as the tangent value of the subject.
 
 `true` if and only if `$o` is the tangent value of `$s`.
+
+**See also**<br>math:tanh
+
+**Schema**<br>`$s? math:tan $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%0A%3ALet+%3Aparam+%220.7853981633974483%22%5E%5Exsd%3Adouble+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Atan+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Calculate the tangent of the value 0.7853981633974483 .
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:Let :param "0.7853981633974483"^^xsd:double .
+
+{
+    :Let :param ?param .
+    ?param math:tan ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+:result :is "0.9999999999999999"^^xsd:double. 
+            ```
+    </div>            
+    
+
+### math:tan ### {#tan}
+Calculates the object as the tangent value of the subject.
+
+`true` if and only if `$o` is the tangent value of `$s`.
+
+**See also**<br>math:atan
 
 **Schema**<br>`$s? math:tan $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%0A%3ALet+%3Aparam+%220.7853981633974483%22%5E%5Exsd%3Adouble+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Atan+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
@@ -1239,6 +1582,46 @@ Calculate the degrees of the radians value 1.57079632679.
 Calculates the object as the arc sine value of the subject.
 
 `true` if and only if `$o` is the arc sine value of `$s`.
+
+**See also**<br>math:sinh
+
+**Schema**<br>`$s? math:asin $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+1+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aasin+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Calculate the arc sine of the value 1.
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :param 1 .
+
+{
+    :Let :param ?param .
+    ?param math:asin ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+:result :is 1.5707963267948966 .
+            ```
+    </div>            
+    
+
+### math:asin ### {#asin}
+Calculates the object as the arc sine value of the subject.
+
+`true` if and only if `$o` is the arc sine value of `$s`.
+
+**See also**<br>math:sin
 
 **Schema**<br>`$s? math:asin $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+1+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aasin+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
@@ -1500,6 +1883,8 @@ Gets the last element of the subject list as object.
 
 `true` if and only if `$` is a list and `$o` is the last member of that list.
 
+**See also**<br>list:first
+
 **Schema**<br>`$s+ list:last $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `rdf:List`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%281+2+3+4%29.%0A%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.%0A++++%3Fparam+list%3Alast+4+.+%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+true+.+%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
@@ -1557,6 +1942,8 @@ Gets the first element of the subject list as object.
 
 `true` if and only if `$s` is a list and `$o` is the first member of that list.
 
+**See also**<br>list:last
+
 **Schema**<br>`$s+ list:first $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `rdf:List`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%28%27a%27%29+%7B+%3Aa+%3Ab+%3Ac+%7D+42+%29+list%3Afirst+%3Fwhat+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fwhat+.+%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
@@ -1584,28 +1971,9 @@ Appends the lists from the subject list into a single list as object.
 
 `true` if and only if `$o` is the concatenation of all lists `$s.i`.
 
-**Schema**<br>`( $s.i?[*] )+ list:append $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.i`: `rdf:List`<br>`$o`: `rdf:List`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281%29+%282+3%29+%284%29+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+true+.+%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+**See also**<br>list:remove
 
-
-    <div class=example>
-        <p>
-Is the list (1 2 3 4) equal to appending (1), (2 3) , (4)?
-            
-        <p><b>Formula:</b>
-        ```
-@prefix : <http://example.org/>.
-@prefix list: <http://www.w3.org/2000/10/swap/list#> .
-
-{ ( (1) (2 3) (4) ) list:append (1 2 3 4) . } => { :result :is true . } .
-            ```
-        <p><b>Result:</b>
-        ```
-@prefix : <http://example.org/>.
-:result :is true. 
-            ```
-    </div>            
-    
-<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%3Fwhat+%283+4%29+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fwhat+.+%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+**Schema**<br>`( $s.i?[*] )+ list:append $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.i`: `rdf:List`<br>`$o`: `rdf:List`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%3Fwhat+%283+4%29+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fwhat+.+%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
     <div class=example>
@@ -1623,6 +1991,27 @@ What do we need to prepend to (3 4) to get (1 2 3 4)?
         ```
 @prefix : <http://example.org/>.
 :result :is (1 2). 
+            ```
+    </div>            
+    
+<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281+2%29+%3Fwhat+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fwhat+.+%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+What do we need to append to (1 2) to get (1 2 3 4)?
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+{ ( (1 2) ?what ) list:append (1 2 3 4) . } => { :result :is ?what . } .
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+:result :is (3 4). 
             ```
     </div>            
     
@@ -1647,24 +2036,24 @@ Append (3 4) to the list (1 2).
             ```
     </div>            
     
-<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281+2%29+%3Fwhat+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fwhat+.+%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281%29+%282+3%29+%284%29+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+true+.+%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
     <div class=example>
         <p>
-What do we need to append to (1 2) to get (1 2 3 4)?
+Is the list (1 2 3 4) equal to appending (1), (2 3) , (4)?
             
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 
-{ ( (1 2) ?what ) list:append (1 2 3 4) . } => { :result :is ?what . } .
+{ ( (1) (2 3) (4) ) list:append (1 2 3 4) . } => { :result :is true . } .
             ```
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is (3 4). 
+:result :is true. 
             ```
     </div>            
     
@@ -1765,35 +2154,6 @@ Iterate over the list ("dog" "penguin" "cat").
             ```
     </div>            
     
-<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%7B%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%3Fparam+list%3Aiterate+%282+%22cat%22%29+.++%0A%7D%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+true+.+%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
-
-
-    <div class=example>
-        <p>
-Is "cat" the third item in the list ("dog" "penguin" "cat")?
-            
-        <p><b>Formula:</b>
-        ```
-@prefix : <http://example.org/>.
-@prefix list: <http://www.w3.org/2000/10/swap/list#> .
-
-:let :param ("dog" "penguin" "cat") .
-{
-    :let :param ?param . 
-    ?param list:iterate (2 "cat") .  
-}
-=> 
-{ 
-    :result :is true . 
-} .
-            ```
-        <p><b>Result:</b>
-        ```
-@prefix : <http://example.org/>.
-:result :is true .
-            ```
-    </div>            
-    
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%7B%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%3Fparam+list%3Aiterate+%28%3Findex+%22cat%22%29+.++%0A%7D%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Findex+.+%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
@@ -1823,36 +2183,44 @@ What is the index of "cat" in the list ("dog" "penguin" "cat")?
             ```
     </div>            
     
-
-### list:member ### {#member}
-Checks whether the subject list contains the object.
-
-`true` if and only if `$s` is a list and `o` is a member of that list.
-
-**Schema**<br>`$s+ list:member $o-[*]`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `rdf:List`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28%22dog%22+%22penguin%22+%22cat%22%29+list%3Amember+%3Fmember+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fmember+.+%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%7B%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%3Fparam+list%3Aiterate+%282+%22cat%22%29+.++%0A%7D%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+true+.+%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
     <div class=example>
         <p>
-Determine the members of the list ("dog" "penguin" "cat").
+Is "cat" the third item in the list ("dog" "penguin" "cat")?
             
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 
-{ ("dog" "penguin" "cat") list:member ?member . } => { :result :is ?member . } .
+:let :param ("dog" "penguin" "cat") .
+{
+    :let :param ?param . 
+    ?param list:iterate (2 "cat") .  
+}
+=> 
+{ 
+    :result :is true . 
+} .
             ```
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is "dog".
-:result :is "penguin".
-:result :is "cat".
+:result :is true .
             ```
     </div>            
     
-<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.%0A++++%3Fparam+list%3Amember+%22cat%22+.+%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+true+.+%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+### list:member ### {#member}
+Checks whether the subject list contains the object.
+
+`true` if and only if `$s` is a list and `o` is a member of that list.
+
+**See also**<br>list:memberAt
+
+**Schema**<br>`$s+ list:member $o-[*]`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `rdf:List`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.%0A++++%3Fparam+list%3Amember+%22cat%22+.+%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+true+.+%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
     <div class=example>
@@ -1882,13 +2250,120 @@ Is "cat" a member of the list ("dog" "penguin" "cat")?
             ```
     </div>            
     
+<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28%22dog%22+%22penguin%22+%22cat%22%29+list%3Amember+%3Fmember+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fmember+.+%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Determine the members of the list ("dog" "penguin" "cat").
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+{ ("dog" "penguin" "cat") list:member ?member . } => { :result :is ?member . } .
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+:result :is "dog".
+:result :is "penguin".
+:result :is "cat".
+            ```
+    </div>            
+    
+
+### list:member ### {#member}
+Checks whether the subject list contains the object.
+
+`true` if and only if `$s` is a list and `o` is a member of that list.
+
+**See also**<br>list:in
+
+**Schema**<br>`$s+ list:member $o-[*]`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `rdf:List`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.%0A++++%3Fparam+list%3Amember+%22cat%22+.+%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+true+.+%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Is "cat" a member of the list ("dog" "penguin" "cat")?
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:let :param ("dog" "penguin" "cat") .
+
+{ 
+    :let :param ?param .
+    ?param list:member "cat" . 
+} 
+=> 
+{ 
+    :result :is true . 
+} .
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+:result :is true.
+            ```
+    </div>            
+    
+<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28%22dog%22+%22penguin%22+%22cat%22%29+list%3Amember+%3Fmember+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fmember+.+%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Determine the members of the list ("dog" "penguin" "cat").
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+{ ("dog" "penguin" "cat") list:member ?member . } => { :result :is ?member . } .
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+:result :is "dog".
+:result :is "penguin".
+:result :is "cat".
+            ```
+    </div>            
+    
 
 ### list:in ### {#in}
 Checks whether the subject is a member of the object list.
 
 `true` if and only if `$o` is a list and `$s` is a member of that list.
 
-**Schema**<br>`$s-[*] list:in $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$o`: `rdf:List`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%3Fwhat+list%3Ain+%28+%22dog%22+%22penguin%22+%22cat%22+%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fwhat+.+%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+**See also**<br>list:member
+
+**Schema**<br>`$s-[*] list:in $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$o`: `rdf:List`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%22cat%22+list%3Ain+%28+%22dog%22+%22penguin%22+%22cat%22+%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+true+.+%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Does ( "dog" "penguin" "cat" ) contain a "cat"?
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+{ "cat" list:in ( "dog" "penguin" "cat" ) . } => { :result :is true . } .
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+:result :is true. 
+            ```
+    </div>            
+    
+<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%3Fwhat+list%3Ain+%28+%22dog%22+%22penguin%22+%22cat%22+%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fwhat+.+%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
     <div class=example>
@@ -1911,32 +2386,13 @@ What are the members of ( "dog" "penguin" "cat" )?
             ```
     </div>            
     
-<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%22cat%22+list%3Ain+%28+%22dog%22+%22penguin%22+%22cat%22+%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+true+.+%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
-
-
-    <div class=example>
-        <p>
-Does ( "dog" "penguin" "cat" ) contain a "cat"?
-            
-        <p><b>Formula:</b>
-        ```
-@prefix : <http://example.org/>.
-@prefix list: <http://www.w3.org/2000/10/swap/list#> .
-
-{ "cat" list:in ( "dog" "penguin" "cat" ) . } => { :result :is true . } .
-            ```
-        <p><b>Result:</b>
-        ```
-@prefix : <http://example.org/>.
-:result :is true. 
-            ```
-    </div>            
-    
 
 ### list:remove ### {#remove}
 Removes each occurrence of the subject member from the subject list, and returns the resulting list as object.
 
 `true` if and only if `$s.1` is a list, and `$o` is a list composed of the members of `$s.1` with all occurrences of `$s.2` removed (if it was present; else, `$o` will be the same list).
+
+**See also**<br>list:append
 
 **Schema**<br>`( $s.1+ $s.2+ )+ list:remove $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.1`: `rdf:List`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22+%22penguin%22%29+.%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%28+%3Fparam+%22parakeet%22+%29+list%3Aremove+%3Flist+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Flist+.+%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
@@ -2058,38 +2514,7 @@ Gets the type of the N3 resource.
 `true` if and only if the N3 resource type of `$s` is `$o`.
 N3 resource types include `log:Formula`, `log:Literal`, `rdf:List` or `log:Other`.
 
-**Schema**<br>`$s+ log:rawType $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$o`: `log:Uri`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%22Hello%22+log%3ArawType+%3FstringType+.%0A++++42+log%3ArawType+%3FintegerType+.%0A++++true+log%3ArawType+%3FtrueType+.%0A++++false+log%3ArawType+%3FfalseType+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%28+%3FstringType+%3FintegerType+%3FtrueType+%3FfalseType+%29+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
-
-
-    <div class=example>
-        <p>
-Get the type of literal resources.
-            
-        <p><b>Formula:</b>
-        ```
-@prefix : <http://example.org/>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#> .
-
-{
-    "Hello" log:rawType ?stringType .
-    42 log:rawType ?integerType .
-    true log:rawType ?trueType .
-    false log:rawType ?falseType .
-}
-=>
-{
-    :result :is ( ?stringType ?integerType ?trueType ?falseType ) .
-} .
-            ```
-        <p><b>Result:</b>
-        ```
-@prefix : <http://example.org/>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#> .
-:result :is ( log:Literal log:Literal log:Literal log:Literal ) .
-            ```
-    </div>            
-    
-<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%3Chttp%3A%2F%2Fwww.w3c.org%3E+log%3ArawType+%3FresourceType+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3FresourceType+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+**Schema**<br>`$s+ log:rawType $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$o`: `log:Uri`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%3Chttp%3A%2F%2Fwww.w3c.org%3E+log%3ArawType+%3FresourceType+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3FresourceType+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
     <div class=example>
@@ -2144,6 +2569,37 @@ Get the type of lists and graph terms.
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 :result :is ( rdf:List log:Formula ) .
+            ```
+    </div>            
+    
+<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%22Hello%22+log%3ArawType+%3FstringType+.%0A++++42+log%3ArawType+%3FintegerType+.%0A++++true+log%3ArawType+%3FtrueType+.%0A++++false+log%3ArawType+%3FfalseType+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%28+%3FstringType+%3FintegerType+%3FtrueType+%3FfalseType+%29+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Get the type of literal resources.
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    "Hello" log:rawType ?stringType .
+    42 log:rawType ?integerType .
+    true log:rawType ?trueType .
+    false log:rawType ?falseType .
+}
+=>
+{
+    :result :is ( ?stringType ?integerType ?trueType ?falseType ) .
+} .
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+:result :is ( log:Literal log:Literal log:Literal log:Literal ) .
             ```
     </div>            
     
@@ -2231,6 +2687,8 @@ Creates a language-tagged literal as object, based on the string value and langu
 `true` if and only if `$o` is a language-tagged literal with string value corresponding to `$s.1` and language tag corresponding to `$s.2`.
 `$s.2` should be a string in the form of a BCP47 language tag.
 
+**See also**<br>log:dtlit
+
 **Schema**<br>`( $s.1? $s.2? )? log:langlit $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.1`: `xsd:string`, `$s.2`: `xsd:string`<br>`$o`: `log:Literal`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%7B+%28%22hello%22+%22en%22%29+log%3Alanglit+%3FX+%7D+%3D%3E+%7B+%3FX+a+%3AResult+%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
@@ -2298,6 +2756,8 @@ Parses the subject string into an object graph term.
 
 `true` if and only if `$s`, when parsed as N3, gives `$o`.
 `$s` should be a syntactically valid string in N3 format.
+
+**See also**<br>log:semantics
 
 **Schema**<br>`$s+ log:parsedAsN3 $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>(should be a syntactically valid string in N3 format)<br>`$o`: `log:Formula`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%3ALet+%3Aparam+%22%22%22%0A%40prefix+%3A+%3Curn%3Aexample%3A%3E+.%0A%3ASocrates+a+%3AHuman+.%0A%22%22%22+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3FX+.%0A++++%3FX+log%3AparsedAsN3+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3FY+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
@@ -2378,6 +2838,8 @@ Checks whether the subject graph term _does not_ include the object graph term (
 
 `true` if and only if `$s log:includes $o` is `false`.
 
+**See also**<br>log:includes
+
 **Schema**<br>`$s+ log:notIncludes $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `log:Formula`<br>`$o`: `log:Formula`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%23+Dynamic+evaluation+of+%3FX+and+%3FY%0A++++%3FX+log%3AnotIncludes+%3FY+.%0A++++%3FX+log%3AequalTo+%7B+%3Aa+%3Ab+%3Ac+%7D.%0A++++%3FY+log%3AequalTo+%7B+%3Aa+%3Ab+%3Ad+%7D.%0A%7D+%0A%3D%3E++++++++++++++%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
@@ -2441,34 +2903,9 @@ Checks whether the subject and object N3 terms are _not_ the same (comparison oc
 
 `true` if and only if `$s` and `$o` are _not_ the same N3 term.
 
-**Schema**<br>`$s+ log:notEqualTo $o+`**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%22Cat%22+log%3AnotEqualTo+%22Cat%22%40en+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+**See also**<br>log:equalTo
 
-
-    <div class=example>
-        <p>
-Determine if "Cat" is not equal to "Cat"@en .
-            
-        <p><b>Formula:</b>
-        ```
-@prefix : <http://example.org/>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#> .
-
-{
-    "Cat" log:notEqualTo "Cat"@en .
-}
-=>
-{
-    :result :is true .
-} . 
-            ```
-        <p><b>Result:</b>
-        ```
-@prefix : <http://example.org/>.
-:result :is true .
-            ```
-    </div>            
-    
-<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++1+log%3AnotEqualTo+2+.%0A++++%22Cat%22+log%3AnotEqualTo+%22CAT%22+.%0A++++%7B+%3AA+%3AB+%3AC+.+%7D+log%3AnotEqualTo+%7B+%3AC+%3AB+%3AA+.+%7D+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+**Schema**<br>`$s+ log:notEqualTo $o+`**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++1+log%3AnotEqualTo+2+.%0A++++%22Cat%22+log%3AnotEqualTo+%22CAT%22+.%0A++++%7B+%3AA+%3AB+%3AC+.+%7D+log%3AnotEqualTo+%7B+%3AC+%3AB+%3AA+.+%7D+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
     <div class=example>
@@ -2494,6 +2931,34 @@ Determine if 1 is not equal to 2 and "Cat" is not equal to "CAT" and { :A :B :C 
         ```
 @prefix : <http://example.org/>.
 :result :is true .
+            ```
+    </div>            
+    
+<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++_%3Ax+log%3AnotEqualTo+42+.%0A++++%3Fq++log%3AnotEqualTo+%22Cat%22%40en+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Check if an existential or universal variable is not equal to a value.
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    _:x log:notEqualTo 42 .
+    ?q  log:notEqualTo "Cat"@en .
+}
+=>
+{
+    :result :is true .
+} . 
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+# no result (the variables _:x and ?q are not bounded) 
             ```
     </div>            
     
@@ -2525,12 +2990,12 @@ Check whether two graph terms, one containing a universal variable, are not equa
             ```
     </div>            
     
-<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++_%3Ax+log%3AnotEqualTo+42+.%0A++++%3Fq++log%3AnotEqualTo+%22Cat%22%40en+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%22Cat%22+log%3AnotEqualTo+%22Cat%22%40en+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
     <div class=example>
         <p>
-Check if an existential or universal variable is not equal to a value.
+Determine if "Cat" is not equal to "Cat"@en .
             
         <p><b>Formula:</b>
         ```
@@ -2538,8 +3003,7 @@ Check if an existential or universal variable is not equal to a value.
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 {
-    _:x log:notEqualTo 42 .
-    ?q  log:notEqualTo "Cat"@en .
+    "Cat" log:notEqualTo "Cat"@en .
 }
 =>
 {
@@ -2549,7 +3013,7 @@ Check if an existential or universal variable is not equal to a value.
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-# no result (the variables _:x and ?q are not bounded) 
+:result :is true .
             ```
     </div>            
     
@@ -2586,30 +3050,9 @@ Creates a datatyped literal as object, based on the string value and datatype IR
 
 `true` if and only if `$o` is a datatyped literal with string value corresponding to `$s.1` and datatype IRI corresponding to `$s.2`.
 
-**Schema**<br>`( $s.1? $s.2? )? log:dtlit $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.1`: `xsd:string`, `$s.2`: `log:Uri`<br>`$o`: `log:Literal`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%28+%221971-05-05%22+xsd%3Adate+%29+log%3Adtlit+%3Ftyped+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Ftyped+.+%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+**See also**<br>log:langlit
 
-
-    <div class=example>
-        <p>
-Create a datatyped literal from the string "1971-05-05" and the type xsd:date.
-            
-        <p><b>Formula:</b>
-        ```
-@prefix : <http://example.org/>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix log: <http://www.w3.org/2000/10/swap/log#> .
-
-{ ( "1971-05-05" xsd:date ) log:dtlit ?typed } => { :result :is ?typed . } .
-            ```
-        <p><b>Result:</b>
-        ```
-@prefix : <http://example.org/>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-:result :is "1971-05-05"^^xsd:date.
-            ```
-    </div>            
-    
-<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%28+%3Fstring+%3Ftype+%29+log%3Adtlit+%221971-05-05%22%5E%5Exsd%3Adate+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%28+%3Fstring+%3Ftype+%29+.+%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+**Schema**<br>`( $s.1? $s.2? )? log:dtlit $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.1`: `xsd:string`, `$s.2`: `log:Uri`<br>`$o`: `log:Literal`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%28+%3Fstring+%3Ftype+%29+log%3Adtlit+%221971-05-05%22%5E%5Exsd%3Adate+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%28+%3Fstring+%3Ftype+%29+.+%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
     <div class=example>
@@ -2638,6 +3081,29 @@ Parse the datatyped literal "1971-05-05"^^xsd:date into a string and data type I
             ```
     </div>            
     
+<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%28+%221971-05-05%22+xsd%3Adate+%29+log%3Adtlit+%3Ftyped+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Ftyped+.+%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Create a datatyped literal from the string "1971-05-05" and the type xsd:date.
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{ ( "1971-05-05" xsd:date ) log:dtlit ?typed } => { :result :is ?typed . } .
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+:result :is "1971-05-05"^^xsd:date.
+            ```
+    </div>            
+    
 
 ### log:includes ### {#includes}
 Checks whether the subject graph term includes the object graph term (taking into account variables). 
@@ -2646,6 +3112,8 @@ Can also be used to bind variables to values within the graph contents (see exam
 `true` if and only if there exists some substitution which, when applied to `$s` and `$o`, 
 creates graph terms `$s`' and `$o`' such that every statement in `$o`' is also in `$s`''. 
 Variable substitution is applied recursively to nested compound terms such as graph terms and lists.
+
+**See also**<br>log:notIncludes
 
 **Schema**<br>`$s+ log:includes $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `log:Formula`<br>`$o`: `log:Formula`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%7B+%3AFelix+a+%3ACat+%7D+log%3Aincludes+%7B+%3FX+a+%3ACat+%7D+.%0A%7D+%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3FX+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
@@ -2683,7 +3151,138 @@ Can also be used to bind values to variables (see examples).
 Not to be confused with owl:sameAs.
 Literals will be compared exactly: their datatypes must be identical (in case of strings, language tags must be identical).
 
-**Schema**<br>`$s? log:equalTo $o?`**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%28+%3Fx+%3Fy+%3Fz+%29+log%3AequalTo+%28+1+2+3+%29%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fx+%2C+%3Fy+%2C+%3Fz+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+**See also**<br>log:notEqualTo
+
+**Schema**<br>`$s? log:equalTo $o?`**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++_%3Ax+log%3AequalTo+42+.%0A++++%3Fq++log%3AequalTo+%22Cat%22%40en+.%0A%0A++++%23+This+will+fail+because+_%3Ax+is+already+assigned+to+42+.%0A++++%23+_%3Ax+log%3AequalTo+17+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fq+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Assign a value to an existential or universal variable.
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    _:x log:equalTo 42 .
+    ?q  log:equalTo "Cat"@en .
+
+    # This will fail because _:x is already assigned to 42 .
+    # _:x log:equalTo 17 .
+}
+=>
+{
+    :result :is ?q .
+} . 
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+:result :is "Cat"@en .
+            ```
+    </div>            
+    
+<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%28+%22War+and+Peace%22+%22Leo+Tolstoy%22+1225+%29+log%3AequalTo+%28+%3Ftitle+%3Fauthor+%3FnumPages+%29+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Ftitle+%2C+%3Fauthor+%2C+%3FnumPages+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Assign values from the object list to universal variables given in the subject list. 
+This can be compared to "destructuring" or "unpacking" in programming languages such as JavaScript or Python.
+In contrast to those languages, however, it works in either direction in N3.
+In general, this works because an effort is made to ensure the truthfulness of builtin statements in N3.
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    ( "War and Peace" "Leo Tolstoy" 1225 ) log:equalTo ( ?title ?author ?numPages ) .
+}
+=>
+{
+    :result :is ?title , ?author , ?numPages .
+} . 
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+:result :is "War and Peace" , "Leo Tolstoy" , 1225 . # objects can be in any order
+            ```
+    </div>            
+    
+<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++1+log%3AequalTo+1+.%0A++++%22Cat%22+log%3AequalTo+%22Cat%22+.%0A++++%7B+%3AA+%3AB+%3AC+.+%3AD+%3AE+%3AF+.+%7D+log%3AequalTo+%7B+%3AD+%3AE+%3AF+.+%3AA+%3AB+%3AC+.+%7D+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Determine if 1 is equal to 1 and "Cat" is equal to "Cat" and { :A :B :C . :D :E :F } is equal to { :D :E :F . :A :B :C }.
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    1 log:equalTo 1 .
+    "Cat" log:equalTo "Cat" .
+    { :A :B :C . :D :E :F . } log:equalTo { :D :E :F . :A :B :C . } .
+}
+=>
+{
+    :result :is true .
+} . 
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+:result :is true. 
+            ```
+    </div>            
+    
+<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%40prefix+owl%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E+.%0A%0A%3Chttp%3A%2F%2Ffamous.web.site%3E+owl%3AsameAs+%3Chttp%3A%2F%2Fmirror.famous.web.site%3E+.%0A%0A%7B%0A++++%3Chttp%3A%2F%2Ffamous.web.site%3E+log%3AequalTo+%3Chttp%3A%2F%2Ffamous.web.site%3E+.%0A%0A++++%23+But+not%0A++++%23%0A++++%23+%3Chttp%3A%2F%2Ffamous.web.site%3E+log%3AequalTo+%3Chttp%3A%2F%2Fmirror.famous.web.site%3E+.%0A++++%23%0A++++%23+and+not%0A++++%23%0A++++%23+%3Chttp%3A%2F%2Ffamous.web.site%23123%3E+log%3AequalTo+%3Chttp%3A%2F%2Ffamous.web.site%3E+.%0A++++%23%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
+
+
+    <div class=example>
+        <p>
+Determine <http://famous.web.site> is equal to itself .
+            
+        <p><b>Formula:</b>
+        ```
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://famous.web.site> owl:sameAs <http://mirror.famous.web.site> .
+
+{
+    <http://famous.web.site> log:equalTo <http://famous.web.site> .
+
+    # But not
+    #
+    # <http://famous.web.site> log:equalTo <http://mirror.famous.web.site> .
+    #
+    # and not
+    #
+    # <http://famous.web.site#123> log:equalTo <http://famous.web.site> .
+    #
+}
+=>
+{
+    :result :is true .
+} . 
+            ```
+        <p><b>Result:</b>
+        ```
+@prefix : <http://example.org/>.
+:result :is true. 
+            ```
+    </div>            
+    
+<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%28+%3Fx+%3Fy+%3Fz+%29+log%3AequalTo+%28+1+2+3+%29%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fx+%2C+%3Fy+%2C+%3Fz+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
     <div class=example>
@@ -2738,135 +3337,6 @@ Determine if "Cat" is equal to "Cat"@en .
         ```
 @prefix : <http://example.org/>.
 # no results
-            ```
-    </div>            
-    
-<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%28+%22War+and+Peace%22+%22Leo+Tolstoy%22+1225+%29+log%3AequalTo+%28+%3Ftitle+%3Fauthor+%3FnumPages+%29+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Ftitle+%2C+%3Fauthor+%2C+%3FnumPages+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
-
-
-    <div class=example>
-        <p>
-Assign values from the object list to universal variables given in the subject list. 
-This can be compared to "destructuring" or "unpacking" in programming languages such as JavaScript or Python.
-In contrast to those languages, however, it works in either direction in N3.
-In general, this works because an effort is made to ensure the truthfulness of builtin statements in N3.
-            
-        <p><b>Formula:</b>
-        ```
-@prefix : <http://example.org/>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#> .
-
-{
-    ( "War and Peace" "Leo Tolstoy" 1225 ) log:equalTo ( ?title ?author ?numPages ) .
-}
-=>
-{
-    :result :is ?title , ?author , ?numPages .
-} . 
-            ```
-        <p><b>Result:</b>
-        ```
-@prefix : <http://example.org/>.
-:result :is "War and Peace" , "Leo Tolstoy" , 1225 . # objects can be in any order
-            ```
-    </div>            
-    
-<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++_%3Ax+log%3AequalTo+42+.%0A++++%3Fq++log%3AequalTo+%22Cat%22%40en+.%0A%0A++++%23+This+will+fail+because+_%3Ax+is+already+assigned+to+42+.%0A++++%23+_%3Ax+log%3AequalTo+17+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fq+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
-
-
-    <div class=example>
-        <p>
-Assign a value to an existential or universal variable.
-            
-        <p><b>Formula:</b>
-        ```
-@prefix : <http://example.org/>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#> .
-
-{
-    _:x log:equalTo 42 .
-    ?q  log:equalTo "Cat"@en .
-
-    # This will fail because _:x is already assigned to 42 .
-    # _:x log:equalTo 17 .
-}
-=>
-{
-    :result :is ?q .
-} . 
-            ```
-        <p><b>Result:</b>
-        ```
-@prefix : <http://example.org/>.
-:result :is "Cat"@en .
-            ```
-    </div>            
-    
-<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%40prefix+owl%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E+.%0A%0A%3Chttp%3A%2F%2Ffamous.web.site%3E+owl%3AsameAs+%3Chttp%3A%2F%2Fmirror.famous.web.site%3E+.%0A%0A%7B%0A++++%3Chttp%3A%2F%2Ffamous.web.site%3E+log%3AequalTo+%3Chttp%3A%2F%2Ffamous.web.site%3E+.%0A%0A++++%23+But+not%0A++++%23%0A++++%23+%3Chttp%3A%2F%2Ffamous.web.site%3E+log%3AequalTo+%3Chttp%3A%2F%2Fmirror.famous.web.site%3E+.%0A++++%23%0A++++%23+and+not%0A++++%23%0A++++%23+%3Chttp%3A%2F%2Ffamous.web.site%23123%3E+log%3AequalTo+%3Chttp%3A%2F%2Ffamous.web.site%3E+.%0A++++%23%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
-
-
-    <div class=example>
-        <p>
-Determine <http://famous.web.site> is equal to itself .
-            
-        <p><b>Formula:</b>
-        ```
-@prefix : <http://example.org/>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-
-<http://famous.web.site> owl:sameAs <http://mirror.famous.web.site> .
-
-{
-    <http://famous.web.site> log:equalTo <http://famous.web.site> .
-
-    # But not
-    #
-    # <http://famous.web.site> log:equalTo <http://mirror.famous.web.site> .
-    #
-    # and not
-    #
-    # <http://famous.web.site#123> log:equalTo <http://famous.web.site> .
-    #
-}
-=>
-{
-    :result :is true .
-} . 
-            ```
-        <p><b>Result:</b>
-        ```
-@prefix : <http://example.org/>.
-:result :is true. 
-            ```
-    </div>            
-    
-<a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++1+log%3AequalTo+1+.%0A++++%22Cat%22+log%3AequalTo+%22Cat%22+.%0A++++%7B+%3AA+%3AB+%3AC+.+%3AD+%3AE+%3AF+.+%7D+log%3AequalTo+%7B+%3AD+%3AE+%3AF+.+%3AA+%3AB+%3AC+.+%7D+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
-
-
-    <div class=example>
-        <p>
-Determine if 1 is equal to 1 and "Cat" is equal to "Cat" and { :A :B :C . :D :E :F } is equal to { :D :E :F . :A :B :C }.
-            
-        <p><b>Formula:</b>
-        ```
-@prefix : <http://example.org/>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#> .
-
-{
-    1 log:equalTo 1 .
-    "Cat" log:equalTo "Cat" .
-    { :A :B :C . :D :E :F . } log:equalTo { :D :E :F . :A :B :C . } .
-}
-=>
-{
-    :result :is true .
-} . 
-            ```
-        <p><b>Result:</b>
-        ```
-@prefix : <http://example.org/>.
-:result :is true. 
             ```
     </div>            
     
@@ -2969,6 +3439,8 @@ You can use this as an equivalent of a lessThanOrEqual operator.
 
 `true` if and only if `$s` is not greater than `$o` as per the Unicode code order.
 
+**See also**<br>string:greaterThan
+
 **Schema**<br>`$s+ string:notGreaterThan $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22Cat%22+.%0A%3ALet+%3Aparam2+%22Penguin%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AnotGreaterThan+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
@@ -3043,6 +3515,8 @@ Checks whether the subject string contains the object string.
 
 `true` if and only if `$s` contains `$o`.
 
+**See also**<br>string:containsIgnoringCase
+
 **Schema**<br>`$s+ string:contains $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22llo+worl%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3Acontains+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
@@ -3079,6 +3553,8 @@ Checks whether the string "hello world!" contains the string "llo worl".
 Checks whether the subject string is greater than the object string, according to Unicode code order.
 
 `true` if and only if `$s` is greater than `$o` as per the Unicode code order.
+
+**See also**<br>string:notGreaterThan
 
 **Schema**<br>`$s+ string:greaterThan $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22Penguin%22+.%0A%3ALet+%3Aparam2+%22Cat%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AgreaterThan+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
@@ -3117,6 +3593,8 @@ Checks whether the subject string contains the object string, ignoring differenc
 
 `true` if and only if `$s` contains `$o` when ignoring case differences.
 
+**See also**<br>string:contains
+
 **Schema**<br>`$s+ string:containsIgnoringCase $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22lLO+woRl%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AcontainsIgnoringCase+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
@@ -3154,6 +3632,8 @@ Checks whether the subject string is not less than the object string, according 
 You can use this as an equivalent of a greaterThanOrEqual operator.
 
 `true` if and only if `$s` is not less than `$o` as per the Unicode code order.
+
+**See also**<br>string:lessThan
 
 **Schema**<br>`$s+ string:notLessThan $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22Penguin%22.%0A%3ALet+%3Aparam2+%22Cat%22+.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AnotLessThan+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
@@ -3305,6 +3785,8 @@ Checks whether the subject string is less than the object string, according to U
 
 `true` if and only if `$s` is less than `$o` as per the Unicode code order.
 
+**See also**<br>string:notLessThan
+
 **Schema**<br>`$s+ string:lessThan $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22Cat%22+.%0A%3ALet+%3Aparam2+%22Penguin%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AlessThan+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
@@ -3453,6 +3935,8 @@ The regular expression follows the perl, python style.
 
 `true` if and only if string `$s` matches the regular expression `$o`
 
+**See also**<br>string:notMatches
+
 **Schema**<br>`$s+ string:matches $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22.%2A%28l%29%2Bo+wo.%2A%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3Amatches+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
 
@@ -3490,6 +3974,8 @@ Checks whether the subject string does not match the object regular expression.
 The regular expression follows the perl, python style.
 
 `true` if and only if string `$s` does not match the regular expression `$o`
+
+**See also**<br>string:matches
 
 **Schema**<br>`$s+ string:notMatches $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>**Examples**<br><a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22.%2A%28l%29%2Bo+dunia.%2A%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AnotMatches+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">Try in Notation3 Editor &#128640;</a>
 
@@ -3563,5 +4049,7 @@ Calculate the result of applying the format "%s://%s/%s" to the strings "https",
 
 
 
-<h2 class="appendix">Acknowledgements</h2>
-    <p>The editors acknowledge valuable contributions from...</p>
+<h2 id="acknowledgements" class="appendix informative">Acknowledgements</h2>
+    <p>In addition to the editors, the following people have contributed to this specification: 
+    Dörthe Arndt, Pierre-Antoine Champin, and Jos De Roo.</p>
+</p>

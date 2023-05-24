@@ -163,7 +163,13 @@ for p in prefixes:
         md_string += func.comment + "\n\n"
         if func.seeAlso:
             md_string += "**See also**<br>"
-            md_string += func.seeAlso.replace("http://www.w3.org/2000/10/swap/","").replace("#",":") + "\n\n"
+            url = func.seeAlso
+            parsed_url = urllib.parse.urlparse(url)
+            fragment = parsed_url.fragment
+            last_component = fragment.split('/')[-1] 
+            md_string += '<a href="#'+ last_component +'">'
+            md_string += func.seeAlso.replace("http://www.w3.org/2000/10/swap/","").replace("#",":")
+            md_string += '</a>'+ "\n\n"
         md_string += "**Schema**<br>"
         # PARAMETERS
 

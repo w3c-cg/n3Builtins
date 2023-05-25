@@ -59,7 +59,7 @@ make web
 
 ## Layout
 
-Edit the Jupyter `create-markdown.py` , `index_TEMPLATE.bs` code and run:
+Edit `create-markdown.py` , `index_TEMPLATE.bs` code and run:
 
 ```
 make index

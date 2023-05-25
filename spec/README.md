@@ -10,7 +10,6 @@ The editors’ draft of the specification can also be [read directly](https://w3
 
 These tools are required for testing and development of the documentation:
 
-- [Jupyter](https://jupyter.org)
 - Docker with a [Bikeshed](https://github.com/netwerk-digitaal-erfgoed/bikeshed-docker) image
 - Python with modules (hint: `python -m pip install <module>`)
   - notebook
@@ -18,11 +17,6 @@ These tools are required for testing and development of the documentation:
   - sparql_dataframe
   - urlib3
 - [EYE](https://github.com/eyereasoner/eye)
-
-Note: when editing the `create-markdown.ipynb` Jupyter notebook, be sure to convert it to a Python file afterwards:
-```
-jupyter nbconvert --to script 'create-markdown.ipynb' --output 'create-markdown' 
-```
 
 # Makefile
 
@@ -65,10 +59,9 @@ make web
 
 ## Layout
 
-Edit the Jupyter `create-markdown.ipynb` code and run:
+Edit `create-markdown.py` , `index_TEMPLATE.bs` code and run:
 
 ```
-make python
 make index
 make web
 ```

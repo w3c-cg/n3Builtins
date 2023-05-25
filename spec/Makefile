@@ -16,9 +16,6 @@ help:
 	@echo "  make watch    Generate index.html each time the source index.bs changes (with docker)"
 	@echo "  make web      Generate index.html (without docker)"
 	@echo 
-	@echo "Development only: generate python code from Jupyter notebook code:"
-	@echo
-	@echo "  make python"
 
 index:
 	@ ./gen_bs.sh
@@ -37,6 +34,3 @@ builtins:
 
 valid:
 	@ find src -type f -name '*.n3' | xargs -n 1 ./example_tester.sh 
-
-python:
-	@ jupyter nbconvert --to script 'create-markdown.ipynb' --output 'create-markdown'

@@ -301,23 +301,27 @@ for p in prefixes:
         results3 = g.query(q_examples, initBindings={'function': func.s})
         if len(results3) > 0:
             md_string += "**Examples**<br>"
+            ex_str = ""
             for example in results3:
-                e = """
-    <div class=example>
+                e = """<div class=ex_container $ATTR>
+$EDITOR_LNK<div class=example>
         <p>$DESCRIPTION
         <p><b>Formula:</b>
         ```$EXPRESSION```
         <p><b>Result:</b>
         ```$RESULT```
-    </div>            
-    """         
+    </div>
+</div>"""         
                 url_param = urllib.parse.quote_plus(example.expression.strip(), safe='', encoding=None, errors=None)
                 example_url = editor_uri + url_param
-
-                expression = string.Template(e).substitute(DESCRIPTION=str(example.description), EXPRESSION=str(example.expression), RESULT=str(example.result))
-                md_string += f"""<a href="{example_url}" target="_blank">Try in Notation3 Editor &#128640;</a>\n\n"""
-                md_string += expression + "\n"        
+                attr = 'style="margin-top: 5px"' if len(ex_str) == 0 else ""
+                
+                editor_lnk = f'<a href="{example_url}" target="_blank">try in editor &#128640;</a>'
+                expression = string.Template(e).substitute(DESCRIPTION=str(example.description), EXPRESSION=str(example.expression), 
+                                                           RESULT=str(example.result), EDITOR_LNK=editor_lnk, ATTR=attr)
+                ex_str += expression + "\n"        
         
+            md_string += ex_str
         md_string += "\n"
             
 

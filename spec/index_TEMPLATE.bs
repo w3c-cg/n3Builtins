@@ -53,6 +53,12 @@ table th.last {
 .schema_datatypes {
   margin-left: 25px;
 }
+.example {
+  margin: 0 !important
+}
+.ex_container {
+  margin-top: 25px;
+}
 </style>
 
 

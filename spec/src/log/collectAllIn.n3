@@ -14,7 +14,7 @@ log:collectAllIn a fno:Function ;
 This is a scoped universal quantification.""" ;
     fno:example ( [ a fno:Test ;
                 dcterms:description """
-Set of simple examples for log:collectAllIn.
+Set of basic examples for log:collectAllIn.
             """ ;
                 rdfs:seeAlso <> ;
                 fno:expression """
@@ -46,16 +46,43 @@ Set of simple examples for log:collectAllIn.
     :result2 :is ?nestedParams .
     :result3 :is ?filteredParams .
 } .
-            """ ;
+""" ;
                 fno:result """
 @prefix : <http://example.org/>.
 
 :result1 :is ("Huey" "Dewey" "Louie").
 :result2 :is (("Huey") ("Dewey") ("Louie")).
 :result3 :is ("Huey" "Dewey").
-            """ 
-            ]  ) ;
-    fno:name "forAllIn" ;
+""" 
+            ] [ a fno:Test ;
+                dcterms:description """
+Example where the list is already given; in that case, the collected list will be compared with the given list.
+            """ ;
+                rdfs:seeAlso <> ;
+                fno:expression """
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :param "Huey" .
+:Let :param "Dewey" .
+:Let :param "Louie" .
+
+{
+    ( ?param { :Let :param ?param } ("Huey" "Dewey" "Louie") ) log:collectAllIn _:x .
+}
+=> 
+{   
+    :result :is true .
+} .
+            """ ;
+                fno:result """
+@prefix : <http://example.org/>.
+
+:result :is true
+""" 
+            ] ) ;
+    fno:name "collectAllIn" ;
     fno:parameter (
         [ a fno:Parameter ;
             dcterms:description "" ;

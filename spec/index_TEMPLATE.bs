@@ -265,11 +265,6 @@ Builtin Evaluation {#builtinevaluation}
       </p>
 
 
-
-Online Tutorial for Semantic Web Reasoning With N3 {#OnlineTutorial}
-=====================
-[Online Tutorial for Semantic Web Reasoning With N3](https://n3.restdesc.org/n3/)
-
 Builtins {#builtins}
 =====================
 {{__CONTENT__}}

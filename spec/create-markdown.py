@@ -141,8 +141,9 @@ q_builtins = sparql_prefixes + """
         ?s a fno:Function ;
             fnon:tldr ?tldr ;
             dcterms:comment ?comment.
-        filter(strstarts(str(?s), "$NAMESPACE"))            
+        filter(strstarts(str(?s), "$NAMESPACE"))   
     }
+    ORDER BY ?s
 """
 q_seeAlso = sparql_prefixes + """
     select ?seeAlso

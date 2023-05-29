@@ -135,86 +135,117 @@ def createNote(r, g):
 
 # In[606]:
 
+q_builtins = sparql_prefixes + """
+    select (strafter(str(?s), '#') as ?name) ?s ?tldr ?comment ?exampleDescription ?example
+    where {
+        ?s a fno:Function ;
+            fno:name ?name ;
+            fnon:tldr ?tldr ;
+            dcterms:comment ?comment.
+        filter(strstarts(str(?s), "$NAMESPACE"))            
+    }
+"""
+q_seeAlso = sparql_prefixes + """
+    select ?seeAlso
+    where {
+        <$BUILTIN> rdfs:seeAlso ?seeAlso .
+    }
+"""
+
+q_args = sparql.prepareQuery(sparql_prefixes + """
+    select ?member ?positionName ?mode ?predicate ?description ?type
+    where {
+        ?function a fno:Function ;
+            fno:parameter ?list .
+            ?list rdf:rest*/rdf:first ?member .
+            ?member a fno:Parameter ;
+                fno:mode ?mode ;
+                fno:predicate ?predicate ;
+                fnon:position ?position
+        OPTIONAL { ?member dcterms:description ?description }
+        OPTIONAL { ?member fno:type ?type }
+        bind(strafter(str(?position), '#') as ?positionName)
+    }
+""")
+                             
+q_listElType = sparql.prepareQuery(sparql_prefixes + """
+    select ?mode ?predicate ?description ?type
+    where {
+        ?member fnon:listElementType ?listElType .
+        ?listElType fno:mode ?mode ;
+            fno:predicate ?predicate .
+        OPTIONAL { ?listElType dcterms:description ?description }
+        OPTIONAL { ?listElType fno:type ?type }
+    }""")
+
+q_listEls = sparql.prepareQuery(sparql_prefixes + """
+    select ?element ?mode ?predicate ?description ?type
+    where {
+        ?member fnon:listElements ?list .
+        ?list rdf:rest*/rdf:first ?element .
+        ?element fno:mode ?mode ;
+            fno:predicate ?predicate .
+        OPTIONAL { ?element dcterms:description ?description }
+        OPTIONAL { ?element fno:type ?type }
+    }""")
+
+# examples
+q_examples = sparql.prepareQuery(sparql_prefixes + """
+    select ?description ?seeAlso ?expression ?result
+    where {
+        ?function a fno:Function ;
+            fno:example ?list .
+        ?list rdf:rest*/rdf:first ?test .
+        ?test a fno:Test ;
+            dcterms:description ?description ;
+            rdfs:seeAlso ?seeAlso ;
+            fno:expression ?expression ;
+            fno:result ?result .
+    }
+    """)
+
+def parse_seeAlso(result):
+    url = result.seeAlso
+    parsed_url = urllib.parse.urlparse(url)
+    fragment = parsed_url.fragment
+    last_component = fragment.split('/')[-1] 
+    ret = '<a href="#'+ last_component +'">'
+    ret += url.replace("http://www.w3.org/2000/10/swap/","").replace("#",":")
+    ret += '</a>'
+    return ret
 
 for p in prefixes:
     # print(f"processing {p}")
 
     md_string += f"## {p} ##" + " {#" + p + "}\n"
-    q = sparql_prefixes + """
-        select (strafter(str(?s), '#') as ?name) ?s ?tldr ?comment ?exampleDescription ?example ?seeAlso
-        where {
-            ?s a fno:Function ;
-                fno:name ?name ;
-                fnon:tldr ?tldr ;
-                dcterms:comment ?comment.
-            OPTIONAL {
-                ?s rdfs:seeAlso ?seeAlso .
-            }
-            .
-            filter(strstarts(str(?s), "$NAMESPACE"))            
-        }
-    """
+
+    ns = next(key for key, value in dic_prefixes.items() if value == p)
+    
     # name and description
-    # TODO doesn't seem to work with prepareQuery (cannot find "name" as result attr?)
-    query = string.Template(q).substitute(NAMESPACE=next(key for key, value in dic_prefixes.items() if value == p))
-    for func in g.query(query, initBindings={'namespace': next(key for key, value in dic_prefixes.items() if value == p)}):
+    query = string.Template(q_builtins).substitute(NAMESPACE=ns)
+    for func in g.query(query, initBindings={'namespace': ns}):
         md_string += "### " + p + ":" + func.name + " ### {#" + str(func.name) + "}\n"
         md_string += func.tldr + "\n\n"
         md_string += func.comment + "\n\n"
-        if func.seeAlso:
+
+        # seeAlso's
+        query2 = string.Template(q_seeAlso).substitute(BUILTIN=func.s)
+        results2 = g.query(query2)
+        if len(results2) > 0:
             md_string += "**See also**<br>"
-            url = func.seeAlso
-            parsed_url = urllib.parse.urlparse(url)
-            fragment = parsed_url.fragment
-            last_component = fragment.split('/')[-1] 
-            md_string += '<a href="#'+ last_component +'">'
-            md_string += func.seeAlso.replace("http://www.w3.org/2000/10/swap/","").replace("#",":")
-            md_string += '</a>'+ "\n\n"
+            md_string += "<br>".join(map(parse_seeAlso, results2))
+            md_string += "\n\n"
+
         md_string += "**Schema**<br>"
         # PARAMETERS
 
         spec_string = ""
-        q = sparql.prepareQuery(sparql_prefixes + """
-            select ?member ?positionName ?mode ?predicate ?description ?type
-            where {
-                ?function a fno:Function ;
-                    fno:parameter ?list .
-                    ?list rdf:rest*/rdf:first ?member .
-                    ?member a fno:Parameter ;
-                        fno:mode ?mode ;
-                        fno:predicate ?predicate ;
-                        fnon:position ?position
-                OPTIONAL { ?member dcterms:description ?description }
-                OPTIONAL { ?member fno:type ?type }
-                bind(strafter(str(?position), '#') as ?positionName)
-            }
-        """)
-        q_listElType = sparql.prepareQuery(sparql_prefixes + """
-            select ?mode ?predicate ?description ?type
-            where {
-                ?member fnon:listElementType ?listElType .
-                ?listElType fno:mode ?mode ;
-                    fno:predicate ?predicate .
-                OPTIONAL { ?listElType dcterms:description ?description }
-                OPTIONAL { ?listElType fno:type ?type }
-            }""")
-        
-        q_listEls = sparql.prepareQuery(sparql_prefixes + """
-            select ?element ?mode ?predicate ?description ?type
-            where {
-                ?member fnon:listElements ?list .
-                ?list rdf:rest*/rdf:first ?element .
-                ?element fno:mode ?mode ;
-                    fno:predicate ?predicate .
-                OPTIONAL { ?element dcterms:description ?description }
-                OPTIONAL { ?element fno:type ?type }
-            }""")
         
         subject = None
         object = None
         notes = [ None, None ]
 
-        for param in g.query(q, initBindings={'function': func.s}):
+        for param in g.query(q_args, initBindings={'function': func.s}):
             term = None
             note = ""
             
@@ -264,27 +295,15 @@ for p in prefixes:
         all_notes_str = "\n".join(notes).strip()
         if all_notes_str:
             all_notes_str = all_notes_str.replace("\n", "<br>")
-            md_string += f"<div class='schema_where'>where:" + f"<div class='schema_datatypes'>{all_notes_str}</div></div><br>"
-
-        # examples
-        query = sparql.prepareQuery(sparql_prefixes + """
-            select ?description ?seeAlso ?expression ?result
-            where {
-                ?function a fno:Function ;
-                    fno:example ?list .
-                ?list rdf:rest*/rdf:first ?test .
-                ?test a fno:Test ;
-                    dcterms:description ?description ;
-                    rdfs:seeAlso ?seeAlso ;
-                    fno:expression ?expression ;
-                    fno:result ?result .
-            }
-            """)
+            md_string += "<div class='schema_where'>where:" + f"<div class='schema_datatypes'>{all_notes_str}</div></div>"
+        else:
+            md_string += "<br>"
+        md_string += "<br>\n"
         
-        query_results = g.query(query, initBindings={'function': func.s})
-        if len(query_results) > 0:
+        results3 = g.query(q_examples, initBindings={'function': func.s})
+        if len(results3) > 0:
             md_string += "**Examples**<br>"
-            for example in query_results:
+            for example in results3:
                 e = """
     <div class=example>
         <p>$DESCRIPTION

@@ -19,7 +19,7 @@ Variable substitution is applied recursively to nested compound terms such as gr
             [ a fno:Test ;
                 dcterms:description """
 Check whether the formula { :Felix a :Cat } includes { ?X a :Cat }.
-            """ ;
+""" ;
                 rdfs:seeAlso <> ;
                 fno:expression """
 @prefix : <http://example.org/>.
@@ -32,11 +32,39 @@ Check whether the formula { :Felix a :Cat } includes { ?X a :Cat }.
 {
     :result :is ?X .
 } .
-            """ ;
+""" ;
                 fno:result """
 @prefix : <http://example.org/>.
 :result :is :Felix .
             """ 
+    ] [ a fno:Test ;
+                dcterms:description """
+Check whether the current N3 document includes { ?X a :Cat }.
+""" ;
+                rdfs:seeAlso <> ;
+                fno:expression """
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Felix a :Cat .
+:Tom a :Cat .
+:Rex a :Dog .
+
+{ 
+    _:t log:includes { ?X a :Cat } .
+} 
+=>
+{
+    :result :is ?X .
+} .
+""" ;
+                fno:result """
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+
+:result :is :Felix.
+:result :is :Tom.
+""" 
     ] ) ;
     fno:name "includes" ;
     fno:parameter (
@@ -44,7 +72,8 @@ Check whether the formula { :Felix a :Cat } includes { ?X a :Cat }.
             fno:predicate "$s" ;
             fno:mode "+" ;
             fnon:position fnon:subject ;
-            fno:type log:Formula
+            fno:type log:Formula ;
+            dcterms:description "Can also be left as a variable to use current N3 document as scope." ;
 
         ] [ a fno:Parameter ;
             fno:predicate "$o" ;

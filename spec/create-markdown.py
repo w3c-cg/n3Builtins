@@ -136,10 +136,9 @@ def createNote(r, g):
 # In[606]:
 
 q_builtins = sparql_prefixes + """
-    select (strafter(str(?s), '#') as ?name) ?s ?tldr ?comment ?exampleDescription ?example
+    select ?s ?tldr ?comment ?exampleDescription ?example
     where {
         ?s a fno:Function ;
-            fno:name ?name ;
             fnon:tldr ?tldr ;
             dcterms:comment ?comment.
         filter(strstarts(str(?s), "$NAMESPACE"))            
@@ -224,7 +223,9 @@ for p in prefixes:
     # name and description
     query = string.Template(q_builtins).substitute(NAMESPACE=ns)
     for func in g.query(query, initBindings={'namespace': ns}):
-        md_string += "### " + p + ":" + func.name + " ### {#" + str(func.name) + "}\n"
+        name = str(func.s)
+        name = name[name.rindex("/")+1:].replace("#",":")
+        md_string += "### " + name + " ### {#" + name + "}\n"
         md_string += func.tldr + "\n\n"
         md_string += func.comment + "\n\n"
 
@@ -291,7 +292,7 @@ for p in prefixes:
                 object = term
                 notes[1] = note
 
-        md_string += f"`{subject} {p}:{str(func.name)} {object}`"
+        md_string += f"`{subject} {name} {object}`"
         all_notes_str = "\n".join(notes).strip()
         if all_notes_str:
             all_notes_str = all_notes_str.replace("\n", "<br>")

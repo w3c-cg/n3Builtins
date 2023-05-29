@@ -203,15 +203,13 @@ q_examples = sparql.prepareQuery(sparql_prefixes + """
     }
     """)
 
+def builtin_name(builtin):
+    name = str(builtin)
+    return name[name.rindex("/")+1:].replace("#",":")
+
 def parse_seeAlso(result):
-    url = result.seeAlso
-    parsed_url = urllib.parse.urlparse(url)
-    fragment = parsed_url.fragment
-    last_component = fragment.split('/')[-1] 
-    ret = '<a href="#'+ last_component +'">'
-    ret += url.replace("http://www.w3.org/2000/10/swap/","").replace("#",":")
-    ret += '</a>'
-    return ret
+    name = builtin_name(result.seeAlso)
+    return f'<a href="#{name}">{name}</a>'
 
 for p in prefixes:
     # print(f"processing {p}")
@@ -223,8 +221,7 @@ for p in prefixes:
     # name and description
     query = string.Template(q_builtins).substitute(NAMESPACE=ns)
     for func in g.query(query, initBindings={'namespace': ns}):
-        name = str(func.s)
-        name = name[name.rindex("/")+1:].replace("#",":")
+        name = builtin_name(func.s)
         md_string += "### " + name + " ### {#" + name + "}\n"
         md_string += func.tldr + "\n\n"
         md_string += func.comment + "\n\n"

@@ -9,8 +9,8 @@
 
 crypto:sha a fno:Function ;
     vs:term_status  "testing" ;
-    fnon:tldr "Gets as object the SHA-1 hash of the subject." ;
-    dcterms:comment "`true` if and only if `$o` is the SHA-1 hash of `$s`." ;
+    fnon:tldr "Gets as object the <a href='https://en.wikipedia.org/wiki/SHA-1'>SHA-1 hash</a> of the subject." ;
+    dcterms:comment "`true` if and only if `$o` is the <a href='https://en.wikipedia.org/wiki/SHA-1'>SHA-1 hash</a> of `$s`." ;
     fno:example   (
             [ a fno:Test ;
                 dcterms:description """

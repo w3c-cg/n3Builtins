@@ -73,9 +73,6 @@ there is a limited opt-out and other conditions apply.
 Learn more about
 <a href="https://www.w3.org/community/">W3C Community and Business Groups</a>.  
 
-This is an initial version of the Notation3 specification.  
-
-
 <a href="https://github.com/w3c/N3/issues/">GitHub Issues</a> are preferred for discussion of this specification. Alternatively, you can send comments to our mailing list.
 Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</a> (<a href="mailto:public-n3-dev-request@w3.org?subject=subscribe">subscribe</a>, <a href="https://lists.w3.org/Archives/Public/public-n3-dev/">archives</a>).
 

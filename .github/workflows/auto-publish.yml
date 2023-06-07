@@ -22,4 +22,5 @@ jobs:
           GH_PAGES_BRANCH: gh-pages
           DESTINATION: index.html
           GH_PAGES_BUILD_OVERRIDE: |
+            status: w3c/CG-DRAFT
             TR: https://w3c-cg.github.io/n3Builtins/

@@ -8,7 +8,7 @@
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version 5fcd28d6d, updated Tue May 30 13:12:11 2023 -0700" name="generator">
   <link href="https://w3c-cg.github.io/n3Builtins/" rel="canonical">
-  <meta content="e435bd8ee9cd09c04074616a6dd53478e4cf66fe" name="document-revision">
+  <meta content="7168dbdb68f76d91c929ef62dbe6beabd4ff1c65" name="document-revision">
 <style>
 table {
   margin: 25px auto;
@@ -552,138 +552,131 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
   <nav data-fill-with="table-of-contents" id="toc">
    <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
    <ol class="toc" role="directory">
-    <li><a href="#statusofdocument"><span class="secno">1</span> <span class="content">Status of this Document</span></a>
-    <li><a href="#builtinnamespaces"><span class="secno">2</span> <span class="content">Builtin namespaces</span></a>
+    <li><a href="#builtinnamespaces"><span class="secno">1</span> <span class="content">Builtin namespaces</span></a>
     <li>
-     <a href="#builtinarguments"><span class="secno">3</span> <span class="content">Builtin arguments</span></a>
+     <a href="#builtinarguments"><span class="secno">2</span> <span class="content">Builtin arguments</span></a>
      <ol class="toc">
-      <li><a href="#argumentmodes"><span class="secno">3.1</span> <span class="content">Argument modes</span></a>
+      <li><a href="#argumentmodes"><span class="secno">2.1</span> <span class="content">Argument modes</span></a>
       <li>
-       <a href="#arg_domains"><span class="secno">3.2</span> <span class="content">Argument domains</span></a>
+       <a href="#arg_domains"><span class="secno">2.2</span> <span class="content">Argument domains</span></a>
        <ol class="toc">
-        <li><a href="#numericdatatypepromotion"><span class="secno">3.2.1</span> <span class="content">Numeric datatype promotion and substitution</span></a>
-        <li><a href="#typesofdatatypecasting"><span class="secno">3.2.2</span> <span class="content">Other kinds of datatype casting</span></a>
+        <li><a href="#numericdatatypepromotion"><span class="secno">2.2.1</span> <span class="content">Numeric datatype promotion and substitution</span></a>
+        <li><a href="#typesofdatatypecasting"><span class="secno">2.2.2</span> <span class="content">Other kinds of datatype casting</span></a>
        </ol>
      </ol>
     <li>
-     <a href="#builtinevaluation"><span class="secno">4</span> <span class="content">Builtin Evaluation</span></a>
+     <a href="#builtinevaluation"><span class="secno">3</span> <span class="content">Builtin Evaluation</span></a>
      <ol class="toc">
-      <li><a href="#builtintheorybox"><span class="secno">4.1</span> <span class="content">Builtin theory box</span></a>
+      <li><a href="#builtintheorybox"><span class="secno">3.1</span> <span class="content">Builtin theory box</span></a>
      </ol>
     <li>
-     <a href="#builtins"><span class="secno">5</span> <span class="content">Builtins</span></a>
+     <a href="#builtins"><span class="secno">4</span> <span class="content">Builtins</span></a>
      <ol class="toc">
       <li>
-       <a href="#crypto"><span class="secno">5.1</span> <span class="content">crypto</span></a>
+       <a href="#crypto"><span class="secno">4.1</span> <span class="content">crypto</span></a>
        <ol class="toc">
-        <li><a href="#crypto:sha"><span class="secno">5.1.1</span> <span class="content">crypto:sha</span></a>
+        <li><a href="#crypto:sha"><span class="secno">4.1.1</span> <span class="content">crypto:sha</span></a>
        </ol>
       <li>
-       <a href="#math"><span class="secno">5.2</span> <span class="content">math</span></a>
+       <a href="#math"><span class="secno">4.2</span> <span class="content">math</span></a>
        <ol class="toc">
-        <li><a href="#math:absoluteValue"><span class="secno">5.2.1</span> <span class="content">math:absoluteValue</span></a>
-        <li><a href="#math:acos"><span class="secno">5.2.2</span> <span class="content">math:acos</span></a>
-        <li><a href="#math:asin"><span class="secno">5.2.3</span> <span class="content">math:asin</span></a>
-        <li><a href="#math:atan"><span class="secno">5.2.4</span> <span class="content">math:atan</span></a>
-        <li><a href="#math:cos"><span class="secno">5.2.5</span> <span class="content">math:cos</span></a>
-        <li><a href="#math:cosh"><span class="secno">5.2.6</span> <span class="content">math:cosh</span></a>
-        <li><a href="#math:degrees"><span class="secno">5.2.7</span> <span class="content">math:degrees</span></a>
-        <li><a href="#math:difference"><span class="secno">5.2.8</span> <span class="content">math:difference</span></a>
-        <li><a href="#math:equalTo"><span class="secno">5.2.9</span> <span class="content">math:equalTo</span></a>
-        <li><a href="#math:exponentiation"><span class="secno">5.2.10</span> <span class="content">math:exponentiation</span></a>
-        <li><a href="#math:greaterThan"><span class="secno">5.2.11</span> <span class="content">math:greaterThan</span></a>
-        <li><a href="#math:lessThan"><span class="secno">5.2.12</span> <span class="content">math:lessThan</span></a>
-        <li><a href="#math:negation"><span class="secno">5.2.13</span> <span class="content">math:negation</span></a>
-        <li><a href="#math:notEqualTo"><span class="secno">5.2.14</span> <span class="content">math:notEqualTo</span></a>
-        <li><a href="#math:notGreaterThan"><span class="secno">5.2.15</span> <span class="content">math:notGreaterThan</span></a>
-        <li><a href="#math:notLessThan"><span class="secno">5.2.16</span> <span class="content">math:notLessThan</span></a>
-        <li><a href="#math:product"><span class="secno">5.2.17</span> <span class="content">math:product</span></a>
-        <li><a href="#math:quotient"><span class="secno">5.2.18</span> <span class="content">math:quotient</span></a>
-        <li><a href="#math:remainder"><span class="secno">5.2.19</span> <span class="content">math:remainder</span></a>
-        <li><a href="#math:rounded"><span class="secno">5.2.20</span> <span class="content">math:rounded</span></a>
-        <li><a href="#math:sin"><span class="secno">5.2.21</span> <span class="content">math:sin</span></a>
-        <li><a href="#math:sinh"><span class="secno">5.2.22</span> <span class="content">math:sinh</span></a>
-        <li><a href="#math:sum"><span class="secno">5.2.23</span> <span class="content">math:sum</span></a>
-        <li><a href="#math:tan"><span class="secno">5.2.24</span> <span class="content">math:tan</span></a>
-        <li><a href="#math:tanh"><span class="secno">5.2.25</span> <span class="content">math:tanh</span></a>
+        <li><a href="#math:absoluteValue"><span class="secno">4.2.1</span> <span class="content">math:absoluteValue</span></a>
+        <li><a href="#math:acos"><span class="secno">4.2.2</span> <span class="content">math:acos</span></a>
+        <li><a href="#math:asin"><span class="secno">4.2.3</span> <span class="content">math:asin</span></a>
+        <li><a href="#math:atan"><span class="secno">4.2.4</span> <span class="content">math:atan</span></a>
+        <li><a href="#math:cos"><span class="secno">4.2.5</span> <span class="content">math:cos</span></a>
+        <li><a href="#math:cosh"><span class="secno">4.2.6</span> <span class="content">math:cosh</span></a>
+        <li><a href="#math:degrees"><span class="secno">4.2.7</span> <span class="content">math:degrees</span></a>
+        <li><a href="#math:difference"><span class="secno">4.2.8</span> <span class="content">math:difference</span></a>
+        <li><a href="#math:equalTo"><span class="secno">4.2.9</span> <span class="content">math:equalTo</span></a>
+        <li><a href="#math:exponentiation"><span class="secno">4.2.10</span> <span class="content">math:exponentiation</span></a>
+        <li><a href="#math:greaterThan"><span class="secno">4.2.11</span> <span class="content">math:greaterThan</span></a>
+        <li><a href="#math:lessThan"><span class="secno">4.2.12</span> <span class="content">math:lessThan</span></a>
+        <li><a href="#math:negation"><span class="secno">4.2.13</span> <span class="content">math:negation</span></a>
+        <li><a href="#math:notEqualTo"><span class="secno">4.2.14</span> <span class="content">math:notEqualTo</span></a>
+        <li><a href="#math:notGreaterThan"><span class="secno">4.2.15</span> <span class="content">math:notGreaterThan</span></a>
+        <li><a href="#math:notLessThan"><span class="secno">4.2.16</span> <span class="content">math:notLessThan</span></a>
+        <li><a href="#math:product"><span class="secno">4.2.17</span> <span class="content">math:product</span></a>
+        <li><a href="#math:quotient"><span class="secno">4.2.18</span> <span class="content">math:quotient</span></a>
+        <li><a href="#math:remainder"><span class="secno">4.2.19</span> <span class="content">math:remainder</span></a>
+        <li><a href="#math:rounded"><span class="secno">4.2.20</span> <span class="content">math:rounded</span></a>
+        <li><a href="#math:sin"><span class="secno">4.2.21</span> <span class="content">math:sin</span></a>
+        <li><a href="#math:sinh"><span class="secno">4.2.22</span> <span class="content">math:sinh</span></a>
+        <li><a href="#math:sum"><span class="secno">4.2.23</span> <span class="content">math:sum</span></a>
+        <li><a href="#math:tan"><span class="secno">4.2.24</span> <span class="content">math:tan</span></a>
+        <li><a href="#math:tanh"><span class="secno">4.2.25</span> <span class="content">math:tanh</span></a>
        </ol>
       <li>
-       <a href="#time"><span class="secno">5.3</span> <span class="content">time</span></a>
+       <a href="#time"><span class="secno">4.3</span> <span class="content">time</span></a>
        <ol class="toc">
-        <li><a href="#time:day"><span class="secno">5.3.1</span> <span class="content">time:day</span></a>
-        <li><a href="#time:minute"><span class="secno">5.3.2</span> <span class="content">time:minute</span></a>
-        <li><a href="#time:month"><span class="secno">5.3.3</span> <span class="content">time:month</span></a>
-        <li><a href="#time:second"><span class="secno">5.3.4</span> <span class="content">time:second</span></a>
-        <li><a href="#time:timeZone"><span class="secno">5.3.5</span> <span class="content">time:timeZone</span></a>
-        <li><a href="#time:year"><span class="secno">5.3.6</span> <span class="content">time:year</span></a>
+        <li><a href="#time:day"><span class="secno">4.3.1</span> <span class="content">time:day</span></a>
+        <li><a href="#time:minute"><span class="secno">4.3.2</span> <span class="content">time:minute</span></a>
+        <li><a href="#time:month"><span class="secno">4.3.3</span> <span class="content">time:month</span></a>
+        <li><a href="#time:second"><span class="secno">4.3.4</span> <span class="content">time:second</span></a>
+        <li><a href="#time:timeZone"><span class="secno">4.3.5</span> <span class="content">time:timeZone</span></a>
+        <li><a href="#time:year"><span class="secno">4.3.6</span> <span class="content">time:year</span></a>
        </ol>
       <li>
-       <a href="#list"><span class="secno">5.4</span> <span class="content">list</span></a>
+       <a href="#list"><span class="secno">4.4</span> <span class="content">list</span></a>
        <ol class="toc">
-        <li><a href="#list:append"><span class="secno">5.4.1</span> <span class="content">list:append</span></a>
-        <li><a href="#list:first"><span class="secno">5.4.2</span> <span class="content">list:first</span></a>
-        <li><a href="#list:in"><span class="secno">5.4.3</span> <span class="content">list:in</span></a>
-        <li><a href="#list:iterate"><span class="secno">5.4.4</span> <span class="content">list:iterate</span></a>
-        <li><a href="#list:last"><span class="secno">5.4.5</span> <span class="content">list:last</span></a>
-        <li><a href="#list:length"><span class="secno">5.4.6</span> <span class="content">list:length</span></a>
-        <li><a href="#list:member"><span class="secno">5.4.7</span> <span class="content">list:member</span></a>
-        <li><a href="#list:memberAt"><span class="secno">5.4.8</span> <span class="content">list:memberAt</span></a>
-        <li><a href="#list:remove"><span class="secno">5.4.9</span> <span class="content">list:remove</span></a>
+        <li><a href="#list:append"><span class="secno">4.4.1</span> <span class="content">list:append</span></a>
+        <li><a href="#list:first"><span class="secno">4.4.2</span> <span class="content">list:first</span></a>
+        <li><a href="#list:in"><span class="secno">4.4.3</span> <span class="content">list:in</span></a>
+        <li><a href="#list:iterate"><span class="secno">4.4.4</span> <span class="content">list:iterate</span></a>
+        <li><a href="#list:last"><span class="secno">4.4.5</span> <span class="content">list:last</span></a>
+        <li><a href="#list:length"><span class="secno">4.4.6</span> <span class="content">list:length</span></a>
+        <li><a href="#list:member"><span class="secno">4.4.7</span> <span class="content">list:member</span></a>
+        <li><a href="#list:memberAt"><span class="secno">4.4.8</span> <span class="content">list:memberAt</span></a>
+        <li><a href="#list:remove"><span class="secno">4.4.9</span> <span class="content">list:remove</span></a>
        </ol>
       <li>
-       <a href="#log"><span class="secno">5.5</span> <span class="content">log</span></a>
+       <a href="#log"><span class="secno">4.5</span> <span class="content">log</span></a>
        <ol class="toc">
-        <li><a href="#log:collectAllIn"><span class="secno">5.5.1</span> <span class="content">log:collectAllIn</span></a>
-        <li><a href="#log:conclusion"><span class="secno">5.5.2</span> <span class="content">log:conclusion</span></a>
-        <li><a href="#log:conjunction"><span class="secno">5.5.3</span> <span class="content">log:conjunction</span></a>
-        <li><a href="#log:content"><span class="secno">5.5.4</span> <span class="content">log:content</span></a>
-        <li><a href="#log:dtlit"><span class="secno">5.5.5</span> <span class="content">log:dtlit</span></a>
-        <li><a href="#log:equalTo"><span class="secno">5.5.6</span> <span class="content">log:equalTo</span></a>
-        <li><a href="#log:forAllIn"><span class="secno">5.5.7</span> <span class="content">log:forAllIn</span></a>
-        <li><a href="#log:includes"><span class="secno">5.5.8</span> <span class="content">log:includes</span></a>
-        <li><a href="#log:langlit"><span class="secno">5.5.9</span> <span class="content">log:langlit</span></a>
-        <li><a href="#log:notEqualTo"><span class="secno">5.5.10</span> <span class="content">log:notEqualTo</span></a>
-        <li><a href="#log:notIncludes"><span class="secno">5.5.11</span> <span class="content">log:notIncludes</span></a>
-        <li><a href="#log:outputString"><span class="secno">5.5.12</span> <span class="content">log:outputString</span></a>
-        <li><a href="#log:parsedAsN3"><span class="secno">5.5.13</span> <span class="content">log:parsedAsN3</span></a>
-        <li><a href="#log:rawType"><span class="secno">5.5.14</span> <span class="content">log:rawType</span></a>
-        <li><a href="#log:semantics"><span class="secno">5.5.15</span> <span class="content">log:semantics</span></a>
-        <li><a href="#log:semanticsOrError"><span class="secno">5.5.16</span> <span class="content">log:semanticsOrError</span></a>
-        <li><a href="#log:skolem"><span class="secno">5.5.17</span> <span class="content">log:skolem</span></a>
-        <li><a href="#log:uri"><span class="secno">5.5.18</span> <span class="content">log:uri</span></a>
+        <li><a href="#log:collectAllIn"><span class="secno">4.5.1</span> <span class="content">log:collectAllIn</span></a>
+        <li><a href="#log:conclusion"><span class="secno">4.5.2</span> <span class="content">log:conclusion</span></a>
+        <li><a href="#log:conjunction"><span class="secno">4.5.3</span> <span class="content">log:conjunction</span></a>
+        <li><a href="#log:content"><span class="secno">4.5.4</span> <span class="content">log:content</span></a>
+        <li><a href="#log:dtlit"><span class="secno">4.5.5</span> <span class="content">log:dtlit</span></a>
+        <li><a href="#log:equalTo"><span class="secno">4.5.6</span> <span class="content">log:equalTo</span></a>
+        <li><a href="#log:forAllIn"><span class="secno">4.5.7</span> <span class="content">log:forAllIn</span></a>
+        <li><a href="#log:includes"><span class="secno">4.5.8</span> <span class="content">log:includes</span></a>
+        <li><a href="#log:langlit"><span class="secno">4.5.9</span> <span class="content">log:langlit</span></a>
+        <li><a href="#log:notEqualTo"><span class="secno">4.5.10</span> <span class="content">log:notEqualTo</span></a>
+        <li><a href="#log:notIncludes"><span class="secno">4.5.11</span> <span class="content">log:notIncludes</span></a>
+        <li><a href="#log:outputString"><span class="secno">4.5.12</span> <span class="content">log:outputString</span></a>
+        <li><a href="#log:parsedAsN3"><span class="secno">4.5.13</span> <span class="content">log:parsedAsN3</span></a>
+        <li><a href="#log:rawType"><span class="secno">4.5.14</span> <span class="content">log:rawType</span></a>
+        <li><a href="#log:semantics"><span class="secno">4.5.15</span> <span class="content">log:semantics</span></a>
+        <li><a href="#log:semanticsOrError"><span class="secno">4.5.16</span> <span class="content">log:semanticsOrError</span></a>
+        <li><a href="#log:skolem"><span class="secno">4.5.17</span> <span class="content">log:skolem</span></a>
+        <li><a href="#log:uri"><span class="secno">4.5.18</span> <span class="content">log:uri</span></a>
        </ol>
       <li>
-       <a href="#string"><span class="secno">5.6</span> <span class="content">string</span></a>
+       <a href="#string"><span class="secno">4.6</span> <span class="content">string</span></a>
        <ol class="toc">
-        <li><a href="#string:concatenation"><span class="secno">5.6.1</span> <span class="content">string:concatenation</span></a>
-        <li><a href="#string:contains"><span class="secno">5.6.2</span> <span class="content">string:contains</span></a>
-        <li><a href="#string:containsIgnoringCase"><span class="secno">5.6.3</span> <span class="content">string:containsIgnoringCase</span></a>
-        <li><a href="#string:endsWith"><span class="secno">5.6.4</span> <span class="content">string:endsWith</span></a>
-        <li><a href="#string:equalIgnoringCase"><span class="secno">5.6.5</span> <span class="content">string:equalIgnoringCase</span></a>
-        <li><a href="#string:format"><span class="secno">5.6.6</span> <span class="content">string:format</span></a>
-        <li><a href="#string:greaterThan"><span class="secno">5.6.7</span> <span class="content">string:greaterThan</span></a>
-        <li><a href="#string:lessThan"><span class="secno">5.6.8</span> <span class="content">string:lessThan</span></a>
-        <li><a href="#string:matches"><span class="secno">5.6.9</span> <span class="content">string:matches</span></a>
-        <li><a href="#string:notEqualIgnoringCase"><span class="secno">5.6.10</span> <span class="content">string:notEqualIgnoringCase</span></a>
-        <li><a href="#string:notGreaterThan"><span class="secno">5.6.11</span> <span class="content">string:notGreaterThan</span></a>
-        <li><a href="#string:notLessThan"><span class="secno">5.6.12</span> <span class="content">string:notLessThan</span></a>
-        <li><a href="#string:notMatches"><span class="secno">5.6.13</span> <span class="content">string:notMatches</span></a>
-        <li><a href="#string:replace"><span class="secno">5.6.14</span> <span class="content">string:replace</span></a>
-        <li><a href="#string:scrape"><span class="secno">5.6.15</span> <span class="content">string:scrape</span></a>
-        <li><a href="#string:startsWith"><span class="secno">5.6.16</span> <span class="content">string:startsWith</span></a>
+        <li><a href="#string:concatenation"><span class="secno">4.6.1</span> <span class="content">string:concatenation</span></a>
+        <li><a href="#string:contains"><span class="secno">4.6.2</span> <span class="content">string:contains</span></a>
+        <li><a href="#string:containsIgnoringCase"><span class="secno">4.6.3</span> <span class="content">string:containsIgnoringCase</span></a>
+        <li><a href="#string:endsWith"><span class="secno">4.6.4</span> <span class="content">string:endsWith</span></a>
+        <li><a href="#string:equalIgnoringCase"><span class="secno">4.6.5</span> <span class="content">string:equalIgnoringCase</span></a>
+        <li><a href="#string:format"><span class="secno">4.6.6</span> <span class="content">string:format</span></a>
+        <li><a href="#string:greaterThan"><span class="secno">4.6.7</span> <span class="content">string:greaterThan</span></a>
+        <li><a href="#string:lessThan"><span class="secno">4.6.8</span> <span class="content">string:lessThan</span></a>
+        <li><a href="#string:matches"><span class="secno">4.6.9</span> <span class="content">string:matches</span></a>
+        <li><a href="#string:notEqualIgnoringCase"><span class="secno">4.6.10</span> <span class="content">string:notEqualIgnoringCase</span></a>
+        <li><a href="#string:notGreaterThan"><span class="secno">4.6.11</span> <span class="content">string:notGreaterThan</span></a>
+        <li><a href="#string:notLessThan"><span class="secno">4.6.12</span> <span class="content">string:notLessThan</span></a>
+        <li><a href="#string:notMatches"><span class="secno">4.6.13</span> <span class="content">string:notMatches</span></a>
+        <li><a href="#string:replace"><span class="secno">4.6.14</span> <span class="content">string:replace</span></a>
+        <li><a href="#string:scrape"><span class="secno">4.6.15</span> <span class="content">string:scrape</span></a>
+        <li><a href="#string:startsWith"><span class="secno">4.6.16</span> <span class="content">string:startsWith</span></a>
        </ol>
      </ol>
-    <li><a href="#acknowledgements"><span class="secno">6</span> <span class="content">Acknowledgements</span></a>
+    <li><a href="#acknowledgements"><span class="secno">5</span> <span class="content">Acknowledgements</span></a>
    </ol>
   </nav>
   <main>
-   <h2 class="heading settled" data-level="1" id="statusofdocument"><span class="secno">1. </span><span class="content">Status of this Document</span><a class="self-link" href="#statusofdocument"></a></h2>
-   <p>This specification was published by the <a href="https://www.w3.org/groups/cg/n3-dev">Notation 3 (<abbr title="Notation3">N3</abbr>) Community Group</a>. It is not a W3C Standard nor is it on the W3C Standards Track.
-Please note that under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a> there is a limited opt-out and other conditions apply.
-Learn more about <a href="https://www.w3.org/community/">W3C Community and Business Groups</a>.</p>
-   <p><a href="https://github.com/w3c/N3/issues/">GitHub Issues</a> are preferred for discussion of this specification. Alternatively, you can send comments to our mailing list.
-Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</a> (<a href="mailto:public-n3-dev-request@w3.org?subject=subscribe">subscribe</a>, <a href="https://lists.w3.org/Archives/Public/public-n3-dev/">archives</a>).</p>
-   <h2 class="heading settled" data-level="2" id="builtinnamespaces"><span class="secno">2. </span><span class="content">Builtin namespaces</span><a class="self-link" href="#builtinnamespaces"></a></h2>
+   <h2 class="heading settled" data-level="1" id="builtinnamespaces"><span class="secno">1. </span><span class="content">Builtin namespaces</span><a class="self-link" href="#builtinnamespaces"></a></h2>
    <p>N3 defines a core set of <a href="#builtins">builtins</a>:
       Builtins are grouped into distinct vocabularies depending on the N3 triple elements they operate on
       (e.g., string, list), or their particular topic (e.g., time, cryptography, log).
@@ -697,7 +690,7 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
     <li><a href="http://www.w3.org/2000/10/swap/string#">String</a> – <a href="http://www.w3.org/2000/10/swap/string#">http://www.w3.org/2000/10/swap/string#</a> 
     <li><a href="http://www.w3.org/2000/10/swap/time#">Time</a> – <a href="http://www.w3.org/2000/10/swap/time#">http://www.w3.org/2000/10/swap/time#</a>. 
    </ul>
-   <h2 class="heading settled" data-level="3" id="builtinarguments"><span class="secno">3. </span><span class="content">Builtin arguments</span><a class="self-link" href="#builtinarguments"></a></h2>
+   <h2 class="heading settled" data-level="2" id="builtinarguments"><span class="secno">2. </span><span class="content">Builtin arguments</span><a class="self-link" href="#builtinarguments"></a></h2>
    <p>An N3 <a href="#builtins">builtin</a> operates on its arguments. An <dfn data-dfn-type="dfn" data-noexport id="argument">argument<a class="self-link" href="#argument"></a></dfn> is a placeholder that refers to an
       N3 triple element from the <a href="#builtin-statement" id="ref-for-builtin-statement">builtin statement</a>, i.e., the N3 statement where the
       builtin acts as a predicate. </p>
@@ -705,7 +698,7 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
       builtin statement. For instance, statements such as <code>1 math:lessThan 2</code> have two arguments <code>$s</code> and <code>$o</code>, which is written as <code>$s math:lessThan $o</code>.</p>
    <p>Arguments can be also represent a "deconstruction" of the subject or object in case of lists. For
       instance, <code>(1 2 3) math:sum 6</code> will have arguments <code>$s.1</code> .. <code>$s.n</code> and <code>$o</code>, which is written as <code>($s.1 .. $s.n) math:sum $o</code>. </p>
-   <h3 class="heading settled" data-level="3.1" id="argumentmodes"><span class="secno">3.1. </span><span class="content">Argument modes</span><a class="self-link" href="#argumentmodes"></a></h3>
+   <h3 class="heading settled" data-level="2.1" id="argumentmodes"><span class="secno">2.1. </span><span class="content">Argument modes</span><a class="self-link" href="#argumentmodes"></a></h3>
    <p>For a given builtin, an argument will have a defined <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="argument-mode">argument mode</dfn> that stipulates whether it should be bound or not in the builtin statement.
         This binding requirement determines whether the argument can serve as builtin input, output, or both.
         Note that these modes are mostly based on <a href="https://www.swi-prolog.org/pldoc/man?section=argmode">Prolog argument modes</a>. </p>
@@ -717,7 +710,7 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
     <li><code>?</code>: either providing input or accepting output, or both.
     <li><code>[*]</code>: modifier indicating that an argument can have multiple solutions.
    </ul>
-   <h3 class="heading settled" data-level="3.2" id="arg_domains"><span class="secno">3.2. </span><span class="content">Argument domains</span><a class="self-link" href="#arg_domains"></a></h3>
+   <h3 class="heading settled" data-level="2.2" id="arg_domains"><span class="secno">2.2. </span><span class="content">Argument domains</span><a class="self-link" href="#arg_domains"></a></h3>
    <p>An N3 builtin often has an expected datatype for its arguments, called the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="domain-datatype">domain datatype</dfn>. If
         the datatype of an argument value, called the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="value-datatype">value datatype</dfn>, does not match the
         domain datatype, it may be possible to cast the value’s datatype to, or substitute it for, the domain
@@ -728,7 +721,7 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
         concept of the <a href="#builtintheorybox">builtin theory box</a>: a BPG search using the builtin statement will not match any
         statement in the theory box when literal datatypes do not match.) </p>
    <p>Below, we elaborate on the type casting, promotion or substitution that may be applied to align <a href="#domain-datatype" id="ref-for-domain-datatype①">domain datatypes</a> with <a href="#value-datatype" id="ref-for-value-datatype①">value datatypes</a>. </p>
-   <h4 class="heading settled" data-level="3.2.1" id="numericdatatypepromotion"><span class="secno">3.2.1. </span><span class="content">Numeric datatype promotion and substitution</span><a class="self-link" href="#numericdatatypepromotion"></a></h4>
+   <h4 class="heading settled" data-level="2.2.1" id="numericdatatypepromotion"><span class="secno">2.2.1. </span><span class="content">Numeric datatype promotion and substitution</span><a class="self-link" href="#numericdatatypepromotion"></a></h4>
    <p>If the numeric <a href="#value-datatype" id="ref-for-value-datatype②">value datatype</a> does not match the <a href="#domain-datatype" id="ref-for-domain-datatype②">domain datatype</a>, it may be possible to
           promote or substitute the numeric value datatype:</p>
    <p><b>Numeric type promotion</b>: A numeric value datatype that <a href="https://www.w3.org/TR/xmlschema-2/#dt-derived">is derived from</a> the domain datatype can
@@ -764,7 +757,7 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
             output, then the calculated value for the output will also have datatype <code>xs:integer</code>.
    </ul>
    <p></p>
-   <h4 class="heading settled" data-level="3.2.2" id="typesofdatatypecasting"><span class="secno">3.2.2. </span><span class="content">Other kinds of datatype casting</span><a class="self-link" href="#typesofdatatypecasting"></a></h4>
+   <h4 class="heading settled" data-level="2.2.2" id="typesofdatatypecasting"><span class="secno">2.2.2. </span><span class="content">Other kinds of datatype casting</span><a class="self-link" href="#typesofdatatypecasting"></a></h4>
    <p>If the non-numeric <a href="#value-datatype" id="ref-for-value-datatype③">value datatype</a> does not match the <a href="#domain-datatype" id="ref-for-domain-datatype③">domain datatype</a>, it may be
           possible to cast the value datatype to the domain datatype:</p>
    <p> <b>String</b>: A literal will be considered a "string" when it has an <code>xs:string</code> datatype, a <code>rdf:langString</code> datatype due to the presence of a language tag, or when it lacks a datatype. </p>
@@ -781,8 +774,8 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
     <p><b>Editors' Note:</b><br><br> There is a useful chart for casting primitive types to primitive types in <a href="https://www.w3.org/TR/xpath-functions/#casting-from-primitive-to-primitive">XPath</a>, a
           subset of which is defined for <a href="https://www.w3.org/TR/sparql11-query/#FunctionMapping">SPARQL 1.1</a>. </p>
    </div>
-   <h2 class="heading settled" data-level="4" id="builtinevaluation"><span class="secno">4. </span><span class="content">Builtin Evaluation</span><a class="self-link" href="#builtinevaluation"></a></h2>
-   <h3 class="heading settled" data-level="4.1" id="builtintheorybox"><span class="secno">4.1. </span><span class="content">Builtin theory box</span><a class="self-link" href="#builtintheorybox"></a></h3>
+   <h2 class="heading settled" data-level="3" id="builtinevaluation"><span class="secno">3. </span><span class="content">Builtin Evaluation</span><a class="self-link" href="#builtinevaluation"></a></h2>
+   <h3 class="heading settled" data-level="3.1" id="builtintheorybox"><span class="secno">3.1. </span><span class="content">Builtin theory box</span><a class="self-link" href="#builtintheorybox"></a></h3>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="builtin-statement">builtin statement</dfn> can be seen as a <i>constrained</i> basic graph pattern
         (BGP) search on the N3 <a href="#builtin-theory-box" id="ref-for-builtin-theory-box">builtin theory box</a>.
         This <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="builtin-theory-box">builtin theory box</dfn> is defined to include all truthful builtin statements for the N3 builtin.
@@ -821,9 +814,9 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
         only limited utility (as other builtins can be used instead to subtract 1 from 6). </p>
    <p>These constraints are encoded in terms of <a href="#argument-mode" id="ref-for-argument-mode">argument modes</a> and <a href="#domain-datatype" id="ref-for-domain-datatype④">domain datatypes</a> in the respective builtin definitions.
         In case these constraints are not met, the <a href="#builtin-statement" id="ref-for-builtin-statement⑤">builtin statement</a> will evaluate to false. </p>
-   <h2 class="heading settled" data-level="5" id="builtins"><span class="secno">5. </span><span class="content">Builtins</span><a class="self-link" href="#builtins"></a></h2>
-   <h3 class="heading settled" data-level="5.1" id="crypto"><span class="secno">5.1. </span><span class="content">crypto</span><a class="self-link" href="#crypto"></a></h3>
-   <h4 class="heading settled" data-level="5.1.1" id="crypto:sha"><span class="secno">5.1.1. </span><span class="content">crypto:sha</span><a class="self-link" href="#crypto:sha"></a></h4>
+   <h2 class="heading settled" data-level="4" id="builtins"><span class="secno">4. </span><span class="content">Builtins</span><a class="self-link" href="#builtins"></a></h2>
+   <h3 class="heading settled" data-level="4.1" id="crypto"><span class="secno">4.1. </span><span class="content">crypto</span><a class="self-link" href="#crypto"></a></h3>
+   <h4 class="heading settled" data-level="4.1.1" id="crypto:sha"><span class="secno">4.1.1. </span><span class="content">crypto:sha</span><a class="self-link" href="#crypto:sha"></a></h4>
     Gets as object the <a href="https://en.wikipedia.org/wiki/SHA-1">SHA-1 hash</a> of the subject. 
    <p><code>true</code> if and only if <code>$o</code> is the <a href="https://en.wikipedia.org/wiki/SHA-1">SHA-1 hash</a> of <code>$s</code>.</p>
    <p><strong>Schema</strong><br><code>$s+ crypto:sha $o-</code></p>
@@ -850,8 +843,8 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
 </pre>
     </div>
    </div>
-   <h3 class="heading settled" data-level="5.2" id="math"><span class="secno">5.2. </span><span class="content">math</span><a class="self-link" href="#math"></a></h3>
-   <h4 class="heading settled" data-level="5.2.1" id="math:absoluteValue"><span class="secno">5.2.1. </span><span class="content">math:absoluteValue</span><a class="self-link" href="#math:absoluteValue"></a></h4>
+   <h3 class="heading settled" data-level="4.2" id="math"><span class="secno">4.2. </span><span class="content">math</span><a class="self-link" href="#math"></a></h3>
+   <h4 class="heading settled" data-level="4.2.1" id="math:absoluteValue"><span class="secno">4.2.1. </span><span class="content">math:absoluteValue</span><a class="self-link" href="#math:absoluteValue"></a></h4>
     Calculates as object the absolute value of the subject. 
    <p><code>true</code> if and only if <code>$o</code> is the absolute value of <code>$s</code>.</p>
    <p><strong>Schema</strong><br><code>$s+ math:absoluteValue $o-</code></p>
@@ -887,7 +880,7 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.2" id="math:acos"><span class="secno">5.2.2. </span><span class="content">math:acos</span><a class="self-link" href="#math:acos"></a></h4>
+   <h4 class="heading settled" data-level="4.2.2" id="math:acos"><span class="secno">4.2.2. </span><span class="content">math:acos</span><a class="self-link" href="#math:acos"></a></h4>
     Calculates the object as the arc cosine value of the subject. 
    <p><code>true</code> if and only if <code>$o</code> is the arc cosine value of <code>$s</code>.</p>
    <p><strong>See also</strong><br><a href="#math:cosh">math:cosh</a><br><a href="#math:cos">math:cos</a></p>
@@ -924,7 +917,7 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.3" id="math:asin"><span class="secno">5.2.3. </span><span class="content">math:asin</span><a class="self-link" href="#math:asin"></a></h4>
+   <h4 class="heading settled" data-level="4.2.3" id="math:asin"><span class="secno">4.2.3. </span><span class="content">math:asin</span><a class="self-link" href="#math:asin"></a></h4>
     Calculates the object as the arc sine value of the subject. 
    <p><code>true</code> if and only if <code>$o</code> is the arc sine value of <code>$s</code>.</p>
    <p><strong>See also</strong><br><a href="#math:sin">math:sin</a><br><a href="#math:sinh">math:sinh</a></p>
@@ -961,7 +954,7 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.4" id="math:atan"><span class="secno">5.2.4. </span><span class="content">math:atan</span><a class="self-link" href="#math:atan"></a></h4>
+   <h4 class="heading settled" data-level="4.2.4" id="math:atan"><span class="secno">4.2.4. </span><span class="content">math:atan</span><a class="self-link" href="#math:atan"></a></h4>
     Calculates the object as the arc tangent value of the subject. 
    <p><code>true</code> if and only if <code>$o</code> is the arc tangent value of <code>$s</code>.</p>
    <p><strong>See also</strong><br><a href="#math:tan">math:tan</a><br><a href="#math:tanh">math:tanh</a></p>
@@ -998,7 +991,7 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.5" id="math:cos"><span class="secno">5.2.5. </span><span class="content">math:cos</span><a class="self-link" href="#math:cos"></a></h4>
+   <h4 class="heading settled" data-level="4.2.5" id="math:cos"><span class="secno">4.2.5. </span><span class="content">math:cos</span><a class="self-link" href="#math:cos"></a></h4>
     Calculates the object as the cosine value of the subject. 
    <p><code>true</code> if and only if <code>$o</code> is the cosine value of <code>$s</code>.</p>
    <p><strong>See also</strong><br><a href="#math:acos">math:acos</a><br><a href="#math:cosh">math:cosh</a></p>
@@ -1035,7 +1028,7 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.6" id="math:cosh"><span class="secno">5.2.6. </span><span class="content">math:cosh</span><a class="self-link" href="#math:cosh"></a></h4>
+   <h4 class="heading settled" data-level="4.2.6" id="math:cosh"><span class="secno">4.2.6. </span><span class="content">math:cosh</span><a class="self-link" href="#math:cosh"></a></h4>
     Calculates the object as the hyperbolic cosine value of the subject. 
    <p><code>true</code> if and only if <code>$o</code> is the hyperbolic cosine value of <code>$s</code>.</p>
    <p><strong>See also</strong><br><a href="#math:cos">math:cos</a><br><a href="#math:acos">math:acos</a></p>
@@ -1072,7 +1065,7 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.7" id="math:degrees"><span class="secno">5.2.7. </span><span class="content">math:degrees</span><a class="self-link" href="#math:degrees"></a></h4>
+   <h4 class="heading settled" data-level="4.2.7" id="math:degrees"><span class="secno">4.2.7. </span><span class="content">math:degrees</span><a class="self-link" href="#math:degrees"></a></h4>
     Calculates the object as the value in degrees corresponding to the radians value of the subject. 
    <p><code>true</code> if and only if <code>$o</code> is the value in degrees corresponding to the radians value of <code>$s</code>.</p>
    <p><strong>Schema</strong><br><code>$s? math:degrees $o?</code></p>
@@ -1108,7 +1101,7 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.8" id="math:difference"><span class="secno">5.2.8. </span><span class="content">math:difference</span><a class="self-link" href="#math:difference"></a></h4>
+   <h4 class="heading settled" data-level="4.2.8" id="math:difference"><span class="secno">4.2.8. </span><span class="content">math:difference</span><a class="self-link" href="#math:difference"></a></h4>
     Calculates the object by subtracting the second number from the first number given in the subject list. 
    <p><code>true</code> if and only if <code>$o</code> is the result of subtracting <code>$s.2</code> from <code>$s.1</code>.</p>
    <p><strong>Schema</strong><br><code>( $s.1+ $s.2+ )+ math:difference $o-</code></p>
@@ -1144,7 +1137,7 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.9" id="math:equalTo"><span class="secno">5.2.9. </span><span class="content">math:equalTo</span><a class="self-link" href="#math:equalTo"></a></h4>
+   <h4 class="heading settled" data-level="4.2.9" id="math:equalTo"><span class="secno">4.2.9. </span><span class="content">math:equalTo</span><a class="self-link" href="#math:equalTo"></a></h4>
     Checks whether the subject and object are the same number. 
    <p><code>true</code> if and only if <code>$s</code> is the same number as <code>$o</code>.</p>
    <p><strong>See also</strong><br><a href="#math:notEqualTo">math:notEqualTo</a></p>
@@ -1181,7 +1174,7 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.10" id="math:exponentiation"><span class="secno">5.2.10. </span><span class="content">math:exponentiation</span><a class="self-link" href="#math:exponentiation"></a></h4>
+   <h4 class="heading settled" data-level="4.2.10" id="math:exponentiation"><span class="secno">4.2.10. </span><span class="content">math:exponentiation</span><a class="self-link" href="#math:exponentiation"></a></h4>
     Calculates the object as the result of raising the first number to the power of the second number in the subject list. 
 You can also use this to calculate the logarithm of the object, with as base the first number of the subject list (see examples). 
    <p><code>true</code> if and only if <code>$o</code> is the result of raising <code>$s.1</code> to the power of <code>$s.2</code></p>
@@ -1241,7 +1234,7 @@ You can also use this to calculate the logarithm of the object, with as base the
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.11" id="math:greaterThan"><span class="secno">5.2.11. </span><span class="content">math:greaterThan</span><a class="self-link" href="#math:greaterThan"></a></h4>
+   <h4 class="heading settled" data-level="4.2.11" id="math:greaterThan"><span class="secno">4.2.11. </span><span class="content">math:greaterThan</span><a class="self-link" href="#math:greaterThan"></a></h4>
     Checks whether the subject is a number that is greater than the object. 
    <p><code>true</code> if and only if <code>$s</code> is a number that is greater than <code>$o</code>.</p>
    <p><strong>See also</strong><br><a href="#math:notGreaterThan">math:notGreaterThan</a></p>
@@ -1278,7 +1271,7 @@ You can also use this to calculate the logarithm of the object, with as base the
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.12" id="math:lessThan"><span class="secno">5.2.12. </span><span class="content">math:lessThan</span><a class="self-link" href="#math:lessThan"></a></h4>
+   <h4 class="heading settled" data-level="4.2.12" id="math:lessThan"><span class="secno">4.2.12. </span><span class="content">math:lessThan</span><a class="self-link" href="#math:lessThan"></a></h4>
     Checks whether the subject is a number that is less than the object. 
    <p><code>true</code> if and only if <code>$s</code> is a number that is less than <code>$o</code>.</p>
    <p><strong>See also</strong><br><a href="#math:notLessThan">math:notLessThan</a></p>
@@ -1315,7 +1308,7 @@ You can also use this to calculate the logarithm of the object, with as base the
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.13" id="math:negation"><span class="secno">5.2.13. </span><span class="content">math:negation</span><a class="self-link" href="#math:negation"></a></h4>
+   <h4 class="heading settled" data-level="4.2.13" id="math:negation"><span class="secno">4.2.13. </span><span class="content">math:negation</span><a class="self-link" href="#math:negation"></a></h4>
     Calculates the object as the negation of the subject. 
    <p><code>true</code> if and only if <code>$o</code> is the negation of <code>$s</code>.</p>
    <p><strong>Schema</strong><br><code>$s? math:negation $o?</code></p>
@@ -1351,7 +1344,7 @@ You can also use this to calculate the logarithm of the object, with as base the
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.14" id="math:notEqualTo"><span class="secno">5.2.14. </span><span class="content">math:notEqualTo</span><a class="self-link" href="#math:notEqualTo"></a></h4>
+   <h4 class="heading settled" data-level="4.2.14" id="math:notEqualTo"><span class="secno">4.2.14. </span><span class="content">math:notEqualTo</span><a class="self-link" href="#math:notEqualTo"></a></h4>
     Checks whether the subject and object are not the same number. 
    <p><code>true</code> if and only if <code>$s</code> is the not same number as <code>$o</code>.</p>
    <p><strong>See also</strong><br><a href="#math:equalTo">math:equalTo</a></p>
@@ -1388,7 +1381,7 @@ You can also use this to calculate the logarithm of the object, with as base the
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.15" id="math:notGreaterThan"><span class="secno">5.2.15. </span><span class="content">math:notGreaterThan</span><a class="self-link" href="#math:notGreaterThan"></a></h4>
+   <h4 class="heading settled" data-level="4.2.15" id="math:notGreaterThan"><span class="secno">4.2.15. </span><span class="content">math:notGreaterThan</span><a class="self-link" href="#math:notGreaterThan"></a></h4>
     Checks whether the subject is a number that is not greater than the object.
 You can use this as an equivalent of a lessThanOrEqual operator. 
    <p><code>true</code> if and only if <code>$s</code> is a number that is not greater than <code>$o</code>.</p>
@@ -1426,7 +1419,7 @@ You can use this as an equivalent of a lessThanOrEqual operator.
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.16" id="math:notLessThan"><span class="secno">5.2.16. </span><span class="content">math:notLessThan</span><a class="self-link" href="#math:notLessThan"></a></h4>
+   <h4 class="heading settled" data-level="4.2.16" id="math:notLessThan"><span class="secno">4.2.16. </span><span class="content">math:notLessThan</span><a class="self-link" href="#math:notLessThan"></a></h4>
     Checks whether the subject is a number that is not less than the object.
 You can use this as an equivalent of a greaterThanOrEqual operator. 
    <p><code>true</code> if and only if <code>$s</code> is a number that is not less than <code>$o</code>.</p>
@@ -1464,7 +1457,7 @@ You can use this as an equivalent of a greaterThanOrEqual operator.
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.17" id="math:product"><span class="secno">5.2.17. </span><span class="content">math:product</span><a class="self-link" href="#math:product"></a></h4>
+   <h4 class="heading settled" data-level="4.2.17" id="math:product"><span class="secno">4.2.17. </span><span class="content">math:product</span><a class="self-link" href="#math:product"></a></h4>
     Calculates the object as the product of the numbers given in the subject list. 
    <p><code>true</code> if and only if <code>$o</code> is the arithmetic product of all numbers <code>$s.i</code></p>
    <p><strong>Schema</strong><br><code>( $s.i+ )+ math:product $o-</code></p>
@@ -1526,7 +1519,7 @@ You can use this as an equivalent of a greaterThanOrEqual operator.
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.18" id="math:quotient"><span class="secno">5.2.18. </span><span class="content">math:quotient</span><a class="self-link" href="#math:quotient"></a></h4>
+   <h4 class="heading settled" data-level="4.2.18" id="math:quotient"><span class="secno">4.2.18. </span><span class="content">math:quotient</span><a class="self-link" href="#math:quotient"></a></h4>
     Calculates the object by dividing the first number by the second number given in the subject list. 
    <p><code>true</code> if and only if <code>$o</code> is the result of dividing <code>$s.1</code> by <code>$s.2</code>.</p>
    <p><strong>Schema</strong><br><code>( $s.1+ $s.2+ )+ math:quotient $o-</code></p>
@@ -1562,7 +1555,7 @@ You can use this as an equivalent of a greaterThanOrEqual operator.
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.19" id="math:remainder"><span class="secno">5.2.19. </span><span class="content">math:remainder</span><a class="self-link" href="#math:remainder"></a></h4>
+   <h4 class="heading settled" data-level="4.2.19" id="math:remainder"><span class="secno">4.2.19. </span><span class="content">math:remainder</span><a class="self-link" href="#math:remainder"></a></h4>
     Calculates the object as the remainder of the division of the first integer by the second integer given in the subject list. 
    <p><code>true</code> if and only if <code>$o</code> is the remainder of dividing <code>$s.1</code> by <code>$s.2</code>.</p>
    <p><strong>Schema</strong><br><code>( $s.1+ $s.2+ )+ math:remainder $o-</code></p>
@@ -1598,7 +1591,7 @@ You can use this as an equivalent of a greaterThanOrEqual operator.
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.20" id="math:rounded"><span class="secno">5.2.20. </span><span class="content">math:rounded</span><a class="self-link" href="#math:rounded"></a></h4>
+   <h4 class="heading settled" data-level="4.2.20" id="math:rounded"><span class="secno">4.2.20. </span><span class="content">math:rounded</span><a class="self-link" href="#math:rounded"></a></h4>
     Calculates the object as the integer that is closest to the subject number. 
    <p><code>true</code> if and only if <code>$o</code> is the integer that is closest to <code>$s</code>.
 If there are two such numbers, then the one closest to positive infinity is returned.</p>
@@ -1636,7 +1629,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.21" id="math:sin"><span class="secno">5.2.21. </span><span class="content">math:sin</span><a class="self-link" href="#math:sin"></a></h4>
+   <h4 class="heading settled" data-level="4.2.21" id="math:sin"><span class="secno">4.2.21. </span><span class="content">math:sin</span><a class="self-link" href="#math:sin"></a></h4>
     Calculates the object as the sine value of the subject. 
    <p><code>true</code> if and only if <code>$o</code> is the sine value of <code>$s</code>.</p>
    <p><strong>See also</strong><br><a href="#math:sinh">math:sinh</a><br><a href="#math:asin">math:asin</a></p>
@@ -1675,7 +1668,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.22" id="math:sinh"><span class="secno">5.2.22. </span><span class="content">math:sinh</span><a class="self-link" href="#math:sinh"></a></h4>
+   <h4 class="heading settled" data-level="4.2.22" id="math:sinh"><span class="secno">4.2.22. </span><span class="content">math:sinh</span><a class="self-link" href="#math:sinh"></a></h4>
     Calculates the object as the hyperbolic sine value of the subject. 
    <p><code>true</code> if and only if <code>$o</code> is the hyperbolic sine value of <code>$s</code>.</p>
    <p><strong>See also</strong><br><a href="#math:asin">math:asin</a><br><a href="#math:sin">math:sin</a></p>
@@ -1713,7 +1706,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.23" id="math:sum"><span class="secno">5.2.23. </span><span class="content">math:sum</span><a class="self-link" href="#math:sum"></a></h4>
+   <h4 class="heading settled" data-level="4.2.23" id="math:sum"><span class="secno">4.2.23. </span><span class="content">math:sum</span><a class="self-link" href="#math:sum"></a></h4>
     Calculates the object as the sum of the numbers given in the subject list. 
    <p><code>true</code> if and only if <code>$o</code> is the arithmetic sum of all numbers <code>$s.i</code></p>
    <p><strong>Schema</strong><br><code>( $s.i+ )+ math:sum $o-</code></p>
@@ -1749,7 +1742,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.24" id="math:tan"><span class="secno">5.2.24. </span><span class="content">math:tan</span><a class="self-link" href="#math:tan"></a></h4>
+   <h4 class="heading settled" data-level="4.2.24" id="math:tan"><span class="secno">4.2.24. </span><span class="content">math:tan</span><a class="self-link" href="#math:tan"></a></h4>
     Calculates the object as the tangent value of the subject. 
    <p><code>true</code> if and only if <code>$o</code> is the tangent value of <code>$s</code>.</p>
    <p><strong>See also</strong><br><a href="#math:tanh">math:tanh</a><br><a href="#math:atan">math:atan</a></p>
@@ -1788,7 +1781,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.2.25" id="math:tanh"><span class="secno">5.2.25. </span><span class="content">math:tanh</span><a class="self-link" href="#math:tanh"></a></h4>
+   <h4 class="heading settled" data-level="4.2.25" id="math:tanh"><span class="secno">4.2.25. </span><span class="content">math:tanh</span><a class="self-link" href="#math:tanh"></a></h4>
     Calculates the object as the hyperbolic tangent value of the subject. 
    <p><code>true</code> if and only if <code>$o</code> is the hyperbolic tangent value of <code>$s</code>.</p>
    <p><strong>See also</strong><br><a href="#math:tan">math:tan</a><br><a href="#math:atan">math:atan</a></p>
@@ -1827,8 +1820,8 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h3 class="heading settled" data-level="5.3" id="time"><span class="secno">5.3. </span><span class="content">time</span><a class="self-link" href="#time"></a></h3>
-   <h4 class="heading settled" data-level="5.3.1" id="time:day"><span class="secno">5.3.1. </span><span class="content">time:day</span><a class="self-link" href="#time:day"></a></h4>
+   <h3 class="heading settled" data-level="4.3" id="time"><span class="secno">4.3. </span><span class="content">time</span><a class="self-link" href="#time"></a></h3>
+   <h4 class="heading settled" data-level="4.3.1" id="time:day"><span class="secno">4.3.1. </span><span class="content">time:day</span><a class="self-link" href="#time:day"></a></h4>
     Gets as object the integer day component of the subject xsd:dateTime. 
    <p><code>true</code> if and only if <code>$o</code> is the integer day component of <code>$s</code>.</p>
    <p><strong>Schema</strong><br><code>$s+ time:day $o-</code></p>
@@ -1865,7 +1858,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.3.2" id="time:minute"><span class="secno">5.3.2. </span><span class="content">time:minute</span><a class="self-link" href="#time:minute"></a></h4>
+   <h4 class="heading settled" data-level="4.3.2" id="time:minute"><span class="secno">4.3.2. </span><span class="content">time:minute</span><a class="self-link" href="#time:minute"></a></h4>
     Gets as object the integer minutes component of the subject xsd:dateTime. 
    <p><code>true</code> if and only if <code>$o</code> is the integer minutes component of <code>$s</code>.</p>
    <p><strong>Schema</strong><br><code>$s+ time:minute $o-</code></p>
@@ -1902,7 +1895,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.3.3" id="time:month"><span class="secno">5.3.3. </span><span class="content">time:month</span><a class="self-link" href="#time:month"></a></h4>
+   <h4 class="heading settled" data-level="4.3.3" id="time:month"><span class="secno">4.3.3. </span><span class="content">time:month</span><a class="self-link" href="#time:month"></a></h4>
     Gets as object the integer month component of the subject xsd:dateTime. 
    <p><code>true</code> if and only if <code>$o</code> is the integer month component of <code>$s</code>.</p>
    <p><strong>Schema</strong><br><code>$s+ time:month $o-</code></p>
@@ -1939,7 +1932,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.3.4" id="time:second"><span class="secno">5.3.4. </span><span class="content">time:second</span><a class="self-link" href="#time:second"></a></h4>
+   <h4 class="heading settled" data-level="4.3.4" id="time:second"><span class="secno">4.3.4. </span><span class="content">time:second</span><a class="self-link" href="#time:second"></a></h4>
     Gets as object the integer seconds component of the subject xsd:dateTime. 
    <p><code>true</code> if and only if <code>$o</code> is the integer seconds component of <code>$s</code>.</p>
    <p><strong>Schema</strong><br><code>$s+ time:second $o-</code></p>
@@ -1976,7 +1969,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.3.5" id="time:timeZone"><span class="secno">5.3.5. </span><span class="content">time:timeZone</span><a class="self-link" href="#time:timeZone"></a></h4>
+   <h4 class="heading settled" data-level="4.3.5" id="time:timeZone"><span class="secno">4.3.5. </span><span class="content">time:timeZone</span><a class="self-link" href="#time:timeZone"></a></h4>
     Gets as object the trailing timezone offset of the subject xsd:dateTime (e.g., "-05:00"). 
    <p><code>true</code> if and only if <code>$o</code> is the timezone offset of <code>$s</code>.</p>
    <p><strong>Schema</strong><br><code>$s+ time:timeZone $o-</code></p>
@@ -2013,7 +2006,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.3.6" id="time:year"><span class="secno">5.3.6. </span><span class="content">time:year</span><a class="self-link" href="#time:year"></a></h4>
+   <h4 class="heading settled" data-level="4.3.6" id="time:year"><span class="secno">4.3.6. </span><span class="content">time:year</span><a class="self-link" href="#time:year"></a></h4>
     Gets as object the integer year component of the subject xsd:dateTime. 
    <p><code>true</code> if and only if <code>$o</code> is the integer year component of <code>$s</code>.</p>
    <p><strong>Schema</strong><br><code>$s+ time:year $o-</code></p>
@@ -2050,8 +2043,8 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h3 class="heading settled" data-level="5.4" id="list"><span class="secno">5.4. </span><span class="content">list</span><a class="self-link" href="#list"></a></h3>
-   <h4 class="heading settled" data-level="5.4.1" id="list:append"><span class="secno">5.4.1. </span><span class="content">list:append</span><a class="self-link" href="#list:append"></a></h4>
+   <h3 class="heading settled" data-level="4.4" id="list"><span class="secno">4.4. </span><span class="content">list</span><a class="self-link" href="#list"></a></h3>
+   <h4 class="heading settled" data-level="4.4.1" id="list:append"><span class="secno">4.4.1. </span><span class="content">list:append</span><a class="self-link" href="#list:append"></a></h4>
     Appends the lists from the subject list into a single list as object. 
    <p><code>true</code> if and only if <code>$o</code> is the concatenation of all lists <code>$s.i</code>.</p>
    <p><strong>See also</strong><br><a href="#list:remove">list:remove</a></p>
@@ -2130,7 +2123,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.4.2" id="list:first"><span class="secno">5.4.2. </span><span class="content">list:first</span><a class="self-link" href="#list:first"></a></h4>
+   <h4 class="heading settled" data-level="4.4.2" id="list:first"><span class="secno">4.4.2. </span><span class="content">list:first</span><a class="self-link" href="#list:first"></a></h4>
     Gets the first element of the subject list as object. 
    <p><code>true</code> if and only if <code>$s</code> is a list and <code>$o</code> is the first member of that list.</p>
    <p><strong>See also</strong><br><a href="#list:last">list:last</a></p>
@@ -2158,7 +2151,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.4.3" id="list:in"><span class="secno">5.4.3. </span><span class="content">list:in</span><a class="self-link" href="#list:in"></a></h4>
+   <h4 class="heading settled" data-level="4.4.3" id="list:in"><span class="secno">4.4.3. </span><span class="content">list:in</span><a class="self-link" href="#list:in"></a></h4>
     Checks whether the subject is a member of the object list. 
    <p><code>true</code> if and only if <code>$o</code> is a list and <code>$s</code> is a member of that list.</p>
    <p><strong>See also</strong><br><a href="#list:member">list:member</a></p>
@@ -2205,7 +2198,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.4.4" id="list:iterate"><span class="secno">5.4.4. </span><span class="content">list:iterate</span><a class="self-link" href="#list:iterate"></a></h4>
+   <h4 class="heading settled" data-level="4.4.4" id="list:iterate"><span class="secno">4.4.4. </span><span class="content">list:iterate</span><a class="self-link" href="#list:iterate"></a></h4>
     Iterates over each member of the subject list, getting their index/value pairs as the object. 
    <p><code>true</code> if and only if <code>$s</code> is a list and <code>$o</code> is a list with two elements: <code>$o.1</code> is a valid index in list <code>$s</code> (index starts at 0), and <code>$o.2</code> is found at that index in list <code>$s</code>.</p>
    <p><strong>Schema</strong><br><code>$s+ list:iterate ( $o.1?[*] $o.2?[*] )?[*]</code></p>
@@ -2284,7 +2277,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.4.5" id="list:last"><span class="secno">5.4.5. </span><span class="content">list:last</span><a class="self-link" href="#list:last"></a></h4>
+   <h4 class="heading settled" data-level="4.4.5" id="list:last"><span class="secno">4.4.5. </span><span class="content">list:last</span><a class="self-link" href="#list:last"></a></h4>
     Gets the last element of the subject list as object. 
    <p><code>true</code> if and only if <code>$s</code> is a list and <code>$o</code> is the last member of that list.</p>
    <p><strong>See also</strong><br><a href="#list:first">list:first</a></p>
@@ -2338,7 +2331,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.4.6" id="list:length"><span class="secno">5.4.6. </span><span class="content">list:length</span><a class="self-link" href="#list:length"></a></h4>
+   <h4 class="heading settled" data-level="4.4.6" id="list:length"><span class="secno">4.4.6. </span><span class="content">list:length</span><a class="self-link" href="#list:length"></a></h4>
     Gets the length of the subject list as object. 
    <p><code>true</code> if and only if <code>$s</code> is a list and <code>$o</code> is the integer length of that list.</p>
    <p><strong>Schema</strong><br><code>$s+ list:length $o-</code></p>
@@ -2365,7 +2358,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.4.7" id="list:member"><span class="secno">5.4.7. </span><span class="content">list:member</span><a class="self-link" href="#list:member"></a></h4>
+   <h4 class="heading settled" data-level="4.4.7" id="list:member"><span class="secno">4.4.7. </span><span class="content">list:member</span><a class="self-link" href="#list:member"></a></h4>
     Checks whether the subject list contains the object. 
    <p><code>true</code> if and only if <code>$s</code> is a list and <code>$o</code> is a member of that list.</p>
    <p><strong>See also</strong><br><a href="#list:memberAt">list:memberAt</a><br><a href="#list:in">list:in</a></p>
@@ -2421,7 +2414,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.4.8" id="list:memberAt"><span class="secno">5.4.8. </span><span class="content">list:memberAt</span><a class="self-link" href="#list:memberAt"></a></h4>
+   <h4 class="heading settled" data-level="4.4.8" id="list:memberAt"><span class="secno">4.4.8. </span><span class="content">list:memberAt</span><a class="self-link" href="#list:memberAt"></a></h4>
     Gets the member of the subject list at the given subject index as object (index starts at 0). 
    <p><code>true</code> if and only if <code>$s.1</code> is a list, <code>$s.2</code> is a valid index in list <code>$s.1</code>, and <code>$o</code> is found at that index in the list.</p>
    <p><strong>Schema</strong><br><code>( $s.1+ $s.2?[*] )+ list:memberAt $o?[*]</code></p>
@@ -2484,7 +2477,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.4.9" id="list:remove"><span class="secno">5.4.9. </span><span class="content">list:remove</span><a class="self-link" href="#list:remove"></a></h4>
+   <h4 class="heading settled" data-level="4.4.9" id="list:remove"><span class="secno">4.4.9. </span><span class="content">list:remove</span><a class="self-link" href="#list:remove"></a></h4>
     Removes each occurrence of the subject member from the subject list, and returns the resulting list as object. 
    <p><code>true</code> if and only if <code>$s.1</code> is a list, and <code>$o</code> is a list composed of the members of <code>$s.1</code> with all occurrences of <code>$s.2</code> removed (if it was present; else, <code>$o</code> will be the same list).</p>
    <p><strong>See also</strong><br><a href="#list:append">list:append</a></p>
@@ -2545,8 +2538,8 @@ If there are two such numbers, then the one closest to positive infinity is retu
 </pre>
     </div>
    </div>
-   <h3 class="heading settled" data-level="5.5" id="log"><span class="secno">5.5. </span><span class="content">log</span><a class="self-link" href="#log"></a></h3>
-   <h4 class="heading settled" data-level="5.5.1" id="log:collectAllIn"><span class="secno">5.5.1. </span><span class="content">log:collectAllIn</span><a class="self-link" href="#log:collectAllIn"></a></h4>
+   <h3 class="heading settled" data-level="4.5" id="log"><span class="secno">4.5. </span><span class="content">log</span><a class="self-link" href="#log"></a></h3>
+   <h4 class="heading settled" data-level="4.5.1" id="log:collectAllIn"><span class="secno">4.5.1. </span><span class="content">log:collectAllIn</span><a class="self-link" href="#log:collectAllIn"></a></h4>
     Collects all values matching a given clause and adds them to a list. 
    <p><code>true</code> if and only if, for every solution of clause <code>$s.2</code>, the unification of <code>$s.1</code> with that solution is a member of list <code>$s.3</code>.
 This is a scoped universal quantification.</p>
@@ -2630,7 +2623,7 @@ This is a scoped universal quantification.</p>
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.5.2" id="log:conclusion"><span class="secno">5.5.2. </span><span class="content">log:conclusion</span><a class="self-link" href="#log:conclusion"></a></h4>
+   <h4 class="heading settled" data-level="4.5.2" id="log:conclusion"><span class="secno">4.5.2. </span><span class="content">log:conclusion</span><a class="self-link" href="#log:conclusion"></a></h4>
     Gets all possible conclusions from the subject graph term, including rule inferences (deductive closure), as the object graph term. 
    <p><code>true</code> if and only if <code>$o</code> is the set of conclusions which can be drawn from <code>$s</code> (deductive closure),
 by applying any rules it contains to the data it contains.</p>
@@ -2674,7 +2667,7 @@ by applying any rules it contains to the data it contains.</p>
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.5.3" id="log:conjunction"><span class="secno">5.5.3. </span><span class="content">log:conjunction</span><a class="self-link" href="#log:conjunction"></a></h4>
+   <h4 class="heading settled" data-level="4.5.3" id="log:conjunction"><span class="secno">4.5.3. </span><span class="content">log:conjunction</span><a class="self-link" href="#log:conjunction"></a></h4>
     Merges the graph terms from the subject list into a single graph term as object. 
    <p><code>true</code> if and only if <code>$o</code> is a graph term that is the logical conjunction of each of the graph terms <code>$s.i</code> (i.e., includes all their triples, removing any duplicates) .</p>
    <p><strong>Schema</strong><br><code>( $s.i+ )+ log:conjunction $o?</code></p>
@@ -2714,7 +2707,7 @@ by applying any rules it contains to the data it contains.</p>
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.5.4" id="log:content"><span class="secno">5.5.4. </span><span class="content">log:content</span><a class="self-link" href="#log:content"></a></h4>
+   <h4 class="heading settled" data-level="4.5.4" id="log:content"><span class="secno">4.5.4. </span><span class="content">log:content</span><a class="self-link" href="#log:content"></a></h4>
     Dereferences the subject IRI and retrieves the online resource as the object string. 
    <p><code>true</code> if and only if <code>$o</code> is a string that represents the online resource to which <code>$s</code> is dereferenced.</p>
    <p><strong>Schema</strong><br><code>$s+ log:content $o?</code></p>
@@ -2746,7 +2739,7 @@ by applying any rules it contains to the data it contains.</p>
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.5.5" id="log:dtlit"><span class="secno">5.5.5. </span><span class="content">log:dtlit</span><a class="self-link" href="#log:dtlit"></a></h4>
+   <h4 class="heading settled" data-level="4.5.5" id="log:dtlit"><span class="secno">4.5.5. </span><span class="content">log:dtlit</span><a class="self-link" href="#log:dtlit"></a></h4>
     Creates a datatyped literal as object, based on the string value and datatype IRI in the subject list. 
    <p><code>true</code> if and only if <code>$o</code> is a datatyped literal with string value corresponding to <code>$s.1</code> and datatype IRI corresponding to <code>$s.2</code>.</p>
    <p><strong>See also</strong><br><a href="#log:langlit">log:langlit</a></p>
@@ -2801,7 +2794,7 @@ by applying any rules it contains to the data it contains.</p>
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.5.6" id="log:equalTo"><span class="secno">5.5.6. </span><span class="content">log:equalTo</span><a class="self-link" href="#log:equalTo"></a></h4>
+   <h4 class="heading settled" data-level="4.5.6" id="log:equalTo"><span class="secno">4.5.6. </span><span class="content">log:equalTo</span><a class="self-link" href="#log:equalTo"></a></h4>
     Checks whether the subject and object N3 terms are the same (comparison occurs on the syntax level). 
 Can also be used to bind values to variables (see examples). 
    <p><code>true</code> if and only if <code>$s</code> and <code>$o</code> are the same N3 term.
@@ -2976,7 +2969,7 @@ This mechanism works because an effort is made to ensure the truthfulness of bui
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.5.7" id="log:forAllIn"><span class="secno">5.5.7. </span><span class="content">log:forAllIn</span><a class="self-link" href="#log:forAllIn"></a></h4>
+   <h4 class="heading settled" data-level="4.5.7" id="log:forAllIn"><span class="secno">4.5.7. </span><span class="content">log:forAllIn</span><a class="self-link" href="#log:forAllIn"></a></h4>
     Two clauses are given in the subject list: for each result of the first clause, the builtin checks whether the second clause also holds for the result. 
    <p><code>true</code> if and only if, for each solution for which the first clause <code>$s.1</code> is true, the second clause <code>$s.2</code> is true as well.
 This is a scoped universal quantification.</p>
@@ -3017,7 +3010,7 @@ This is a scoped universal quantification.</p>
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.5.8" id="log:includes"><span class="secno">5.5.8. </span><span class="content">log:includes</span><a class="self-link" href="#log:includes"></a></h4>
+   <h4 class="heading settled" data-level="4.5.8" id="log:includes"><span class="secno">4.5.8. </span><span class="content">log:includes</span><a class="self-link" href="#log:includes"></a></h4>
     Checks whether the subject graph term includes the object graph term (taking into account variables). 
 Can also be used to bind variables to values within the graph contents (see examples). 
    <p><code>true</code> if and only if there exists some substitution which, when applied to <code>$s</code> and <code>$o</code>,
@@ -3084,7 +3077,7 @@ Variable substitution is applied recursively to nested compound terms such as gr
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.5.9" id="log:langlit"><span class="secno">5.5.9. </span><span class="content">log:langlit</span><a class="self-link" href="#log:langlit"></a></h4>
+   <h4 class="heading settled" data-level="4.5.9" id="log:langlit"><span class="secno">4.5.9. </span><span class="content">log:langlit</span><a class="self-link" href="#log:langlit"></a></h4>
     Creates a language-tagged literal as object, based on the string value and language tag (see BCP47) in the subject list. 
    <p><code>true</code> if and only if <code>$o</code> is a language-tagged literal with string value corresponding to <code>$s.1</code> and language tag corresponding to <code>$s.2</code>. <code>$s.2</code> should be a string in the form of a BCP47 language tag.</p>
    <p><strong>See also</strong><br><a href="#log:dtlit">log:dtlit</a></p>
@@ -3111,7 +3104,7 @@ Variable substitution is applied recursively to nested compound terms such as gr
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.5.10" id="log:notEqualTo"><span class="secno">5.5.10. </span><span class="content">log:notEqualTo</span><a class="self-link" href="#log:notEqualTo"></a></h4>
+   <h4 class="heading settled" data-level="4.5.10" id="log:notEqualTo"><span class="secno">4.5.10. </span><span class="content">log:notEqualTo</span><a class="self-link" href="#log:notEqualTo"></a></h4>
     Checks whether the subject and object N3 terms are _not_ the same (comparison occurs on the syntax level). 
    <p><code>true</code> if and only if <code>$s</code> and <code>$o</code> are _not_ the same N3 term.</p>
    <p><strong>See also</strong><br><a href="#log:equalTo">log:equalTo</a></p>
@@ -3213,7 +3206,7 @@ Variable substitution is applied recursively to nested compound terms such as gr
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.5.11" id="log:notIncludes"><span class="secno">5.5.11. </span><span class="content">log:notIncludes</span><a class="self-link" href="#log:notIncludes"></a></h4>
+   <h4 class="heading settled" data-level="4.5.11" id="log:notIncludes"><span class="secno">4.5.11. </span><span class="content">log:notIncludes</span><a class="self-link" href="#log:notIncludes"></a></h4>
     Checks whether the subject graph term _does not_ include the object graph term (taking into account variables) 
    <p><code>true</code> if and only if <code>$s log:includes $o</code> is <code>false</code>.</p>
    <p><strong>See also</strong><br><a href="#log:includes">log:includes</a></p>
@@ -3273,7 +3266,7 @@ Variable substitution is applied recursively to nested compound terms such as gr
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.5.12" id="log:outputString"><span class="secno">5.5.12. </span><span class="content">log:outputString</span><a class="self-link" href="#log:outputString"></a></h4>
+   <h4 class="heading settled" data-level="4.5.12" id="log:outputString"><span class="secno">4.5.12. </span><span class="content">log:outputString</span><a class="self-link" href="#log:outputString"></a></h4>
     The N3 reasoner will print the object strings in the order of the subject keys, instead of printing the derivations or deductive closure. This may require a reasoner flag to be set. 
    <p>The concrete semantics of this builtin (e.g., which N3 resource types are supported) will depend on the N3 reasoner.</p>
    <p><strong>Schema</strong><br><code>$s+ log:outputString $o+</code></p>
@@ -3304,7 +3297,7 @@ This is the second line
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.5.13" id="log:parsedAsN3"><span class="secno">5.5.13. </span><span class="content">log:parsedAsN3</span><a class="self-link" href="#log:parsedAsN3"></a></h4>
+   <h4 class="heading settled" data-level="4.5.13" id="log:parsedAsN3"><span class="secno">4.5.13. </span><span class="content">log:parsedAsN3</span><a class="self-link" href="#log:parsedAsN3"></a></h4>
     Parses the subject string into an object graph term. 
    <p><code>true</code> if and only if <code>$s</code>, when parsed as N3, gives <code>$o</code>. <code>$s</code> should be a syntactically valid string in N3 format.</p>
    <p><strong>See also</strong><br><a href="#log:semantics">log:semantics</a></p>
@@ -3344,7 +3337,7 @@ This is the second line
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.5.14" id="log:rawType"><span class="secno">5.5.14. </span><span class="content">log:rawType</span><a class="self-link" href="#log:rawType"></a></h4>
+   <h4 class="heading settled" data-level="4.5.14" id="log:rawType"><span class="secno">4.5.14. </span><span class="content">log:rawType</span><a class="self-link" href="#log:rawType"></a></h4>
     Gets the type of the N3 resource. 
    <p><code>true</code> if and only if the N3 resource type of <code>$s</code> is <code>$o</code>.
 N3 resource types include <code>log:Formula</code>, <code>log:Literal</code>, <code>rdf:List</code> or <code>log:Other</code>.</p>
@@ -3432,7 +3425,7 @@ N3 resource types include <code>log:Formula</code>, <code>log:Literal</code>, <c
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.5.15" id="log:semantics"><span class="secno">5.5.15. </span><span class="content">log:semantics</span><a class="self-link" href="#log:semantics"></a></h4>
+   <h4 class="heading settled" data-level="4.5.15" id="log:semantics"><span class="secno">4.5.15. </span><span class="content">log:semantics</span><a class="self-link" href="#log:semantics"></a></h4>
     Gets as object the graph term that results from parsing an online (N3) string, found by dereferencing the subject IRI. 
    <p><code>true</code> if and only if <code>$o</code> is a graph term that results from parsing the string that results from dereferencing <code>$s</code>.</p>
    <p><strong>Schema</strong><br><code>$s+ log:semantics $o?</code></p>
@@ -3463,7 +3456,7 @@ We assume <code>&lt;semantics.data></code> contains the text: </p>
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.5.16" id="log:semanticsOrError"><span class="secno">5.5.16. </span><span class="content">log:semanticsOrError</span><a class="self-link" href="#log:semanticsOrError"></a></h4>
+   <h4 class="heading settled" data-level="4.5.16" id="log:semanticsOrError"><span class="secno">4.5.16. </span><span class="content">log:semanticsOrError</span><a class="self-link" href="#log:semanticsOrError"></a></h4>
     Either gets as object the graph term that results from parsing an online (N3) string, found by dereferencing the subject IRI; or an error message that explains what went wrong. 
    <p><code>true</code> if and only if (a) <code>$o</code> is a graph term that results from parsing the string that results from dereferencing <code>$s</code>; or (b) an error message explaining what went wrong.</p>
    <p><strong>Schema</strong><br><code>$s+ log:semanticsOrError $o?</code></p>
@@ -3491,7 +3484,7 @@ We assume <code>&lt;semantics.data></code> contains the text: </p>
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.5.17" id="log:skolem"><span class="secno">5.5.17. </span><span class="content">log:skolem</span><a class="self-link" href="#log:skolem"></a></h4>
+   <h4 class="heading settled" data-level="4.5.17" id="log:skolem"><span class="secno">4.5.17. </span><span class="content">log:skolem</span><a class="self-link" href="#log:skolem"></a></h4>
     Gets as object a skolem IRI that is a function of the subject (commonly a list); the same subject will always result in the same skolem IRI. 
    <p><code>true</code> if and only if <code>$o</code> is a skolem IRI that is a function of the subject.</p>
    <p><strong>Schema</strong><br><code>$s+ log:skolem $o-</code><br><br> <strong>Examples</strong><br></p>
@@ -3513,7 +3506,7 @@ We assume <code>&lt;semantics.data></code> contains the text: </p>
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.5.18" id="log:uri"><span class="secno">5.5.18. </span><span class="content">log:uri</span><a class="self-link" href="#log:uri"></a></h4>
+   <h4 class="heading settled" data-level="4.5.18" id="log:uri"><span class="secno">4.5.18. </span><span class="content">log:uri</span><a class="self-link" href="#log:uri"></a></h4>
     Gets as object the string representation of the subject URI. 
    <p><code>true</code> if and only if <code>$o</code> is the string representation of <code>$s</code>.</p>
    <p><strong>Schema</strong><br><code>$s? log:uri $o?</code></p>
@@ -3543,8 +3536,8 @@ We assume <code>&lt;semantics.data></code> contains the text: </p>
 </pre>
     </div>
    </div>
-   <h3 class="heading settled" data-level="5.6" id="string"><span class="secno">5.6. </span><span class="content">string</span><a class="self-link" href="#string"></a></h3>
-   <h4 class="heading settled" data-level="5.6.1" id="string:concatenation"><span class="secno">5.6.1. </span><span class="content">string:concatenation</span><a class="self-link" href="#string:concatenation"></a></h4>
+   <h3 class="heading settled" data-level="4.6" id="string"><span class="secno">4.6. </span><span class="content">string</span><a class="self-link" href="#string"></a></h3>
+   <h4 class="heading settled" data-level="4.6.1" id="string:concatenation"><span class="secno">4.6.1. </span><span class="content">string:concatenation</span><a class="self-link" href="#string:concatenation"></a></h4>
     Concatenates the strings from the subject list into a single string as object. 
    <p><code>true</code> if and only if the string concatenation of <code>$s.i</code> equals <code>$o</code>.</p>
    <p><strong>Schema</strong><br><code>( $s.i+ )+ string:concatenation $o-</code></p>
@@ -3580,7 +3573,7 @@ We assume <code>&lt;semantics.data></code> contains the text: </p>
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.6.2" id="string:contains"><span class="secno">5.6.2. </span><span class="content">string:contains</span><a class="self-link" href="#string:contains"></a></h4>
+   <h4 class="heading settled" data-level="4.6.2" id="string:contains"><span class="secno">4.6.2. </span><span class="content">string:contains</span><a class="self-link" href="#string:contains"></a></h4>
     Checks whether the subject string contains the object string. 
    <p><code>true</code> if and only if <code>$s</code> contains <code>$o</code>.</p>
    <p><strong>See also</strong><br><a href="#string:containsIgnoringCase">string:containsIgnoringCase</a></p>
@@ -3618,7 +3611,7 @@ We assume <code>&lt;semantics.data></code> contains the text: </p>
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.6.3" id="string:containsIgnoringCase"><span class="secno">5.6.3. </span><span class="content">string:containsIgnoringCase</span><a class="self-link" href="#string:containsIgnoringCase"></a></h4>
+   <h4 class="heading settled" data-level="4.6.3" id="string:containsIgnoringCase"><span class="secno">4.6.3. </span><span class="content">string:containsIgnoringCase</span><a class="self-link" href="#string:containsIgnoringCase"></a></h4>
     Checks whether the subject string contains the object string, ignoring differences between lowercase and uppercase. 
    <p><code>true</code> if and only if <code>$s</code> contains <code>$o</code> when ignoring case differences.</p>
    <p><strong>See also</strong><br><a href="#string:contains">string:contains</a></p>
@@ -3656,7 +3649,7 @@ We assume <code>&lt;semantics.data></code> contains the text: </p>
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.6.4" id="string:endsWith"><span class="secno">5.6.4. </span><span class="content">string:endsWith</span><a class="self-link" href="#string:endsWith"></a></h4>
+   <h4 class="heading settled" data-level="4.6.4" id="string:endsWith"><span class="secno">4.6.4. </span><span class="content">string:endsWith</span><a class="self-link" href="#string:endsWith"></a></h4>
     Checks whether the subject string ends with the object string. 
    <p><code>true</code> if and only if <code>$s</code> ends with <code>$o</code>.</p>
    <p><strong>Schema</strong><br><code>$s+ string:endsWith $o+</code></p>
@@ -3693,7 +3686,7 @@ We assume <code>&lt;semantics.data></code> contains the text: </p>
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.6.5" id="string:equalIgnoringCase"><span class="secno">5.6.5. </span><span class="content">string:equalIgnoringCase</span><a class="self-link" href="#string:equalIgnoringCase"></a></h4>
+   <h4 class="heading settled" data-level="4.6.5" id="string:equalIgnoringCase"><span class="secno">4.6.5. </span><span class="content">string:equalIgnoringCase</span><a class="self-link" href="#string:equalIgnoringCase"></a></h4>
     Checks whether the subject string is the same as the object string, ignoring differences between lowercase and uppercase. 
    <p><code>true</code> if and only if <code>$s</code> is the same string as <code>$o</code> when ignoring case differences.</p>
    <p><strong>Schema</strong><br><code>$s+ string:equalIgnoringCase $o+</code></p>
@@ -3730,7 +3723,7 @@ We assume <code>&lt;semantics.data></code> contains the text: </p>
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.6.6" id="string:format"><span class="secno">5.6.6. </span><span class="content">string:format</span><a class="self-link" href="#string:format"></a></h4>
+   <h4 class="heading settled" data-level="4.6.6" id="string:format"><span class="secno">4.6.6. </span><span class="content">string:format</span><a class="self-link" href="#string:format"></a></h4>
     Calculates the object as the result of replacing the tags in the first string from the subject list with the remaining strings from the subject list.
 See C’s sprintf function for details on these tags. 
    <p><code>true</code> if and only if <code>$o</code> is the result of replacing the tags found in <code>$s.(i=1)</code> with the strings <code>$s.(i>1)</code></p>
@@ -3767,7 +3760,7 @@ See C’s sprintf function for details on these tags.
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.6.7" id="string:greaterThan"><span class="secno">5.6.7. </span><span class="content">string:greaterThan</span><a class="self-link" href="#string:greaterThan"></a></h4>
+   <h4 class="heading settled" data-level="4.6.7" id="string:greaterThan"><span class="secno">4.6.7. </span><span class="content">string:greaterThan</span><a class="self-link" href="#string:greaterThan"></a></h4>
     Checks whether the subject string is greater than the object string, according to Unicode code order. 
    <p><code>true</code> if and only if <code>$s</code> is greater than <code>$o</code> as per the Unicode code order.</p>
    <p><strong>See also</strong><br><a href="#string:notGreaterThan">string:notGreaterThan</a></p>
@@ -3805,7 +3798,7 @@ See C’s sprintf function for details on these tags.
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.6.8" id="string:lessThan"><span class="secno">5.6.8. </span><span class="content">string:lessThan</span><a class="self-link" href="#string:lessThan"></a></h4>
+   <h4 class="heading settled" data-level="4.6.8" id="string:lessThan"><span class="secno">4.6.8. </span><span class="content">string:lessThan</span><a class="self-link" href="#string:lessThan"></a></h4>
     Checks whether the subject string is less than the object string, according to Unicode code order. 
    <p><code>true</code> if and only if <code>$s</code> is less than <code>$o</code> as per the Unicode code order.</p>
    <p><strong>See also</strong><br><a href="#string:notLessThan">string:notLessThan</a></p>
@@ -3843,7 +3836,7 @@ See C’s sprintf function for details on these tags.
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.6.9" id="string:matches"><span class="secno">5.6.9. </span><span class="content">string:matches</span><a class="self-link" href="#string:matches"></a></h4>
+   <h4 class="heading settled" data-level="4.6.9" id="string:matches"><span class="secno">4.6.9. </span><span class="content">string:matches</span><a class="self-link" href="#string:matches"></a></h4>
     Checks whether the subject string matches the object regular expression.
 The regular expression follows the perl, python style. 
    <p><code>true</code> if and only if string <code>$s</code> matches the regular expression <code>$o</code></p>
@@ -3882,7 +3875,7 @@ The regular expression follows the perl, python style.
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.6.10" id="string:notEqualIgnoringCase"><span class="secno">5.6.10. </span><span class="content">string:notEqualIgnoringCase</span><a class="self-link" href="#string:notEqualIgnoringCase"></a></h4>
+   <h4 class="heading settled" data-level="4.6.10" id="string:notEqualIgnoringCase"><span class="secno">4.6.10. </span><span class="content">string:notEqualIgnoringCase</span><a class="self-link" href="#string:notEqualIgnoringCase"></a></h4>
     Checks whether the subject string is not the same as the object string, ignoring differences between lowercase and uppercase. 
    <p><code>true</code> if and only if <code>$s</code> is not the same string as <code>$o</code> when ignoring case differences.</p>
    <p><strong>Schema</strong><br><code>$s+ string:notEqualIgnoringCase $o+</code></p>
@@ -3919,7 +3912,7 @@ The regular expression follows the perl, python style.
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.6.11" id="string:notGreaterThan"><span class="secno">5.6.11. </span><span class="content">string:notGreaterThan</span><a class="self-link" href="#string:notGreaterThan"></a></h4>
+   <h4 class="heading settled" data-level="4.6.11" id="string:notGreaterThan"><span class="secno">4.6.11. </span><span class="content">string:notGreaterThan</span><a class="self-link" href="#string:notGreaterThan"></a></h4>
     Checks whether the subject string is not greater than the object string, according to Unicode code order.
 You can use this as an equivalent of a lessThanOrEqual operator. 
    <p><code>true</code> if and only if <code>$s</code> is not greater than <code>$o</code> as per the Unicode code order.</p>
@@ -3958,7 +3951,7 @@ You can use this as an equivalent of a lessThanOrEqual operator.
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.6.12" id="string:notLessThan"><span class="secno">5.6.12. </span><span class="content">string:notLessThan</span><a class="self-link" href="#string:notLessThan"></a></h4>
+   <h4 class="heading settled" data-level="4.6.12" id="string:notLessThan"><span class="secno">4.6.12. </span><span class="content">string:notLessThan</span><a class="self-link" href="#string:notLessThan"></a></h4>
     Checks whether the subject string is not less than the object string, according to Unicode code order.
 You can use this as an equivalent of a greaterThanOrEqual operator. 
    <p><code>true</code> if and only if <code>$s</code> is not less than <code>$o</code> as per the Unicode code order.</p>
@@ -3997,7 +3990,7 @@ You can use this as an equivalent of a greaterThanOrEqual operator.
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.6.13" id="string:notMatches"><span class="secno">5.6.13. </span><span class="content">string:notMatches</span><a class="self-link" href="#string:notMatches"></a></h4>
+   <h4 class="heading settled" data-level="4.6.13" id="string:notMatches"><span class="secno">4.6.13. </span><span class="content">string:notMatches</span><a class="self-link" href="#string:notMatches"></a></h4>
     Checks whether the subject string does not match the object regular expression.
 The regular expression follows the perl, python style. 
    <p><code>true</code> if and only if string <code>$s</code> does not match the regular expression <code>$o</code></p>
@@ -4036,7 +4029,7 @@ The regular expression follows the perl, python style.
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.6.14" id="string:replace"><span class="secno">5.6.14. </span><span class="content">string:replace</span><a class="self-link" href="#string:replace"></a></h4>
+   <h4 class="heading settled" data-level="4.6.14" id="string:replace"><span class="secno">4.6.14. </span><span class="content">string:replace</span><a class="self-link" href="#string:replace"></a></h4>
     Calculates the object as the result of, given the strings in the subject list, replacing all occurrences of the second string in the first string with the third string. 
    <p><code>true</code> if and only if <code>$o</code> is the result of replacing all occurrences of <code>$s.2</code> in <code>$s.1</code> with <code>$s.3</code></p>
    <p><strong>Schema</strong><br><code>( $s.1+ $s.2+ $s.3+ )+ string:replace $o-</code></p>
@@ -4075,7 +4068,7 @@ The regular expression follows the perl, python style.
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.6.15" id="string:scrape"><span class="secno">5.6.15. </span><span class="content">string:scrape</span><a class="self-link" href="#string:scrape"></a></h4>
+   <h4 class="heading settled" data-level="4.6.15" id="string:scrape"><span class="secno">4.6.15. </span><span class="content">string:scrape</span><a class="self-link" href="#string:scrape"></a></h4>
     Calculates the object as the first matching group when, given the subject list, matching the second string as regular expression (with exactly 1 group) against the first string. 
    <p><code>true</code> if and only if <code>$o</code> is the first matching group when matching <code>$s.2</code> as a regular expression against <code>$s.1</code></p>
    <p><strong>Schema</strong><br><code>( $s.1+ $s.2+ )+ string:scrape $o-</code></p>
@@ -4112,7 +4105,7 @@ The regular expression follows the perl, python style.
 </pre>
     </div>
    </div>
-   <h4 class="heading settled" data-level="5.6.16" id="string:startsWith"><span class="secno">5.6.16. </span><span class="content">string:startsWith</span><a class="self-link" href="#string:startsWith"></a></h4>
+   <h4 class="heading settled" data-level="4.6.16" id="string:startsWith"><span class="secno">4.6.16. </span><span class="content">string:startsWith</span><a class="self-link" href="#string:startsWith"></a></h4>
     Checks whether the subject string starts with the object string. 
    <p><code>true</code> if and only if <code>$s</code> starts with <code>$o</code>.</p>
    <p><strong>Schema</strong><br><code>$s+ string:startsWith $o+</code></p>
@@ -4149,7 +4142,7 @@ The regular expression follows the perl, python style.
 </pre>
     </div>
    </div>
-   <h2 class="appendix informative heading settled" data-level="6" id="acknowledgements"><span class="secno">6. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
+   <h2 class="appendix informative heading settled" data-level="5" id="acknowledgements"><span class="secno">5. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
    <p>In addition to the editors, the following people have contributed to this specification: 
     Dörthe Arndt, Pierre-Antoine Champin, and Jos De Roo.</p>
    <p></p>
@@ -4310,11 +4303,11 @@ The regular expression follows the perl, python style.
 </script>
 <script>/* Boilerplate: script-dfn-panel-json */
 window.dfnpanelData = {};
-window.dfnpanelData['argument-mode'] = {"dfnID": "argument-mode", "url": "#argument-mode", "dfnText": "argument mode", "refSections": [{"refs": [{"id": "ref-for-argument-mode"}], "title": "4.1. Builtin theory box"}], "external": false};
-window.dfnpanelData['domain-datatype'] = {"dfnID": "domain-datatype", "url": "#domain-datatype", "dfnText": "domain datatype", "refSections": [{"refs": [{"id": "ref-for-domain-datatype"}, {"id": "ref-for-domain-datatype"}], "title": "3.2. Argument domains"}, {"refs": [{"id": "ref-for-domain-datatype"}], "title": "3.2.1. Numeric datatype promotion and substitution"}, {"refs": [{"id": "ref-for-domain-datatype"}], "title": "3.2.2. Other kinds of datatype casting"}, {"refs": [{"id": "ref-for-domain-datatype"}], "title": "4.1. Builtin theory box"}], "external": false};
-window.dfnpanelData['value-datatype'] = {"dfnID": "value-datatype", "url": "#value-datatype", "dfnText": "value datatype", "refSections": [{"refs": [{"id": "ref-for-value-datatype"}, {"id": "ref-for-value-datatype"}], "title": "3.2. Argument domains"}, {"refs": [{"id": "ref-for-value-datatype"}], "title": "3.2.1. Numeric datatype promotion and substitution"}, {"refs": [{"id": "ref-for-value-datatype"}], "title": "3.2.2. Other kinds of datatype casting"}], "external": false};
-window.dfnpanelData['builtin-statement'] = {"dfnID": "builtin-statement", "url": "#builtin-statement", "dfnText": "builtin statement", "refSections": [{"refs": [{"id": "ref-for-builtin-statement"}], "title": "3. Builtin arguments"}, {"refs": [{"id": "ref-for-builtin-statement"}, {"id": "ref-for-builtin-statement"}, {"id": "ref-for-builtin-statement"}, {"id": "ref-for-builtin-statement"}, {"id": "ref-for-builtin-statement"}], "title": "4.1. Builtin theory box"}], "external": false};
-window.dfnpanelData['builtin-theory-box'] = {"dfnID": "builtin-theory-box", "url": "#builtin-theory-box", "dfnText": "builtin theory box", "refSections": [{"refs": [{"id": "ref-for-builtin-theory-box"}, {"id": "ref-for-builtin-theory-box"}, {"id": "ref-for-builtin-theory-box"}], "title": "4.1. Builtin theory box"}], "external": false};
+window.dfnpanelData['argument-mode'] = {"dfnID": "argument-mode", "url": "#argument-mode", "dfnText": "argument mode", "refSections": [{"refs": [{"id": "ref-for-argument-mode"}], "title": "3.1. Builtin theory box"}], "external": false};
+window.dfnpanelData['domain-datatype'] = {"dfnID": "domain-datatype", "url": "#domain-datatype", "dfnText": "domain datatype", "refSections": [{"refs": [{"id": "ref-for-domain-datatype"}, {"id": "ref-for-domain-datatype"}], "title": "2.2. Argument domains"}, {"refs": [{"id": "ref-for-domain-datatype"}], "title": "2.2.1. Numeric datatype promotion and substitution"}, {"refs": [{"id": "ref-for-domain-datatype"}], "title": "2.2.2. Other kinds of datatype casting"}, {"refs": [{"id": "ref-for-domain-datatype"}], "title": "3.1. Builtin theory box"}], "external": false};
+window.dfnpanelData['value-datatype'] = {"dfnID": "value-datatype", "url": "#value-datatype", "dfnText": "value datatype", "refSections": [{"refs": [{"id": "ref-for-value-datatype"}, {"id": "ref-for-value-datatype"}], "title": "2.2. Argument domains"}, {"refs": [{"id": "ref-for-value-datatype"}], "title": "2.2.1. Numeric datatype promotion and substitution"}, {"refs": [{"id": "ref-for-value-datatype"}], "title": "2.2.2. Other kinds of datatype casting"}], "external": false};
+window.dfnpanelData['builtin-statement'] = {"dfnID": "builtin-statement", "url": "#builtin-statement", "dfnText": "builtin statement", "refSections": [{"refs": [{"id": "ref-for-builtin-statement"}], "title": "2. Builtin arguments"}, {"refs": [{"id": "ref-for-builtin-statement"}, {"id": "ref-for-builtin-statement"}, {"id": "ref-for-builtin-statement"}, {"id": "ref-for-builtin-statement"}, {"id": "ref-for-builtin-statement"}], "title": "3.1. Builtin theory box"}], "external": false};
+window.dfnpanelData['builtin-theory-box'] = {"dfnID": "builtin-theory-box", "url": "#builtin-theory-box", "dfnText": "builtin theory box", "refSections": [{"refs": [{"id": "ref-for-builtin-theory-box"}, {"id": "ref-for-builtin-theory-box"}, {"id": "ref-for-builtin-theory-box"}], "title": "3.1. Builtin theory box"}], "external": false};
 </script>
 <script>/* Boilerplate: script-dom-helper */
 function query(sel) { return document.querySelector(sel); }

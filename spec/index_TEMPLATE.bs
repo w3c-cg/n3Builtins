@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: N3 Builtin Functions
+Title: Notation3 Builtin Functions
 Shortname: functions
 Level: 1
 Status: w3c/CG-DRAFT
@@ -8,9 +8,18 @@ TR: https://w3c.github.io/N3/spec/
 Previous Version: https://w3c.github.io/N3/spec/builtins/0.1/
 Editor: William Van Woensel, [University of Ottawa](https://www.uottawa.ca/), william.van.woensel@gmail.com 
 Editor: Patrick Hochstenbach, [IDLab - Ghent University](https://knows.idlab.ugent.be/), patrick.hochstenbach@ugent.be
-!Contributors: Tim Duval, [UnifyLogic](http://unifylogic.ai), tim.duval@unifylogic.ai
-!Contributors: Dominik Tomaszuk, [University of Bialystok](https://uwb.edu.pl/), d.tomaszuk@uwb.edu.pl
+!Contributors: <a href="mailto:doerthe.arndt@tu-dresden.de">Dörthe Arndt</a>, [TU Dresden](https://tu-dresden.de/)
+!Contributors: <a href="mailto:pierre-antoine@w3.org">Pierre-Antoine Champin</a>, [W3C](https://www.w3.org/)
+!Contributors: <a href="mailto:tim.duval@unifylogic.ai">Tim Duval</a>, [UnifyLogic](http://unifylogic.ai)
+!Contributors: <a href="mailto:d.tomaszuk@uwb.edu.pl">Dominik Tomaszuk</a>, [University of Bialystok](https://uwb.edu.pl/)
 Status Text:
+  This document is one of 3 documents produced by the <a href="https://www.w3.org/community/n3-dev/">W3C N3 Community Group</a>:
+  <ol>
+    <li><a href="https://w3c.github.io/N3/spec/">Notation3 Language</a></li>
+    <li><a href="https://w3c-cg.github.io/n3Builtins/">Notation3 Builtin Functions</a> (this document)</li>
+    <li><a href="https://w3c.github.io/N3/spec/semantics.html">Notation3 Semantics</a></li>
+  </ol>
+
   This specification was published by the
   <a href="https://www.w3.org/groups/cg/n3-dev">Notation 3 (<abbr title="Notation3">N3</abbr>) Community Group</a>. It is not a W3C Standard nor is it on the W3C Standards Track.
   Please note that under the
@@ -18,6 +27,7 @@ Status Text:
   there is a limited opt-out and other conditions apply.
   Learn more about
   <a href="https://www.w3.org/community/">W3C Community and Business Groups</a>.  
+
   <a href="https://github.com/w3c/N3/issues/">GitHub Issues</a> are preferred for discussion of this specification. Alternatively, you can send comments to our mailing list.
   Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</a> (<a href="mailto:public-n3-dev-request@w3.org?subject=subscribe">subscribe</a>, <a href="https://lists.w3.org/Archives/Public/public-n3-dev/">archives</a>).
 Abstract: This document defines the Notation 3 builtins. These are predicates with pre-defined semantics for querying, manipulating and reasoning over N3 documents.

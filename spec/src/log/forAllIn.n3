@@ -9,9 +9,13 @@
 
 log:forAllIn a fno:Function ;
     vs:term_status  "testing" ;
-    fnon:tldr "Two clauses are given in the subject list: for each result of the first clause, the builtin checks whether the second clause also holds for the result." ;
-    dcterms:comment """`true` if and only if, for each solution for which the first clause `$s.1` is true, the second clause `$s.2` is true as well. 
-This is a scoped universal quantification.""" ;
+    fnon:tldr """Two clauses are given in the subject list: for each substitution for which the intance retreived when
+    applying it to the first clause is contained in the scope, 
+    the builtin checks whether the intance retrieved when applying the same substitution on the second clause is also contained 
+    in the scope.""" ;
+    dcterms:comment """`true` if and only if, for each solution mapping for which the first clause `$s.1` is in the scope, 
+    the second clause `$s.2` is also in the scope. 
+This is a scoped builtin.""" ;
     fno:example ( [ a fno:Test ;
                 dcterms:description """
 For each subtask of a composite task, check whether the subtask is completed. 
@@ -59,7 +63,7 @@ For each subtask of a composite task, check whether the subtask is completed.
                 fno:type log:Formula
             ] )
         ] [ a fno:Parameter ;
-            dcterms:description "Scope of the universal quantification. Leave as a variable to use current N3 document as scope." ;
+            dcterms:description "Scope of the builtin. Leave as a variable to use current N3 document as scope." ;
             fno:predicate "$o" ;
             fno:mode "?" ; # TODO unsure about this
             fnon:position fnon:object

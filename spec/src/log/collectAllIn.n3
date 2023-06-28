@@ -10,8 +10,9 @@
 log:collectAllIn a fno:Function ;
     vs:term_status  "testing" ;
     fnon:tldr "Collects all values matching a given clause and adds them to a list." ;
-    dcterms:comment """`true` if and only if, for every solution of clause `$s.2`, the unification of `$s.1` with that solution is a member of list `$s.3`. 
-This is a scoped universal quantification.""" ;
+    dcterms:comment """`true` if and only if,  for every substitution from variables to terms for which the clause `$s.2`
+    is contained in the scope, the instance of `$s.1` retrieved by applying the same substitution is a member of list `$s.3`. 
+This applies scoped quantification.""" ;
     fno:example ( [ a fno:Test ;
                 dcterms:description """
 Set of basic examples for log:collectAllIn.
@@ -103,7 +104,7 @@ Example where the list is already given; in that case, the collected list will b
                 fno:type rdf:List
             ] )
         ] [ a fno:Parameter ;
-            dcterms:description "Scope of the universal quantification. Leave as a variable to use current N3 document as scope." ;
+            dcterms:description "Scope of the builtin. Leave as a variable to use current N3 document as scope." ;
             fno:predicate "$o" ;
             fno:mode "?" ; # TODO unsure about this
             fnon:position fnon:object

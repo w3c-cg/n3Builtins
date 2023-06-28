@@ -6,7 +6,7 @@ Status: w3c/CG-DRAFT
 URL: https://w3c.github.io/N3/spec/
 TR: https://w3c.github.io/N3/spec/
 Previous Version: https://w3c.github.io/N3/spec/builtins/0.1/
-Editor: William Van Woensel, [University of Ottawa](https://www.uottawa.ca/), william.van.woensel@gmail.com 
+Editor: William Van Woensel, [University of Ottawa](https://www.uottawa.ca/), william.van.woensel@gmail.com
 Editor: Patrick Hochstenbach, [IDLab - Ghent University](https://knows.idlab.ugent.be/), patrick.hochstenbach@ugent.be
 !Contributors: <a href="mailto:doerthe.arndt@tu-dresden.de">Dörthe Arndt</a>, [TU Dresden](https://tu-dresden.de/)
 !Contributors: <a href="mailto:pierre-antoine@w3.org">Pierre-Antoine Champin</a>, [W3C](https://www.w3.org/)
@@ -26,12 +26,12 @@ Status Text:
   <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>
   there is a limited opt-out and other conditions apply.
   Learn more about
-  <a href="https://www.w3.org/community/">W3C Community and Business Groups</a>.  
+  <a href="https://www.w3.org/community/">W3C Community and Business Groups</a>.
 
   <a href="https://github.com/w3c/N3/issues/">GitHub Issues</a> are preferred for discussion of this specification. Alternatively, you can send comments to our mailing list.
   Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</a> (<a href="mailto:public-n3-dev-request@w3.org?subject=subscribe">subscribe</a>, <a href="https://lists.w3.org/Archives/Public/public-n3-dev/">archives</a>).
 Abstract: This document defines the Notation 3 builtins. These are predicates with pre-defined semantics for querying, manipulating and reasoning over N3 documents.
-Markup Shorthands: markdown yes 
+Markup Shorthands: markdown yes
 Boilerplate: conformance no, index no
 </pre>
 
@@ -120,7 +120,7 @@ Builtin arguments {#builtinarguments}
       `$o`, which is written as `$s math:lessThan $o`.</p>
     <p>Arguments can be also represent a "deconstruction" of the subject or object in case of lists. For
       instance, `(1 2 3) math:sum 6` will have arguments `$s.1` .. `$s.n` and `$o`, which is written as `($s.1
-      .. $s.n) math:sum $o`. 
+      .. $s.n) math:sum $o`.
 </p>
 
 ## Argument modes ## {#argumentmodes}
@@ -225,7 +225,13 @@ Builtin arguments {#builtinarguments}
         There is a useful chart for casting primitive types to primitive types in [XPath](https://www.w3.org/TR/xpath-functions/#casting-from-primitive-to-primitive), a
           subset of which is defined for [SPARQL 1.1](https://www.w3.org/TR/sparql11-query/#FunctionMapping).
         </div>
-        
+### Scopes ### {#scope}
+<p>
+Some N3 builtins have a scope as an argument. A scope is either a concrete graph which can be stated or, if left open,
+the scope variable refers to the deductive closure of the whole N3 graph included in the reasoning run with the exception
+of the concrete application of the rule the built-in occurs in.
+</p>
+
 Builtin Evaluation {#builtinevaluation}
 =====================
 ## Builtin theory box ## {#builtintheorybox}
@@ -299,7 +305,7 @@ Gets as object the <a href='https://en.wikipedia.org/wiki/SHA-1'>SHA-1 hash</a> 
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E+.%0A%40prefix+crypto%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fcrypto%23%3E+.%0A%0A%7B+%22hello+world%22+crypto%3Asha+%3Fsha+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fsha+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the SHA-1 of the string "hello world".
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/> .
@@ -326,7 +332,7 @@ Calculates as object the absolute value of the subject.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+-2+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3AabsoluteValue+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the absolute value of the value -2.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -346,7 +352,7 @@ Calculate the absolute value of the value -2.
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is 2. 
+:result :is 2.
             ```
     </div>
 </div>
@@ -363,7 +369,7 @@ Calculates the object as the arc cosine value of the subject.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+1+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aacos+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the arc cosine of the value 1.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -400,7 +406,7 @@ Calculates the object as the arc sine value of the subject.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+1+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aasin+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the arc sine of the value 1.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -437,7 +443,7 @@ Calculates the object as the arc tangent value of the subject.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+1+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aatan+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the arc tangent of the value 1.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -474,7 +480,7 @@ Calculates the object as the cosine value of the subject.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+0+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Acos+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the cosine of the value 0.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -511,7 +517,7 @@ Calculates the object as the hyperbolic cosine value of the subject.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+0+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Acosh+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the hyperbolic cosine of the value 0.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -546,7 +552,7 @@ Calculates the object as the value in degrees corresponding to the radians value
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+1.57079632679+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Adegrees+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the degrees of the radians value 1.57079632679.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -581,7 +587,7 @@ Calculates the object by subtracting the second number from the first number giv
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%287+2%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Adifference+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the value of 7 minus 2.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -618,7 +624,7 @@ Checks whether the subject and object are the same number.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2842+42%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%28%3FX+%3FY%29+.%0A++++%3FX+math%3AequalTo+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Check if the numbers 42 and 42 are equal .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -638,13 +644,13 @@ Check if the numbers 42 and 42 are equal .
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is true . 
+:result :is true .
             ```
     </div>
 </div>
 
 ### math:exponentiation ### {#math:exponentiation}
-Calculates the object as the result of raising the first number to the power of the second number in the subject list. 
+Calculates the object as the result of raising the first number to the power of the second number in the subject list.
 You can also use this to calculate the logarithm of the object, with as base the first number of the subject list (see examples).
 
 `true` if and only if `$o` is the result of raising `$s.1` to the power of `$s.2`
@@ -654,7 +660,7 @@ You can also use this to calculate the logarithm of the object, with as base the
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%287+2%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aexponentiation+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the value of 7 raised to the power of 2 .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -682,7 +688,7 @@ Calculate the value of 7 raised to the power of 2 .
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%7B%0A++++%287+%3Fresult%29+math%3Aexponentiation+49+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the logarithm of 49 base 2 .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -716,7 +722,7 @@ Checks whether the subject is a number that is greater than the object.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2842+41%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%28%3FX+%3FY%29+.%0A++++%3FX+math%3AgreaterThan+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Check if 42 is greater than 41 .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -753,7 +759,7 @@ Checks whether the subject is a number that is less than the object.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2841+42%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%28%3FX+%3FY%29+.%0A++++%3FX+math%3AlessThan+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Check if 41 is less than 42 .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -788,7 +794,7 @@ Calculates the object as the negation of the subject.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+42+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Anegation+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the negation of the value 42 .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -825,7 +831,7 @@ Checks whether the subject and object are not the same number.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2841+42%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%28%3FX+%3FY%29+.%0A++++%3FX+math%3AnotEqualTo+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Check if the numbers 41 and 42 are not equal .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -863,7 +869,7 @@ You can use this as an equivalent of a lessThanOrEqual operator.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2841+42%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%28%3FX+%3FY%29+.%0A++++%3FX+math%3AnotGreaterThan+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Check if 41 is not greater than 42 .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -901,7 +907,7 @@ You can use this as an equivalent of a greaterThanOrEqual operator.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2842+41%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%28%3FX+%3FY%29+.%0A++++%3FX+math%3AnotLessThan+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Check if 42 is not less than 41 .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -936,7 +942,7 @@ Calculates the object as the product of the numbers given in the subject list.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%282+4+6+8%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aproduct+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the product of 2,4,6, and 8 .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -964,7 +970,7 @@ Calculate the product of 2,4,6, and 8 .
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%282+21%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aproduct+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the product of 2 and 21.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -999,7 +1005,7 @@ Calculates the object by dividing the first number by the second number given in
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2842+2%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aquotient+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the quotient of 42 and 2.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1019,7 +1025,7 @@ Calculate the quotient of 42 and 2.
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is 21. 
+:result :is 21.
             ```
     </div>
 </div>
@@ -1034,7 +1040,7 @@ Calculates the object as the remainder of the division of the first integer by t
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2810+3%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aremainder+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the remainder of 10 divided by 3.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1071,7 +1077,7 @@ If there are two such numbers, then the one closest to positive infinity is retu
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%0A%3ALet+%3Aparam+%223.3%22%5E%5Exsd%3Adouble+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Arounded+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the rounded version of 3.3.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1092,7 +1098,7 @@ Calculate the rounded version of 3.3.
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is 3. 
+:result :is 3.
             ```
     </div>
 </div>
@@ -1109,7 +1115,7 @@ Calculates the object as the sine value of the subject.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%0A%3ALet+%3Aparam+%221.57079632679%22%5E%5Exsd%3Adouble+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Asin+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the sin of pi/2 (1.57079632679) .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1131,7 +1137,7 @@ Calculate the sin of pi/2 (1.57079632679) .
         ```
 @prefix : <http://example.org/>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-:result :is "1.0"^^xsd:double . 
+:result :is "1.0"^^xsd:double .
             ```
     </div>
 </div>
@@ -1148,7 +1154,7 @@ Calculates the object as the hyperbolic sine value of the subject.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%0A%3ALet+%3Aparam+%220.88137358701954302%22%5E%5Exsd%3Adouble.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Asinh+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the sinh of log(1 + sqrt(2)) (0.88137358701954302).
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1184,7 +1190,7 @@ Calculates the object as the sum of the numbers given in the subject list.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%281+2+3+4+5+6+7+8+9+10%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Asum+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the sum of 1,2,3,4,5,6,7,8,9,10.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1221,7 +1227,7 @@ Calculates the object as the tangent value of the subject.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%0A%3ALet+%3Aparam+%220.7853981633974483%22%5E%5Exsd%3Adouble+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Atan+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the tangent of the value 0.7853981633974483 .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1243,7 +1249,7 @@ Calculate the tangent of the value 0.7853981633974483 .
         ```
 @prefix : <http://example.org/>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-:result :is "0.9999999999999999"^^xsd:double. 
+:result :is "0.9999999999999999"^^xsd:double.
             ```
     </div>
 </div>
@@ -1260,7 +1266,7 @@ Calculates the object as the hyperbolic tangent value of the subject.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%0A%3ALet+%3Aparam+%220.549306%22%5E%5Exsd%3Adouble+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Atanh+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the hyperbolic tanget of 0.549306 .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1282,7 +1288,7 @@ Calculate the hyperbolic tanget of 0.549306 .
         ```
 @prefix : <http://example.org/>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-:result :is "0.49999989174945103"^^xsd:double. 
+:result :is "0.49999989174945103"^^xsd:double.
             ```
     </div>
 </div>
@@ -1298,7 +1304,7 @@ Gets as object the integer day component of the subject xsd:dateTime.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Aday+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Return the day component of the date "2023-04-01T18:06:04Z" .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1319,7 +1325,7 @@ Return the day component of the date "2023-04-01T18:06:04Z" .
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is 1. 
+:result :is 1.
             ```
     </div>
 </div>
@@ -1334,7 +1340,7 @@ Gets as object the integer minutes component of the subject xsd:dateTime.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Aminute+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Return the minute component of the date "2023-04-01T18:06:04Z" .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1355,7 +1361,7 @@ Return the minute component of the date "2023-04-01T18:06:04Z" .
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is 6. 
+:result :is 6.
             ```
     </div>
 </div>
@@ -1370,7 +1376,7 @@ Gets as object the integer month component of the subject xsd:dateTime.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Amonth+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Return the month component of the date "2023-04-01T18:06:04Z" .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1391,7 +1397,7 @@ Return the month component of the date "2023-04-01T18:06:04Z" .
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is 4. 
+:result :is 4.
             ```
     </div>
 </div>
@@ -1406,7 +1412,7 @@ Gets as object the integer seconds component of the subject xsd:dateTime.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Asecond+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Return the seconds component of the date "2023-04-01T18:06:04Z" .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1427,7 +1433,7 @@ Return the seconds component of the date "2023-04-01T18:06:04Z" .
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is 4. 
+:result :is 4.
             ```
     </div>
 </div>
@@ -1442,7 +1448,7 @@ Gets as object the trailing timezone offset of the subject xsd:dateTime (e.g., "
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Aminute+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Return the time zone component of the date "2023-04-01T18:06:04Z" .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1463,7 +1469,7 @@ Return the time zone component of the date "2023-04-01T18:06:04Z" .
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is "Z". 
+:result :is "Z".
             ```
     </div>
 </div>
@@ -1478,7 +1484,7 @@ Gets as object the integer year component of the subject xsd:dateTime.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Ayear+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Return the minute component of the date "2023-04-01T18:06:04Z" .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1499,7 +1505,7 @@ Return the minute component of the date "2023-04-01T18:06:04Z" .
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is 2023. 
+:result :is 2023.
             ```
     </div>
 </div>
@@ -1517,7 +1523,7 @@ Appends the lists from the subject list into a single list as object.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281+2%29+%3Fwhat+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fwhat+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 What do we need to append to (1 2) to get (1 2 3 4)?
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1528,7 +1534,7 @@ What do we need to append to (1 2) to get (1 2 3 4)?
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is (3 4). 
+:result :is (3 4).
             ```
     </div>
 </div>
@@ -1536,7 +1542,7 @@ What do we need to append to (1 2) to get (1 2 3 4)?
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281%29+%282+3%29+%284%29+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+true+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Is the list (1 2 3 4) equal to appending (1), (2 3) , (4)?
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1547,7 +1553,7 @@ Is the list (1 2 3 4) equal to appending (1), (2 3) , (4)?
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is true. 
+:result :is true.
             ```
     </div>
 </div>
@@ -1555,7 +1561,7 @@ Is the list (1 2 3 4) equal to appending (1), (2 3) , (4)?
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281+2%29+%283+4%29+%29+list%3Aappend+%3Flist+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Flist+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Append (3 4) to the list (1 2).
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1566,7 +1572,7 @@ Append (3 4) to the list (1 2).
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is (1 2 3 4). 
+:result :is (1 2 3 4).
             ```
     </div>
 </div>
@@ -1574,7 +1580,7 @@ Append (3 4) to the list (1 2).
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%3Fwhat+%283+4%29+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fwhat+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 What do we need to prepend to (3 4) to get (1 2 3 4)?
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1585,7 +1591,7 @@ What do we need to prepend to (3 4) to get (1 2 3 4)?
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is (1 2). 
+:result :is (1 2).
             ```
     </div>
 </div>
@@ -1602,7 +1608,7 @@ Gets the first element of the subject list as object.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%28%27a%27%29+%7B+%3Aa+%3Ab+%3Ac+%7D+42+%29+list%3Afirst+%3Fwhat+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fwhat+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 What is the first element of ( ('a') { :a :b :c } 42 )?
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1613,7 +1619,7 @@ What is the first element of ( ('a') { :a :b :c } 42 )?
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is ('a'). 
+:result :is ('a').
             ```
     </div>
 </div>
@@ -1630,7 +1636,7 @@ Checks whether the subject is a member of the object list.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%3Fwhat+list%3Ain+%28+%22dog%22+%22penguin%22+%22cat%22+%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fwhat+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 What are the members of ( "dog" "penguin" "cat" )?
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1642,7 +1648,7 @@ What are the members of ( "dog" "penguin" "cat" )?
         ```
 @prefix : <http://example.org/>.
 :result :is "dog" .
-:result :is "penguin" . 
+:result :is "penguin" .
 :result :is "cat" .
             ```
     </div>
@@ -1651,7 +1657,7 @@ What are the members of ( "dog" "penguin" "cat" )?
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%22cat%22+list%3Ain+%28+%22dog%22+%22penguin%22+%22cat%22+%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+true+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Does ( "dog" "penguin" "cat" ) contain a "cat"?
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1662,7 +1668,7 @@ Does ( "dog" "penguin" "cat" ) contain a "cat"?
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is true. 
+:result :is true.
             ```
     </div>
 </div>
@@ -1670,7 +1676,7 @@ Does ( "dog" "penguin" "cat" ) contain a "cat"?
 ### list:iterate ### {#list:iterate}
 Iterates over each member of the subject list, getting their index/value pairs as the object.
 
-`true` if and only if `$s` is a list and `$o` is a list with two elements: 
+`true` if and only if `$s` is a list and `$o` is a list with two elements:
 `$o.1` is a valid index in list `$s` (index starts at 0), and `$o.2` is found at that index in list `$s`.
 
 **Schema**<br>`$s+ list:iterate ( $o.1?[*] $o.2?[*] )?[*]`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `rdf:List`<br>`$o.1`: `xsd:integer`</div></div><br>
@@ -1678,7 +1684,7 @@ Iterates over each member of the subject list, getting their index/value pairs a
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%7B%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%3Fparam+list%3Aiterate+%28%3Findex+%22cat%22%29+.++%0A%7D%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Findex+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 What is the index of "cat" in the list ("dog" "penguin" "cat")?
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1686,12 +1692,12 @@ What is the index of "cat" in the list ("dog" "penguin" "cat")?
 
 :let :param ("dog" "penguin" "cat") .
 {
-    :let :param ?param . 
-    ?param list:iterate (?index "cat") .  
+    :let :param ?param .
+    ?param list:iterate (?index "cat") .
 }
-=> 
-{ 
-    :result :is ?index . 
+=>
+{
+    :result :is ?index .
 } .
             ```
         <p><b>Result:</b>
@@ -1705,7 +1711,7 @@ What is the index of "cat" in the list ("dog" "penguin" "cat")?
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%7B%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%3Fparam+list%3Aiterate+%282+%22cat%22%29+.++%0A%7D%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+true+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Is "cat" the third item in the list ("dog" "penguin" "cat")?
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1713,12 +1719,12 @@ Is "cat" the third item in the list ("dog" "penguin" "cat")?
 
 :let :param ("dog" "penguin" "cat") .
 {
-    :let :param ?param . 
-    ?param list:iterate (2 "cat") .  
+    :let :param ?param .
+    ?param list:iterate (2 "cat") .
 }
-=> 
-{ 
-    :result :is true . 
+=>
+{
+    :result :is true .
 } .
             ```
         <p><b>Result:</b>
@@ -1732,7 +1738,7 @@ Is "cat" the third item in the list ("dog" "penguin" "cat")?
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28%22dog%22+%22penguin%22+%22cat%22%29+list%3Aiterate+%28%3Findex+%3Fmember%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%28%3Findex+%3Fmember%29+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Iterate over the list ("dog" "penguin" "cat").
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1762,7 +1768,7 @@ Gets the last element of the subject list as object.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%281+2+3+4%29+list%3Alast+%3Flast+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Flast+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Extract the last element of the list (1 2 3 4).
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1773,7 +1779,7 @@ Extract the last element of the list (1 2 3 4).
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is 4. 
+:result :is 4.
             ```
     </div>
 </div>
@@ -1781,7 +1787,7 @@ Extract the last element of the list (1 2 3 4).
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%281+2+3+4%29.%0A%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.%0A++++%3Fparam+list%3Alast+4+.+%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+true+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Test if the last element of the list (1 2 3 4) is 4.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1789,19 +1795,19 @@ Test if the last element of the list (1 2 3 4) is 4.
 
 :let :param (1 2 3 4).
 
-{ 
+{
     :let :param ?param .
-    ?param list:last 4 . 
-} 
-=> 
-{ 
-    :result :is true . 
+    ?param list:last 4 .
+}
+=>
+{
+    :result :is true .
 } .
             ```
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is true. 
+:result :is true.
             ```
     </div>
 </div>
@@ -1816,7 +1822,7 @@ Gets the length of the subject list as object.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%281+2+3+4%29+list%3Alength+%3Flength+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Flength+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the length of the list (1 2 3 4).
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1827,7 +1833,7 @@ Calculate the length of the list (1 2 3 4).
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is 4. 
+:result :is 4.
             ```
     </div>
 </div>
@@ -1844,7 +1850,7 @@ Checks whether the subject list contains the object.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28%22dog%22+%22penguin%22+%22cat%22%29+list%3Amember+%3Fmember+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fmember+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Determine the members of the list ("dog" "penguin" "cat").
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1865,7 +1871,7 @@ Determine the members of the list ("dog" "penguin" "cat").
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.%0A++++%3Fparam+list%3Amember+%22cat%22+.+%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+true+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Is "cat" a member of the list ("dog" "penguin" "cat")?
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1873,13 +1879,13 @@ Is "cat" a member of the list ("dog" "penguin" "cat")?
 
 :let :param ("dog" "penguin" "cat") .
 
-{ 
+{
     :let :param ?param .
-    ?param list:member "cat" . 
-} 
-=> 
-{ 
-    :result :is true . 
+    ?param list:member "cat" .
+}
+=>
+{
+    :result :is true .
 } .
             ```
         <p><b>Result:</b>
@@ -1900,7 +1906,7 @@ Gets the member of the subject list at the given subject index as object (index 
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29.%0A%0A%7B%0A++++%3Alet+%3Aparam+%3Fparam+.%0A++++%28+%3Fparam+2+%29+list%3AmemberAt+%3Fthird+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Fthird+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Get the third member of the list ("dog" "penguin" "cat").
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1911,10 +1917,10 @@ Get the third member of the list ("dog" "penguin" "cat").
 {
     :let :param ?param .
     ( ?param 2 ) list:memberAt ?third .
-} 
-=> 
-{ 
-    :result :is ?third . 
+}
+=>
+{
+    :result :is ?third .
 } .
             ```
         <p><b>Result:</b>
@@ -1928,7 +1934,7 @@ Get the third member of the list ("dog" "penguin" "cat").
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22cat%22+%22penguin%22+%22cat%22%29.%0A%0A%7B%0A++++%3Alet+%3Aparam+%3Fparam+.%0A++++%28+%3Fparam+%3Findex+%29+list%3AmemberAt+%22cat%22+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Findex+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Find the index of "cat" in the list ("dog" "cat" "penguin" "cat").
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -1939,10 +1945,10 @@ Find the index of "cat" in the list ("dog" "cat" "penguin" "cat").
 {
     :let :param ?param .
     ( ?param ?index ) list:memberAt "cat" .
-} 
-=> 
-{ 
-    :result :is ?index . 
+}
+=>
+{
+    :result :is ?index .
 } .
             ```
         <p><b>Result:</b>
@@ -1966,20 +1972,20 @@ Removes each occurrence of the subject member from the subject list, and returns
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22+%22penguin%22%29+.%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%28+%3Fparam+%22parakeet%22+%29+list%3Aremove+%3Flist+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Flist+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Remove non-existent "parakeet" from the list ("dog" "penguin" "cat" "penguin").
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 
 :let :param ("dog" "penguin" "cat" "penguin") .
-{ 
-    :let :param ?param . 
+{
+    :let :param ?param .
     ( ?param "parakeet" ) list:remove ?list .
-} 
-=> 
-{ 
-    :result :is ?list . 
+}
+=>
+{
+    :result :is ?list .
 } .
             ```
         <p><b>Result:</b>
@@ -1993,20 +1999,20 @@ Remove non-existent "parakeet" from the list ("dog" "penguin" "cat" "penguin").
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22+%22penguin%22%29+.%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%28+%3Fparam+%22penguin%22+%29+list%3Aremove+%3Flist+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Flist+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Remove "penguin" from the list ("dog" "penguin" "cat" "penguin").
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 
 :let :param ("dog" "penguin" "cat" "penguin") .
-{ 
-    :let :param ?param . 
+{
+    :let :param ?param .
     ( ?param "penguin" ) list:remove ?list .
-} 
-=> 
-{ 
-    :result :is ?list . 
+}
+=>
+{
+    :result :is ?list .
 } .
             ```
         <p><b>Result:</b>
@@ -2021,7 +2027,7 @@ Remove "penguin" from the list ("dog" "penguin" "cat" "penguin").
 ### log:collectAllIn ### {#log:collectAllIn}
 Collects all values matching a given clause and adds them to a list.
 
-`true` if and only if, for every solution of clause `$s.2`, the unification of `$s.1` with that solution is a member of list `$s.3`. 
+`true` if and only if, for every solution of clause `$s.2`, the unification of `$s.1` with that solution is a member of list `$s.3`.
 This is a scoped universal quantification.
 
 **Schema**<br>`( $s.1- $s.2+ $s.3- )+ log:collectAllIn $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.2`: `log:Formula`, `$s.3`: `rdf:List`<br>`$o`: (Scope of the universal quantification. Leave as a variable to use current N3 document as scope.)</div></div><br>
@@ -2029,7 +2035,7 @@ This is a scoped universal quantification.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam+%22Huey%22+.%0A%3ALet+%3Aparam+%22Dewey%22+.%0A%3ALet+%3Aparam+%22Louie%22+.%0A%0A%7B%0A++++%28+%3Fparam+%7B+%3ALet+%3Aparam+%3Fparam+%7D+%3FallParams+%29+log%3AcollectAllIn+_%3Ax+.%0A%0A++++%23+Variable+to+be+collected+can+also+be+part+of+a+list+or+graph+term%0A++++%28+%28%3Fparam%29+%7B+%3ALet+%3Aparam+%3Fparam+%7D+%3FnestedParams+%29+log%3AcollectAllIn+_%3Ax+.%0A%0A++++%23+Add+some+extra+criteria+on+variable+values+to+be+collected%0A++++%28+%3Fparam%0A++++++++%7B+%0A++++++++++++%3ALet+%3Aparam+%3Fparam+.%0A++++++++++++%3Fparam+string%3AlessThan+%22Louie%22++.%0A++++++++%7D+%0A++++++%3FfilteredParams+%29+log%3AcollectAllIn+_%3Ax+.%0A%7D%0A%3D%3E+%0A%7B+++%0A++++%3Aresult1+%3Ais+%3FallParams+.%0A++++%3Aresult2+%3Ais+%3FnestedParams+.%0A++++%3Aresult3+%3Ais+%3FfilteredParams+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Set of basic examples for log:collectAllIn.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -2048,14 +2054,14 @@ Set of basic examples for log:collectAllIn.
 
     # Add some extra criteria on variable values to be collected
     ( ?param
-        { 
+        {
             :Let :param ?param .
             ?param string:lessThan "Louie"  .
-        } 
+        }
       ?filteredParams ) log:collectAllIn _:x .
 }
-=> 
-{   
+=>
+{
     :result1 :is ?allParams .
     :result2 :is ?nestedParams .
     :result3 :is ?filteredParams .
@@ -2075,7 +2081,7 @@ Set of basic examples for log:collectAllIn.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam+%22Huey%22+.%0A%3ALet+%3Aparam+%22Dewey%22+.%0A%3ALet+%3Aparam+%22Louie%22+.%0A%0A%7B%0A++++%28+%3Fparam+%7B+%3ALet+%3Aparam+%3Fparam+%7D+%28%22Huey%22+%22Dewey%22+%22Louie%22%29+%29+log%3AcollectAllIn+_%3Ax+.%0A%7D%0A%3D%3E+%0A%7B+++%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Example where the list is already given; in that case, the collected list will be compared with the given list.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -2089,8 +2095,8 @@ Example where the list is already given; in that case, the collected list will b
 {
     ( ?param { :Let :param ?param } ("Huey" "Dewey" "Louie") ) log:collectAllIn _:x .
 }
-=> 
-{   
+=>
+{
     :result :is true .
 } .
             ```
@@ -2106,7 +2112,7 @@ Example where the list is already given; in that case, the collected list will b
 ### log:conclusion ### {#log:conclusion}
 Gets all possible conclusions from the subject graph term, including rule inferences (deductive closure), as the object graph term.
 
-`true` if and only if `$o` is the set of conclusions which can be drawn from `$s` (deductive closure), 
+`true` if and only if `$o` is the set of conclusions which can be drawn from `$s` (deductive closure),
 by applying any rules it contains to the data it contains.
 
 **Schema**<br>`$s+ log:conclusion $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `log:Formula`<br>`$o`: `log:Formula`</div></div><br>
@@ -2114,32 +2120,32 @@ by applying any rules it contains to the data it contains.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%3Alet+%3Aparam+%7B+%0A++++%3AFelix+a+%3ACat+.+%0A++++%7B+%3FX+a+%3ACat+.+%7D+%3D%3E+%7B+%3FX+%3Asays+%22Meow%22+.+%7D+.%0A%7D+.%0A%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.%0A++++%3Fparam+log%3Aconclusion+%3Fconclusion+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Fconclusion+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Draw all conclusions from the formula ":Felix a :Cat . { ?X a :Cat } => { ?X :says "Meow" . }".
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-:let :param { 
-    :Felix a :Cat . 
+:let :param {
+    :Felix a :Cat .
     { ?X a :Cat . } => { ?X :says "Meow" . } .
 } .
 
-{ 
+{
     :let :param ?param .
     ?param log:conclusion ?conclusion .
-} 
-=> 
-{ 
-    :result :is ?conclusion . 
+}
+=>
+{
+    :result :is ?conclusion .
 } .
             ```
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
 :result :is {
-    :Felix a :Cat. 
-    :Felix :says "Meow". 
+    :Felix a :Cat.
+    :Felix :says "Meow".
     { ?S a :Cat . } => { ?S :says "Meow" . } .
 } .
             ```
@@ -2156,30 +2162,30 @@ Merges the graph terms from the subject list into a single graph term as object.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%28+%7B+%3AFelix+a+%3ACat+.+%7D%0A++++++%7B+%3APluto+a+%3ADog+.+%7D++%0A++++++%7B+%3APingu+a+%3APenguin+.+%7D%0A++++%29+log%3Aconjunction+%3Fmerged+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Fmerged+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Merge the formulas "{ :Felix a :Cat . }" , "{ :Pluto a :Dog . }", "{ :Pingu a :Penguin . }" .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-{ 
+{
     ( { :Felix a :Cat . }
-      { :Pluto a :Dog . }  
+      { :Pluto a :Dog . }
       { :Pingu a :Penguin . }
     ) log:conjunction ?merged .
-} 
-=> 
-{ 
-    :result :is ?merged . 
+}
+=>
+{
+    :result :is ?merged .
 } .
             ```
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is { 
-    :Felix a :Cat . 
-    :Pingu a :Penguin . 
-    :Pluto a :Dog . 
+:result :is {
+    :Felix a :Cat .
+    :Pingu a :Penguin .
+    :Pluto a :Dog .
 } .
             ```
     </div>
@@ -2195,23 +2201,23 @@ Dereferences the subject IRI and retrieves the online resource as the object str
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%3Chttps%3A%2F%2Fwww.w3.org%2FPeople%2FBerners-Lee%2Fcard%3E+log%3Acontent+%3Fcontent+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Fcontent+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Fetch the content of https://www.w3.org/People/Berners-Lee/card.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-{ 
+{
     <https://www.w3.org/People/Berners-Lee/card> log:content ?content .
-} 
-=> 
-{ 
-    :result :is ?content . 
+}
+=>
+{
+    :result :is ?content .
 } .
             ```
         <p><b>Result:</b>
         ```
-:result :is "...the content of https://www.w3.org/People/Berners-Lee/card ...". 
+:result :is "...the content of https://www.w3.org/People/Berners-Lee/card ...".
             ```
     </div>
 </div>
@@ -2228,19 +2234,19 @@ Creates a datatyped literal as object, based on the string value and datatype IR
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%28+%3Fstring+%3Ftype+%29+log%3Adtlit+%221971-05-05%22%5E%5Exsd%3Adate+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%28+%3Fstring+%3Ftype+%29+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Parse the datatyped literal "1971-05-05"^^xsd:date into a string and data type IRI.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-{ 
+{
     ( ?string ?type ) log:dtlit "1971-05-05"^^xsd:date .
-} 
-=> 
-{ 
-    :result :is ( ?string ?type ) . 
+}
+=>
+{
+    :result :is ( ?string ?type ) .
 } .
             ```
         <p><b>Result:</b>
@@ -2255,7 +2261,7 @@ Parse the datatyped literal "1971-05-05"^^xsd:date into a string and data type I
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%28+%221971-05-05%22+xsd%3Adate+%29+log%3Adtlit+%3Ftyped+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Ftyped+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Create a datatyped literal from the string "1971-05-05" and the type xsd:date.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -2274,7 +2280,7 @@ Create a datatyped literal from the string "1971-05-05" and the type xsd:date.
 </div>
 
 ### log:equalTo ### {#log:equalTo}
-Checks whether the subject and object N3 terms are the same (comparison occurs on the syntax level). 
+Checks whether the subject and object N3 terms are the same (comparison occurs on the syntax level).
 Can also be used to bind values to variables (see examples).
 
 `true` if and only if `$s` and `$o` are the same N3 term.
@@ -2287,11 +2293,11 @@ Literals will be compared exactly: their datatypes must be identical (in case of
 **Examples**<br><div class=ex_container style="margin-top: 5px">
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%28+%3Fx+%3Fy+%3Fz+%29+log%3AequalTo+%28+1+2+3+%29%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fx+%2C+%3Fy+%2C+%3Fz+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
-Assign values from the object list to universal variables given in the subject list. 
+Assign values from the object list to universal variables given in the subject list.
 This can be compared to "destructuring" or "unpacking" in programming languages such as JavaScript or Python.
 In contrast to those languages, however, it works in either direction in N3.
 This mechanism works because an effort is made to ensure the truth of builtin statements in N3.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -2303,7 +2309,7 @@ This mechanism works because an effort is made to ensure the truth of builtin st
 =>
 {
     :result :is ?x , ?y , ?z .
-} . 
+} .
             ```
         <p><b>Result:</b>
         ```
@@ -2315,11 +2321,11 @@ This mechanism works because an effort is made to ensure the truth of builtin st
 <div class=ex_container >
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%28+%22War+and+Peace%22+%22Leo+Tolstoy%22+1225+%29+log%3AequalTo+%28+%3Ftitle+%3Fauthor+%3FnumPages+%29+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Ftitle+%2C+%3Fauthor+%2C+%3FnumPages+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
-Assign values from the object list to universal variables given in the subject list. 
+Assign values from the object list to universal variables given in the subject list.
 This can be compared to "destructuring" or "unpacking" in programming languages such as JavaScript or Python.
 In contrast to those languages, however, it works in either direction in N3.
 This mechanism works because an effort is made to ensure the truthfulness of builtin statements in N3.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -2331,7 +2337,7 @@ This mechanism works because an effort is made to ensure the truthfulness of bui
 =>
 {
     :result :is ?title , ?author , ?numPages .
-} . 
+} .
             ```
         <p><b>Result:</b>
         ```
@@ -2344,7 +2350,7 @@ This mechanism works because an effort is made to ensure the truthfulness of bui
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++_%3Ax+log%3AequalTo+42+.%0A++++%3Fq++log%3AequalTo+%22Cat%22%40en+.%0A%0A++++%23+This+will+fail+because+_%3Ax+is+already+assigned+to+42+.%0A++++%23+_%3Ax+log%3AequalTo+17+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fq+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Assign a value to an existential or universal variable.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -2360,7 +2366,7 @@ Assign a value to an existential or universal variable.
 =>
 {
     :result :is ?q .
-} . 
+} .
             ```
         <p><b>Result:</b>
         ```
@@ -2373,7 +2379,7 @@ Assign a value to an existential or universal variable.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%40prefix+owl%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E+.%0A%0A%3Chttp%3A%2F%2Ffamous.web.site%3E+owl%3AsameAs+%3Chttp%3A%2F%2Fmirror.famous.web.site%3E+.%0A%0A%7B%0A++++%3Chttp%3A%2F%2Ffamous.web.site%3E+log%3AequalTo+%3Chttp%3A%2F%2Ffamous.web.site%3E+.%0A%0A++++%23+But+not%0A++++%23%0A++++%23+%3Chttp%3A%2F%2Ffamous.web.site%3E+log%3AequalTo+%3Chttp%3A%2F%2Fmirror.famous.web.site%3E+.%0A++++%23%0A++++%23+and+not%0A++++%23%0A++++%23+%3Chttp%3A%2F%2Ffamous.web.site%23123%3E+log%3AequalTo+%3Chttp%3A%2F%2Ffamous.web.site%3E+.%0A++++%23%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Determine <http://famous.web.site> is equal to itself .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -2397,12 +2403,12 @@ Determine <http://famous.web.site> is equal to itself .
 =>
 {
     :result :is true .
-} . 
+} .
             ```
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is true. 
+:result :is true.
             ```
     </div>
 </div>
@@ -2410,7 +2416,7 @@ Determine <http://famous.web.site> is equal to itself .
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++1+log%3AequalTo+1+.%0A++++%22Cat%22+log%3AequalTo+%22Cat%22+.%0A++++%7B+%3AA+%3AB+%3AC+.+%3AD+%3AE+%3AF+.+%7D+log%3AequalTo+%7B+%3AD+%3AE+%3AF+.+%3AA+%3AB+%3AC+.+%7D+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Determine if 1 is equal to 1 and "Cat" is equal to "Cat" and { :A :B :C . :D :E :F } is equal to { :D :E :F . :A :B :C }.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -2424,12 +2430,12 @@ Determine if 1 is equal to 1 and "Cat" is equal to "Cat" and { :A :B :C . :D :E 
 =>
 {
     :result :is true .
-} . 
+} .
             ```
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is true. 
+:result :is true.
             ```
     </div>
 </div>
@@ -2437,7 +2443,7 @@ Determine if 1 is equal to 1 and "Cat" is equal to "Cat" and { :A :B :C . :D :E 
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%23+This+will+fail%0A++++%22Cat%22+log%3AequalTo+%22Cat%22%40en+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Determine if "Cat" is equal to "Cat"@en .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -2450,7 +2456,7 @@ Determine if "Cat" is equal to "Cat"@en .
 =>
 {
     :result :is true .
-} . 
+} .
             ```
         <p><b>Result:</b>
         ```
@@ -2463,15 +2469,15 @@ Determine if "Cat" is equal to "Cat"@en .
 ### log:forAllIn ### {#log:forAllIn}
 Two clauses are given in the subject list: for each result of the first clause, the builtin checks whether the second clause also holds for the result.
 
-`true` if and only if, for each solution for which the first clause `$s.1` is true, the second clause `$s.2` is true as well. 
+`true` if and only if, for each solution for which the first clause `$s.1` is true, the second clause `$s.2` is true as well.
 This is a scoped universal quantification.
 
 **Schema**<br>`( $s.1+ $s.2+ )+ log:forAllIn $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.1`: `log:Formula`, `$s.2`: `log:Formula`<br>`$o`: (Scope of the universal quantification. Leave as a variable to use current N3 document as scope.)</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%3Ac+a+%3ACompositeTask+%3B%0A++++%3AsubTask+%3As1+%2C+%3As2+%2C+%3As3+.%0A%3As1+%3Astate+%3ACompleted+.%0A%3As2+%3Astate+%3ACompleted+.+%0A%3As3+%3Astate+%3ACompleted+.%0A%0A%7B%0A++++%3Fc+a+%3ACompositeTask+.%0A++++%28+%7B+%3Fc+%3AsubTask+%3Fs+%7D+%7B+%3Fs+%3Astate+%3ACompleted+%7D+%29+log%3AforAllIn+_%3At+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
-For each subtask of a composite task, check whether the subtask is completed. 
-            
+For each subtask of a composite task, check whether the subtask is completed.
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -2480,7 +2486,7 @@ For each subtask of a composite task, check whether the subtask is completed.
 :c a :CompositeTask ;
     :subTask :s1 , :s2 , :s3 .
 :s1 :state :Completed .
-:s2 :state :Completed . 
+:s2 :state :Completed .
 :s3 :state :Completed .
 
 {
@@ -2490,22 +2496,22 @@ For each subtask of a composite task, check whether the subtask is completed.
 =>
 {
     :result :is true .
-} . 
+} .
             ```
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is true. 
+:result :is true.
             ```
     </div>
 </div>
 
 ### log:includes ### {#log:includes}
-Checks whether the subject graph term includes the object graph term (taking into account variables). 
+Checks whether the subject graph term includes the object graph term (taking into account variables).
 Can also be used to bind variables to values within the graph contents (see examples).
 
-`true` if and only if there exists some substitution which, when applied to `$s` and `$o`, 
-creates graph terms `$s`' and `$o`' such that every statement in `$o`' is also in `$s`''. 
+`true` if and only if there exists some substitution which, when applied to `$s` and `$o`,
+creates graph terms `$s`' and `$o`' such that every statement in `$o`' is also in `$s`''.
 Variable substitution is applied recursively to nested compound terms such as graph terms and lists.
 
 **See also**<br><a href="#log:notIncludes">log:notIncludes</a>
@@ -2525,9 +2531,9 @@ Check whether the current N3 document includes { ?X a :Cat }.
 :Tom a :Cat .
 :Rex a :Dog .
 
-{ 
+{
     _:t log:includes { ?X a :Cat } .
-} 
+}
 =>
 {
     :result :is ?X .
@@ -2553,9 +2559,9 @@ Check whether the formula { :Felix a :Cat } includes { ?X a :Cat }.
 @prefix : <http://example.org/>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-{ 
+{
     { :Felix a :Cat } log:includes { ?X a :Cat } .
-} 
+}
 =>
 {
     :result :is ?X .
@@ -2583,7 +2589,7 @@ Creates a language-tagged literal as object, based on the string value and langu
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%7B+%28%22hello%22+%22en%22%29+log%3Alanglit+%3FX+%7D+%3D%3E+%7B+%3FX+a+%3AResult+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Create a language-tagged literal from the string "hello" and language tag "en".
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -2610,7 +2616,7 @@ Checks whether the subject and object N3 terms are _not_ the same (comparison oc
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++1+log%3AnotEqualTo+2+.%0A++++%22Cat%22+log%3AnotEqualTo+%22CAT%22+.%0A++++%7B+%3AA+%3AB+%3AC+.+%7D+log%3AnotEqualTo+%7B+%3AC+%3AB+%3AA+.+%7D+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Determine if 1 is not equal to 2 and "Cat" is not equal to "CAT" and { :A :B :C . } is not equal to { :C :B :A }.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -2624,7 +2630,7 @@ Determine if 1 is not equal to 2 and "Cat" is not equal to "CAT" and { :A :B :C 
 =>
 {
     :result :is true .
-} . 
+} .
             ```
         <p><b>Result:</b>
         ```
@@ -2637,14 +2643,14 @@ Determine if 1 is not equal to 2 and "Cat" is not equal to "CAT" and { :A :B :C 
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A+++%0A++++%7B+%3AA+%3AB+%3AC+.+%7D+log%3AnotEqualTo+%7B+%3AA+%3AB+%3Fc+%7D+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Check whether two graph terms, one containing a universal variable, are not equal.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 {
-   
+
     { :A :B :C . } log:notEqualTo { :A :B ?c } .
 }
 =>
@@ -2663,7 +2669,7 @@ Check whether two graph terms, one containing a universal variable, are not equa
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++_%3Ax+log%3AnotEqualTo+42+.%0A++++%3Fq++log%3AnotEqualTo+%22Cat%22%40en+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Check if an existential or universal variable is not equal to a value.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -2676,12 +2682,12 @@ Check if an existential or universal variable is not equal to a value.
 =>
 {
     :result :is true .
-} . 
+} .
             ```
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-# no result (the variables _:x and ?q are not bounded) 
+# no result (the variables _:x and ?q are not bounded)
             ```
     </div>
 </div>
@@ -2689,7 +2695,7 @@ Check if an existential or universal variable is not equal to a value.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%22Cat%22+log%3AnotEqualTo+%22Cat%22%40en+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Determine if "Cat" is not equal to "Cat"@en .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -2701,7 +2707,7 @@ Determine if "Cat" is not equal to "Cat"@en .
 =>
 {
     :result :is true .
-} . 
+} .
             ```
         <p><b>Result:</b>
         ```
@@ -2723,15 +2729,15 @@ Checks whether the subject graph term _does not_ include the object graph term (
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%7B+%3AFelix+a+%3ACat+%7D+log%3AnotIncludes+%7B+%3FX+%3Aeats+%3FY+%7D+.%0A%7D+%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Check whether the formula { :Felix a :Cat } does not include { ?X :eats ?Y }.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-{ 
+{
     { :Felix a :Cat } log:notIncludes { ?X :eats ?Y } .
-} 
+}
 =>
 {
     :result :is true .
@@ -2748,19 +2754,19 @@ Check whether the formula { :Felix a :Cat } does not include { ?X :eats ?Y }.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%23+Dynamic+evaluation+of+%3FX+and+%3FY%0A++++%3FX+log%3AnotIncludes+%3FY+.%0A++++%3FX+log%3AequalTo+%7B+%3Aa+%3Ab+%3Ac+%7D.%0A++++%3FY+log%3AequalTo+%7B+%3Aa+%3Ab+%3Ad+%7D.%0A%7D+%0A%3D%3E++++++++++++++%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Check whether the formula { :a :b :c } does not include { :a :b :d }.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-{ 
+{
     # Dynamic evaluation of ?X and ?Y
     ?X log:notIncludes ?Y .
     ?X log:equalTo { :a :b :c }.
     ?Y log:equalTo { :a :b :d }.
-} 
-=>              
+}
+=>
 {
     :result :is true .
 } .
@@ -2785,7 +2791,7 @@ The concrete semantics of this builtin (e.g., which N3 resource types are suppor
 Print the two string "This is the first line
 " , "This is the second line
 " to the output.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -2816,7 +2822,7 @@ Parses the subject string into an object graph term.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%3ALet+%3Aparam+%22%22%22%0A%40prefix+%3A+%3Curn%3Aexample%3A%3E+.%0A%3ASocrates+a+%3AHuman+.%0A%22%22%22+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3FX+.%0A++++%3FX+log%3AparsedAsN3+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3FY+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Parse the string ':Socrates a :Human .' as N3.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -2855,7 +2861,7 @@ N3 resource types include `log:Formula`, `log:Literal`, `rdf:List` or `log:Other
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%281+2+3+4%29+log%3ArawType+%3FlistType+.%0A++++%7B+%3As+%3Ap+%3Ao+%7D+log%3ArawType+%3FgraphType+.%0A%7D+%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%28+%3FlistType+%3FgraphType+%29+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Get the type of lists and graph terms.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -2864,7 +2870,7 @@ Get the type of lists and graph terms.
 {
     (1 2 3 4) log:rawType ?listType .
     { :s :p :o } log:rawType ?graphType .
-} 
+}
 =>
 {
     :result :is ( ?listType ?graphType ) .
@@ -2883,7 +2889,7 @@ Get the type of lists and graph terms.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%22Hello%22+log%3ArawType+%3FstringType+.%0A++++42+log%3ArawType+%3FintegerType+.%0A++++true+log%3ArawType+%3FtrueType+.%0A++++false+log%3ArawType+%3FfalseType+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%28+%3FstringType+%3FintegerType+%3FtrueType+%3FfalseType+%29+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Get the type of literal resources.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -2912,7 +2918,7 @@ Get the type of literal resources.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%3Chttp%3A%2F%2Fwww.w3c.org%3E+log%3ArawType+%3FresourceType+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3FresourceType+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Get the type of resources.
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -2946,11 +2952,11 @@ Gets as object the graph term that results from parsing an online (N3) string, f
         <p>
 Read the contents of the file `<semantics.data>` and parse it as Notation3.
 We assume `<semantics.data>` contains the text:
-```       
+```
   @prefix : <http://example.org/>.
   :Socrates a :Human .
-```       
-            
+```
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -2976,7 +2982,7 @@ Either gets as object the graph term that results from parsing an online (N3) st
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%3Cerror.data%3E+log%3Asemantics+%3Fsemantics+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fsemantics+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Read the contents a non existing `<error.data>` and parse it as Notation3 (which of course will fail).
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -3003,7 +3009,7 @@ Gets as object a skolem IRI that is a function of the subject (commonly a list);
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%28%3Aabc+77+%22xyz%22%29+log%3Askolem+%3Fskolem+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fskolem+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Generate a unique Skolem IRI from the list (:abc 77 "xyz") .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -3014,7 +3020,7 @@ Generate a unique Skolem IRI from the list (:abc 77 "xyz") .
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is <http://www.w3.org/2000/10/swap/genid#zmgk3Vt_z_u7FQlk1NmqIw> . 
+:result :is <http://www.w3.org/2000/10/swap/genid#zmgk3Vt_z_u7FQlk1NmqIw> .
             ```
     </div>
 </div>
@@ -3029,7 +3035,7 @@ Gets as object the string representation of the subject URI.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%3Chttps%3A%2F%2Fwww.w3.org%3E+log%3Auri+%3Furi+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Furi+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Parse the URI <https://www.w3.org> into a string .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -3056,7 +3062,7 @@ Concatenates the strings from the subject list into a single string as object.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam+%28+%22hello%22+%22+%22+%22world%21%22+%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+string%3Aconcatenation+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Concatenates the string "hello", " " and "world!".
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -3076,7 +3082,7 @@ Concatenates the string "hello", " " and "world!".
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is "hello world!". 
+:result :is "hello world!".
             ```
     </div>
 </div>
@@ -3093,7 +3099,7 @@ Checks whether the subject string contains the object string.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22llo+worl%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3Acontains+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Checks whether the string "hello world!" contains the string "llo worl".
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -3114,7 +3120,7 @@ Checks whether the string "hello world!" contains the string "llo worl".
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is true . 
+:result :is true .
             ```
     </div>
 </div>
@@ -3131,7 +3137,7 @@ Checks whether the subject string contains the object string, ignoring differenc
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22lLO+woRl%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AcontainsIgnoringCase+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Checks whether the string "hello world!" contains the string "lLO woRl".
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -3152,7 +3158,7 @@ Checks whether the string "hello world!" contains the string "lLO woRl".
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is true . 
+:result :is true .
             ```
     </div>
 </div>
@@ -3167,7 +3173,7 @@ Checks whether the subject string ends with the object string.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22orld%21%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AendsWith+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Checks whether the string "hello world!" ends with "orld!".
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -3188,7 +3194,7 @@ Checks whether the string "hello world!" ends with "orld!".
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is true . 
+:result :is true .
             ```
     </div>
 </div>
@@ -3203,7 +3209,7 @@ Checks whether the subject string is the same as the object string, ignoring dif
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22hELLo+wORld%21%22+.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AequalIgnoringCase+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Checks whether the string "hello world!" is equal to "hELLo wORld!" ignoring the case .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -3224,7 +3230,7 @@ Checks whether the string "hello world!" is equal to "hELLo wORld!" ignoring the
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is true . 
+:result :is true .
             ```
     </div>
 </div>
@@ -3240,7 +3246,7 @@ See C's sprintf function for details on these tags.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam+%28+%22%25s%3A%2F%2F%25s%2F%25s%22+%22https%22+%22w3c.github.io%22+%22N3%2Fspec%2F%22+%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+string%3Aformat+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the result of applying the format "%s://%s/%s" to the strings "https", "w3c.github.io" and "N3/spec" .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -3260,7 +3266,7 @@ Calculate the result of applying the format "%s://%s/%s" to the strings "https",
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is "https://w3c.github.io/N3/spec/". 
+:result :is "https://w3c.github.io/N3/spec/".
             ```
     </div>
 </div>
@@ -3277,7 +3283,7 @@ Checks whether the subject string is greater than the object string, according t
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22Penguin%22+.%0A%3ALet+%3Aparam2+%22Cat%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AgreaterThan+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Checks whether the string "Pengiun" is greater than the string "Cat" .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -3298,7 +3304,7 @@ Checks whether the string "Pengiun" is greater than the string "Cat" .
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is true . 
+:result :is true .
             ```
     </div>
 </div>
@@ -3315,7 +3321,7 @@ Checks whether the subject string is less than the object string, according to U
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22Cat%22+.%0A%3ALet+%3Aparam2+%22Penguin%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AlessThan+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Checks whether the string "Cat" is less than the string "Penguin" .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -3336,7 +3342,7 @@ Checks whether the string "Cat" is less than the string "Penguin" .
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is true . 
+:result :is true .
             ```
     </div>
 </div>
@@ -3354,7 +3360,7 @@ The regular expression follows the perl, python style.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22.%2A%28l%29%2Bo+wo.%2A%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3Amatches+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Checks whether the string "hello world!" matches the regular expression ".*(l)+o wo.*".
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -3375,7 +3381,7 @@ Checks whether the string "hello world!" matches the regular expression ".*(l)+o
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is true . 
+:result :is true .
             ```
     </div>
 </div>
@@ -3390,7 +3396,7 @@ Checks whether the subject string is not the same as the object string, ignoring
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22hELLo+dunia%21%22+.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AnotEqualIgnoringCase+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Checks whether the string "hello world!" is not equal to "hELLo dunia!" ignorning the case .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -3411,7 +3417,7 @@ Checks whether the string "hello world!" is not equal to "hELLo dunia!" ignornin
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is true . 
+:result :is true .
             ```
     </div>
 </div>
@@ -3429,7 +3435,7 @@ You can use this as an equivalent of a lessThanOrEqual operator.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22Cat%22+.%0A%3ALet+%3Aparam2+%22Penguin%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AnotGreaterThan+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Checks whether the string "Cat" is not greater than the string "Penguin" .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -3450,7 +3456,7 @@ Checks whether the string "Cat" is not greater than the string "Penguin" .
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is true . 
+:result :is true .
             ```
     </div>
 </div>
@@ -3468,7 +3474,7 @@ You can use this as an equivalent of a greaterThanOrEqual operator.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22Penguin%22.%0A%3ALet+%3Aparam2+%22Cat%22+.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AnotLessThan+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Checks whether the string "Penguin" is not less than the string "Cat" .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -3489,7 +3495,7 @@ Checks whether the string "Penguin" is not less than the string "Cat" .
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is true . 
+:result :is true .
             ```
     </div>
 </div>
@@ -3507,7 +3513,7 @@ The regular expression follows the perl, python style.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22.%2A%28l%29%2Bo+dunia.%2A%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AnotMatches+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Checks whether the string "hello world!" no matches the regular expression ".*(l)+o dunia.*".
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -3528,7 +3534,7 @@ Checks whether the string "hello world!" no matches the regular expression ".*(l
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is true . 
+:result :is true .
             ```
     </div>
 </div>
@@ -3543,7 +3549,7 @@ Calculates the object as the result of, given the strings in the subject list, r
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Adata+%22hello+world%21%22+.%0A%3ALet+%3Asearch+%22%28l%29%22+.%0A%3ALet+%3Areplace+%22%5B%241%5D%22+.%0A%7B%0A++++%3ALet+%3Adata+%3Fdata+.%0A++++%3ALet+%3Asearch+%3Fsearch+.%0A++++%3ALet+%3Areplace+%3Freplace+.%0A++++%28%3Fdata+%3Fsearch+%3Freplace%29+string%3Areplace+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Replace all "l"-s in the string "hello world!" with the bracket version "[l]" .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -3566,7 +3572,7 @@ Replace all "l"-s in the string "hello world!" with the bracket version "[l]" .
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is "he[l][l]o wor[l]d!". 
+:result :is "he[l][l]o wor[l]d!".
             ```
     </div>
 </div>
@@ -3581,13 +3587,13 @@ Calculates the object as the first matching group when, given the subject list, 
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22https%3A%2F%2Fw3c.github.io%2FN3%2Fspec%2F%22+.+%0A%3ALet+%3Aparam2+%22.%2A%2F%28%5B%5E%2F%5D%2B%2F%29%24%22+.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%28%3Fparam1+%3Fparam2%29+string%3Ascrape+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Extract from the string "https://w3c.github.io/N3/spec/" the last path element using a regular expression .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
 @prefix string: <http://www.w3.org/2000/10/swap/string#> .
 
-:Let :param1 "https://w3c.github.io/N3/spec/" . 
+:Let :param1 "https://w3c.github.io/N3/spec/" .
 :Let :param2 ".*/([^/]+/)$" .
 {
     :Let :param1 ?param1 .
@@ -3602,7 +3608,7 @@ Extract from the string "https://w3c.github.io/N3/spec/" the last path element u
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is "spec/". 
+:result :is "spec/".
             ```
     </div>
 </div>
@@ -3617,7 +3623,7 @@ Checks whether the subject string starts with the object string.
 <a href="https://n3-editor.herokuapp.com/n3/editor/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22hello%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AstartsWith+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Checks whether the string "hello world!" starts with "hello" .
-            
+
         <p><b>Formula:</b>
         ```
 @prefix : <http://example.org/>.
@@ -3638,7 +3644,7 @@ Checks whether the string "hello world!" starts with "hello" .
         <p><b>Result:</b>
         ```
 @prefix : <http://example.org/>.
-:result :is true . 
+:result :is true .
             ```
     </div>
 </div>
@@ -3647,6 +3653,6 @@ Checks whether the string "hello world!" starts with "hello" .
 
 
 <h2 id="acknowledgements" class="appendix informative">Acknowledgements</h2>
-    <p>In addition to the editors, the following people have contributed to this specification: 
+    <p>In addition to the editors, the following people have contributed to this specification:
     Dörthe Arndt, Pierre-Antoine Champin, and Jos De Roo.</p>
 </p>

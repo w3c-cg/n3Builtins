@@ -10,7 +10,7 @@
 log:skolem a fno:Function ;
     vs:term_status  "testing" ;
     fnon:tldr "Gets as object a skolem IRI that is a function of the subject (commonly a list) and a concrete reasoning run (implicit); for one reasoning run, the same subject will always result in the same skolem IRI." ;
-    dcterms:comment "`true` if and only if `$o` is a skolem IRI that is produced by applying a skolem function the subject." ;
+    dcterms:comment "`true` if and only if `$o` is a skolem IRI that is produced by applying a skolem function to the subject." ;
     fno:example ( [ a fno:Test , fno:TestSkip ;
                 dcterms:description """
 Generate a unique Skolem IRI from the list (:abc 77 "xyz") .

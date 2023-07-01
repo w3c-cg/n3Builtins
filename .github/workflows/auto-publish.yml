@@ -6,6 +6,7 @@ on:
   push:
     branches: [main]
     paths: ["spec/**"]
+  workflow_dispatch:
 jobs:
   main:
     name: Echidna Auto-publish test 2

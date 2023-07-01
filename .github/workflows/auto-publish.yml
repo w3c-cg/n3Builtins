@@ -6,9 +6,10 @@ on:
   push:
     branches: [main]
     paths: ["spec/**"]
+  workflow_dispatch:
 jobs:
   main:
-    name: Echidna Auto-publish CG-DRAFT test 2
+    name: Echidna Auto-publish CG-FINAL test 2
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -22,5 +23,5 @@ jobs:
           GH_PAGES_BRANCH: gh-pages
           DESTINATION: index.html
           GH_PAGES_BUILD_OVERRIDE: |
-            status: w3c/CG-DRAFT
+            status: w3c/CG-FINAL
             TR: https://w3c-cg.github.io/n3Builtins/

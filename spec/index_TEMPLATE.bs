@@ -227,9 +227,10 @@ Builtin arguments {#builtinarguments}
         </div>
 ### Scopes ### {#scope}
 <p>
-Some N3 builtins have a scope as an argument. A scope is either a concrete graph which can be stated or, if left open,
-the scope variable refers to the deductive closure of the whole N3 graph included in the reasoning run with the exception
-of the concrete application of the rule the built-in occurs in.
+Some N3 builtins have a scope as an argument (e.g., <a href="#log:collectAllIn">log:collectAllIn</a>). 
+   A scope is either a concretely stated N3 graph, or the reasoning scope, that is, the deductive closure of the whole N3 graph included in the reasoning run, 
+   with the exception of the concrete application of the rule the built-in occurs in.
+   If the scope is left open (that is, there is an unbound variable in the scope position), the reasoning scope is assumed. 
 </p>
         
 Builtin Evaluation {#builtinevaluation}

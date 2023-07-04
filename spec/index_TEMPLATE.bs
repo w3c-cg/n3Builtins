@@ -225,6 +225,12 @@ Builtin arguments {#builtinarguments}
         There is a useful chart for casting primitive types to primitive types in [XPath](https://www.w3.org/TR/xpath-functions/#casting-from-primitive-to-primitive), a
           subset of which is defined for [SPARQL 1.1](https://www.w3.org/TR/sparql11-query/#FunctionMapping).
         </div>
+### Scopes ### {#scope}
+<p>
+Some N3 builtins have a scope as an argument. A scope is either a concrete graph which can be stated or, if left open,
+the scope variable refers to the deductive closure of the whole N3 graph included in the reasoning run with the exception
+of the concrete application of the rule the built-in occurs in.
+</p>
         
 Builtin Evaluation {#builtinevaluation}
 =====================

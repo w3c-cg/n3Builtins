@@ -20,12 +20,11 @@ Read the contents a non existing `<error.data>` and parse it as Notation3 (which
 @prefix : <http://example.org/>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-{ <error.data> log:semantics ?semantics . } => { :result :is ?semantics } .
-            """ ;
+{ <error.data> log:semanticsOrError ?semantics } => { :result :is ?semantics } .""" ;
                 fno:result """
 @prefix : <http://example.org/>.
-:result :is \"\"\"Unable to access document <file:////tmp/error.data>, because:
-    <urlopen error [Errno 2] No such file or directory: '//tmp/error.data'>\"\"\" .
+
+:result :is "error(existence_error(source_sink,/error.data),context(system:open/4,No such file or directory))" .
             """ ] ) ;
     fno:name "semanticsOrError" ;
     fno:parameter ( [

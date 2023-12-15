@@ -2350,7 +2350,7 @@ This mechanism works because an effort is made to ensure the truth of builtin st
 <div class=ex_container >
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%40prefix+owl%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E+.%0A%0A%3Chttp%3A%2F%2Ffamous.web.site%3E+owl%3AsameAs+%3Chttp%3A%2F%2Fmirror.famous.web.site%3E+.%0A%0A%7B%0A++++%3Chttp%3A%2F%2Ffamous.web.site%3E+log%3AequalTo+%3Chttp%3A%2F%2Ffamous.web.site%3E+.%0A%0A++++%23+But+not%0A++++%23%0A++++%23+%3Chttp%3A%2F%2Ffamous.web.site%3E+log%3AequalTo+%3Chttp%3A%2F%2Fmirror.famous.web.site%3E+.%0A++++%23%0A++++%23+and+not%0A++++%23%0A++++%23+%3Chttp%3A%2F%2Ffamous.web.site%23123%3E+log%3AequalTo+%3Chttp%3A%2F%2Ffamous.web.site%3E+.%0A++++%23%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
-Determine <http://famous.web.site> is equal to itself .
+Determine &lt;http://famous.web.site&gt; is equal to itself .
             
         <p><b>Formula:</b>
         ```

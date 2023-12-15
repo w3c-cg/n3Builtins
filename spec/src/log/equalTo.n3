@@ -18,7 +18,7 @@ Literals will be compared exactly: their datatypes must be identical (in case of
     fno:example ( 
             [ a fno:Test ;
                 dcterms:description """
-Determine <http://famous.web.site> is equal to itself .
+Determine &lt;http://famous.web.site&gt; is equal to itself .
             """ ;
                 rdfs:seeAlso <> ;
                 fno:expression """

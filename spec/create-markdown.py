@@ -82,7 +82,7 @@ prefixes = [dic_prefixes[str(row.namespace)] for row in g.query(query)]
 # In[604]:
 
 
-editor_uri = "https://n3-editor.herokuapp.com/n3/editor/?formula="
+editor_uri = "https://editor.notation3.org/?formula="
 md_string = ""
 
 

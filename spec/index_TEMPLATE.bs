@@ -9,7 +9,7 @@ Previous Version: https://w3c.github.io/N3/spec/builtins/0.1/
 Editor: William Van Woensel, [University of Ottawa](https://www.uottawa.ca/), william.van.woensel@gmail.com 
 Editor: Patrick Hochstenbach, [IDLab - Ghent University](https://knows.idlab.ugent.be/), patrick.hochstenbach@ugent.be
 !Contributors: <a href="mailto:doerthe.arndt@tu-dresden.de">Dörthe Arndt</a>, [TU Dresden](https://tu-dresden.de/)
-!Contributors: <a href="mailto:pierre-antoine@w3.org">Pierre-Antoine Champin</a>, [W3C](https://www.w3.org/)
+!Contributors: <a href="mailto:pierre-antoine@w3.org">Pierre-Antoine Champin</a>, \[W3C](https://www.w3.org/)
 !Contributors: <a href="mailto:tim.duval@unifylogic.ai">Tim Duval</a>, [UnifyLogic, Corp.](http://unifylogic.ai)
 !Contributors: <a href="mailto:d.tomaszuk@uwb.edu.pl">Dominik Tomaszuk</a>, [University of Bialystok](https://uwb.edu.pl/)
 Status Text:

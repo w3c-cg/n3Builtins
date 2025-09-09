@@ -155,7 +155,7 @@ This mechanism works because an effort is made to ensure the truth of builtin st
 
             [ a fno:Test ;
                 dcterms:description """
-Assign values from the object list to universal variables given in the subject list. 
+Assign values from the subject list to universal variables given in the object list. 
 This can be compared to "destructuring" or "unpacking" in programming languages such as JavaScript or Python.
 In contrast to those languages, however, it works in either direction in N3.
 This mechanism works because an effort is made to ensure the truthfulness of builtin statements in N3.

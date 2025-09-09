@@ -85,9 +85,11 @@
 
     (
         { ?conclusion log:includes ?answer_parsed . }
-        { ?result log:equalTo true . }
         { 
-            [] log:trace ( "INVALID" ?conclusion ?answer_parsed ) .
+            # [] log:trace ( "VALID" ?conclusion ?answer_parsed ) .
+            ?result log:equalTo true . }
+        { 
+            [] log:trace ( "INVALID" ?conclusion " does not include " ?answer_parsed ) .
             ?result log:equalTo false .
         }
     ) log:ifThenElseIn ?SCOPE .

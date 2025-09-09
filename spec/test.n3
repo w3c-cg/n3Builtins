@@ -1,0 +1,9 @@
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:let :param ("dog" "penguin" "cat" "penguin").
+{
+    :let :param ?_38956 .
+    (?_38956 "parakeet") list:remove ?_38962.
+} => {
+    :result :is ?_38962.
+}.

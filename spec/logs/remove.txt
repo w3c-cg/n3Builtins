@@ -1,0 +1,33 @@
+?_20186 TRACE ("INVALID" {
+    :let :param ("dog" "penguin" "cat" "penguin").
+    {
+        :let :param ?_20228 .
+        (?_20228 "parakeet") list:remove ?_20234.
+    } => {
+        :result :is ?_20234.
+    }.
+} " does not include " {
+    :result :is ("dog" "penguin" "cat" "penguin").
+})
+?_38946 TRACE ("INVALID" {
+    :let :param ("dog" "penguin" "cat" "penguin").
+    {
+        :let :param ?_38988 .
+        (?_38988 "parakeet") list:remove ?_38994.
+    } => {
+        :result :is ?_38994.
+    }.
+} " does not include " {
+    :result :is ("dog" "penguin" "cat" "penguin").
+})
+?_57706 TRACE ("INVALID" {
+    :let :param ("dog" "penguin" "cat" "penguin").
+    {
+        :let :param ?_57748 .
+        (?_57748 "parakeet") list:remove ?_57754.
+    } => {
+        :result :is ?_57754.
+    }.
+} " does not include " {
+    :result :is ("dog" "penguin" "cat" "penguin").
+})

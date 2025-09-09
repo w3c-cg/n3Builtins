@@ -81,7 +81,7 @@ Example where the list is already given; in that case, the collected list will b
                 fno:result """
 @prefix : <http://example.org/>.
 
-:result :is true
+:result :is true .
 """ 
             ] ) ;
     fno:name "collectAllIn" ;

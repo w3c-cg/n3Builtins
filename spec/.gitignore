@@ -1,3 +1,5 @@
 builtins.n3
 index.html
 .DS_Store
+n3.out*
+.python-version

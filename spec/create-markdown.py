@@ -308,9 +308,13 @@ for p in prefixes:
 $EDITOR_LNK<div class=example>
         <p>$DESCRIPTION
         <p><b>Formula:</b>
-        ```$EXPRESSION```
+```
+$EXPRESSION
+```
         <p><b>Result:</b>
-        ```$RESULT```
+```
+$RESULT
+```
     </div>
 </div>"""         
                 url_param = urllib.parse.quote_plus(example.expression.strip(), safe='', encoding=None, errors=None)

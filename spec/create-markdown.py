@@ -212,7 +212,7 @@ def parse_seeAlso(result):
     name = builtin_name(result.seeAlso)
     return f'<a href="#{name}">{name}</a>'
 
-for p in prefixes:
+for p in sorted(prefixes):
     # print(f"processing {p}")
 
     md_string += f"## {p} ##" + " {#" + p + "}\n"

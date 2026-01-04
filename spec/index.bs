@@ -336,29 +336,6 @@ Appends the lists from the subject list into a single list as object.
 
 **Schema**<br>`( $s.i?[*] )+ list:append $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.i`: `rdf:List`<br>`$o`: `rdf:List`</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281%29+%282+3%29+%284%29+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+true+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Is the list (1 2 3 4) equal to appending (1), (2 3) , (4)?
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix list: <http://www.w3.org/2000/10/swap/list#> .
-
-{ ( (1) (2 3) (4) ) list:append (1 2 3 4) . } => { :result :is true . } .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is true. 
-            
-```
-    </div>
-</div>
-<div class=ex_container >
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281+2%29+%283+4%29+%29+list%3Aappend+%3Flist+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Flist+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Append (3 4) to the list (1 2).
@@ -377,6 +354,29 @@ Append (3 4) to the list (1 2).
 
 @prefix : <http://example.org/>.
 :result :is (1 2 3 4). 
+            
+```
+    </div>
+</div>
+<div class=ex_container >
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%3Fwhat+%283+4%29+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fwhat+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+What do we need to prepend to (3 4) to get (1 2 3 4)?
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+{ ( ?what (3 4) ) list:append (1 2 3 4) . } => { :result :is ?what . } .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is (1 2). 
             
 ```
     </div>
@@ -405,9 +405,9 @@ What do we need to append to (1 2) to get (1 2 3 4)?
     </div>
 </div>
 <div class=ex_container >
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%3Fwhat+%283+4%29+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fwhat+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281%29+%282+3%29+%284%29+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+true+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
-What do we need to prepend to (3 4) to get (1 2 3 4)?
+Is the list (1 2 3 4) equal to appending (1), (2 3) , (4)?
             
         <p><b>Formula:</b>
 ```
@@ -415,14 +415,14 @@ What do we need to prepend to (3 4) to get (1 2 3 4)?
 @prefix : <http://example.org/>.
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 
-{ ( ?what (3 4) ) list:append (1 2 3 4) . } => { :result :is ?what . } .
+{ ( (1) (2 3) (4) ) list:append (1 2 3 4) . } => { :result :is true . } .
             
 ```
         <p><b>Result:</b>
 ```
 
 @prefix : <http://example.org/>.
-:result :is (1 2). 
+:result :is true. 
             
 ```
     </div>
@@ -550,37 +550,6 @@ Iterate over the list ("dog" "penguin" "cat").
     </div>
 </div>
 <div class=ex_container >
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%7B%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%3Fparam+list%3Aiterate+%282+%22cat%22%29+.++%0A%7D%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+true+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Is "cat" the third item in the list ("dog" "penguin" "cat")?
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix list: <http://www.w3.org/2000/10/swap/list#> .
-
-:let :param ("dog" "penguin" "cat") .
-{
-    :let :param ?param . 
-    ?param list:iterate (2 "cat") .  
-}
-=> 
-{ 
-    :result :is true . 
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is true .
-            
-```
-    </div>
-</div>
-<div class=ex_container >
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%7B%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%3Fparam+list%3Aiterate+%28%3Findex+%22cat%22%29+.++%0A%7D%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Findex+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 What is the index of "cat" in the list ("dog" "penguin" "cat")?
@@ -607,6 +576,37 @@ What is the index of "cat" in the list ("dog" "penguin" "cat")?
 
 @prefix : <http://example.org/>.
 :result :is 2 .
+            
+```
+    </div>
+</div>
+<div class=ex_container >
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%7B%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%3Fparam+list%3Aiterate+%282+%22cat%22%29+.++%0A%7D%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+true+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Is "cat" the third item in the list ("dog" "penguin" "cat")?
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:let :param ("dog" "penguin" "cat") .
+{
+    :let :param ?param . 
+    ?param list:iterate (2 "cat") .  
+}
+=> 
+{ 
+    :result :is true . 
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is true .
             
 ```
     </div>
@@ -715,6 +715,31 @@ Checks whether the subject list contains the object.
 
 **Schema**<br>`$s+ list:member $o-[*]`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `rdf:List`</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28%22dog%22+%22penguin%22+%22cat%22%29+list%3Amember+%3Fmember+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fmember+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Determine the members of the list ("dog" "penguin" "cat").
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+{ ("dog" "penguin" "cat") list:member ?member . } => { :result :is ?member . } .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is "dog".
+:result :is "penguin".
+:result :is "cat".
+            
+```
+    </div>
+</div>
+<div class=ex_container >
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.%0A++++%3Fparam+list%3Amember+%22cat%22+.+%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+true+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Is "cat" a member of the list ("dog" "penguin" "cat")?
@@ -742,31 +767,6 @@ Is "cat" a member of the list ("dog" "penguin" "cat")?
 
 @prefix : <http://example.org/>.
 :result :is true.
-            
-```
-    </div>
-</div>
-<div class=ex_container >
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28%22dog%22+%22penguin%22+%22cat%22%29+list%3Amember+%3Fmember+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fmember+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Determine the members of the list ("dog" "penguin" "cat").
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix list: <http://www.w3.org/2000/10/swap/list#> .
-
-{ ("dog" "penguin" "cat") list:member ?member . } => { :result :is ?member . } .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is "dog".
-:result :is "penguin".
-:result :is "cat".
             
 ```
     </div>
@@ -910,909 +910,6 @@ Remove "penguin" from the list ("dog" "penguin" "cat" "penguin").
 
 @prefix : <http://example.org/>.
 :result :is ("dog" "cat").
-            
-```
-    </div>
-</div>
-
-## time ## {#time}
-### time:day ### {#time:day}
-Gets as object the integer day component of the subject xsd:dateTime.
-
-`true` if and only if `$o` is the integer day component of `$s`.
-
-**Schema**<br>`$s+ time:day $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:dateTime`<br>`$o`: `xsd:integer`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Aday+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Return the day component of the date "2023-04-01T18:06:04Z" .
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix time: <http://www.w3.org/2000/10/swap/time#> .
-
-:Let :param "2023-04-01T18:06:04Z"^^xsd:dateTime .
-
-{
-    :Let :param ?param .
-    ?param time:day ?result .
-}
-=>
-{
-    :result :is ?result .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is 1. 
-            
-```
-    </div>
-</div>
-
-### time:minute ### {#time:minute}
-Gets as object the integer minutes component of the subject xsd:dateTime.
-
-`true` if and only if `$o` is the integer minutes component of `$s`.
-
-**Schema**<br>`$s+ time:minute $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:dateTime`<br>`$o`: `xsd:integer`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Aminute+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Return the minute component of the date "2023-04-01T18:06:04Z" .
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix time: <http://www.w3.org/2000/10/swap/time#> .
-
-:Let :param "2023-04-01T18:06:04Z"^^xsd:dateTime .
-
-{
-    :Let :param ?param .
-    ?param time:minute ?result .
-}
-=>
-{
-    :result :is ?result .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is 6. 
-            
-```
-    </div>
-</div>
-
-### time:month ### {#time:month}
-Gets as object the integer month component of the subject xsd:dateTime.
-
-`true` if and only if `$o` is the integer month component of `$s`.
-
-**Schema**<br>`$s+ time:month $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:dateTime`<br>`$o`: `xsd:integer`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Amonth+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Return the month component of the date "2023-04-01T18:06:04Z" .
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix time: <http://www.w3.org/2000/10/swap/time#> .
-
-:Let :param "2023-04-01T18:06:04Z"^^xsd:dateTime .
-
-{
-    :Let :param ?param .
-    ?param time:month ?result .
-}
-=>
-{
-    :result :is ?result .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is 4. 
-            
-```
-    </div>
-</div>
-
-### time:second ### {#time:second}
-Gets as object the integer seconds component of the subject xsd:dateTime.
-
-`true` if and only if `$o` is the integer seconds component of `$s`.
-
-**Schema**<br>`$s+ time:second $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:dateTime`<br>`$o`: `xsd:integer`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Asecond+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Return the seconds component of the date "2023-04-01T18:06:04Z" .
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix time: <http://www.w3.org/2000/10/swap/time#> .
-
-:Let :param "2023-04-01T18:06:04Z"^^xsd:dateTime .
-
-{
-    :Let :param ?param .
-    ?param time:second ?result .
-}
-=>
-{
-    :result :is ?result .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is 4. 
-            
-```
-    </div>
-</div>
-
-### time:timeZone ### {#time:timeZone}
-Gets as object the trailing timezone offset of the subject xsd:dateTime (e.g., "-05:00").
-
-`true` if and only if `$o` is the timezone offset of `$s`.
-
-**Schema**<br>`$s+ time:timeZone $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:dateTime`<br>`$o`: `xsd:string`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Aminute+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Return the time zone component of the date "2023-04-01T18:06:04Z" .
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix time: <http://www.w3.org/2000/10/swap/time#> .
-
-:Let :param "2023-04-01T18:06:04Z"^^xsd:dateTime .
-
-{
-    :Let :param ?param .
-    ?param time:minute ?result .
-}
-=>
-{
-    :result :is ?result .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is "Z". 
-            
-```
-    </div>
-</div>
-
-### time:year ### {#time:year}
-Gets as object the integer year component of the subject xsd:dateTime.
-
-`true` if and only if `$o` is the integer year component of `$s`.
-
-**Schema**<br>`$s+ time:year $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:dateTime`<br>`$o`: `xsd:integer`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Ayear+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Return the minute component of the date "2023-04-01T18:06:04Z" .
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix time: <http://www.w3.org/2000/10/swap/time#> .
-
-:Let :param "2023-04-01T18:06:04Z"^^xsd:dateTime .
-
-{
-    :Let :param ?param .
-    ?param time:year ?result .
-}
-=>
-{
-    :result :is ?result .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is 2023. 
-            
-```
-    </div>
-</div>
-
-## string ## {#string}
-### string:concatenation ### {#string:concatenation}
-Concatenates the strings from the subject list into a single string as object.
-
-`true` if and only if the string concatenation of `$s.i` equals `$o`.
-
-**Schema**<br>`( $s.i+ )+ string:concatenation $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.i`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam+%28+%22hello%22+%22+%22+%22world%21%22+%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+string%3Aconcatenation+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Concatenates the string "hello", " " and "world!".
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix string: <http://www.w3.org/2000/10/swap/string#> .
-
-:Let :param ( "hello" " " "world!" ) .
-
-{
-    :Let :param ?param .
-    ?param string:concatenation ?result .
-}
-=>
-{
-    :result :is ?result .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is "hello world!". 
-            
-```
-    </div>
-</div>
-
-### string:contains ### {#string:contains}
-Checks whether the subject string contains the object string.
-
-`true` if and only if `$s` contains `$o`.
-
-**See also**<br><a href="#string:containsIgnoringCase">string:containsIgnoringCase</a>
-
-**Schema**<br>`$s+ string:contains $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22llo+worl%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3Acontains+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Checks whether the string "hello world!" contains the string "llo worl".
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix string: <http://www.w3.org/2000/10/swap/string#> .
-
-:Let :param1 "hello world!" .
-:Let :param2 "llo worl".
-{
-    :Let :param1 ?param1 .
-    :Let :param2 ?param2 .
-    ?param1 string:contains ?param2 .
-}
-=>
-{
-    :result :is true .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is true . 
-            
-```
-    </div>
-</div>
-
-### string:containsIgnoringCase ### {#string:containsIgnoringCase}
-Checks whether the subject string contains the object string, ignoring differences between lowercase and uppercase.
-
-`true` if and only if `$s` contains `$o` when ignoring case differences.
-
-**See also**<br><a href="#string:contains">string:contains</a>
-
-**Schema**<br>`$s+ string:containsIgnoringCase $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22lLO+woRl%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AcontainsIgnoringCase+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Checks whether the string "hello world!" contains the string "lLO woRl".
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix string: <http://www.w3.org/2000/10/swap/string#> .
-
-:Let :param1 "hello world!" .
-:Let :param2 "lLO woRl".
-{
-    :Let :param1 ?param1 .
-    :Let :param2 ?param2 .
-    ?param1 string:containsIgnoringCase ?param2 .
-}
-=>
-{
-    :result :is true .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is true . 
-            
-```
-    </div>
-</div>
-
-### string:endsWith ### {#string:endsWith}
-Checks whether the subject string ends with the object string.
-
-`true` if and only if `$s` ends with `$o`.
-
-**Schema**<br>`$s+ string:endsWith $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22orld%21%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AendsWith+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Checks whether the string "hello world!" ends with "orld!".
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix string: <http://www.w3.org/2000/10/swap/string#> .
-
-:Let :param1 "hello world!" .
-:Let :param2 "orld!".
-{
-    :Let :param1 ?param1 .
-    :Let :param2 ?param2 .
-    ?param1 string:endsWith ?param2 .
-}
-=>
-{
-    :result :is true .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is true . 
-            
-```
-    </div>
-</div>
-
-### string:equalIgnoringCase ### {#string:equalIgnoringCase}
-Checks whether the subject string is the same as the object string, ignoring differences between lowercase and uppercase.
-
-`true` if and only if `$s` is the same string as `$o` when ignoring case differences.
-
-**Schema**<br>`$s+ string:equalIgnoringCase $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22hELLo+wORld%21%22+.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AequalIgnoringCase+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Checks whether the string "hello world!" is equal to "hELLo wORld!" ignoring the case .
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix string: <http://www.w3.org/2000/10/swap/string#> .
-
-:Let :param1 "hello world!" .
-:Let :param2 "hELLo wORld!" .
-{
-    :Let :param1 ?param1 .
-    :Let :param2 ?param2 .
-    ?param1 string:equalIgnoringCase ?param2 .
-}
-=>
-{
-    :result :is true .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is true . 
-            
-```
-    </div>
-</div>
-
-### string:format ### {#string:format}
-Calculates the object as the result of replacing the tags in the first string from the subject list with the remaining strings from the subject list.
-See C's sprintf function for details on these tags.
-
-`true` if and only if `$o` is the result of replacing the tags found in `$s.(i=1)` with the strings `$s.(i>1)`
-
-**Schema**<br>`( $s.i+ )+ string:format $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.i`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam+%28+%22%25s%3A%2F%2F%25s%2F%25s%22+%22https%22+%22w3c.github.io%22+%22N3%2Fspec%2F%22+%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+string%3Aformat+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Calculate the result of applying the format "%s://%s/%s" to the strings "https", "w3c.github.io" and "N3/spec" .
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix string: <http://www.w3.org/2000/10/swap/string#> .
-
-:Let :param ( "%s://%s/%s" "https" "w3c.github.io" "N3/spec/" ) .
-
-{
-    :Let :param ?param .
-    ?param string:format ?result .
-}
-=>
-{
-    :result :is ?result .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is "https://w3c.github.io/N3/spec/". 
-            
-```
-    </div>
-</div>
-
-### string:greaterThan ### {#string:greaterThan}
-Checks whether the subject string is greater than the object string, according to Unicode code order.
-
-`true` if and only if `$s` is greater than `$o` as per the Unicode code order.
-
-**See also**<br><a href="#string:notGreaterThan">string:notGreaterThan</a>
-
-**Schema**<br>`$s+ string:greaterThan $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22Penguin%22+.%0A%3ALet+%3Aparam2+%22Cat%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AgreaterThan+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Checks whether the string "Pengiun" is greater than the string "Cat" .
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix string: <http://www.w3.org/2000/10/swap/string#> .
-
-:Let :param1 "Penguin" .
-:Let :param2 "Cat".
-{
-    :Let :param1 ?param1 .
-    :Let :param2 ?param2 .
-    ?param1 string:greaterThan ?param2 .
-}
-=>
-{
-    :result :is true .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is true . 
-            
-```
-    </div>
-</div>
-
-### string:lessThan ### {#string:lessThan}
-Checks whether the subject string is less than the object string, according to Unicode code order.
-
-`true` if and only if `$s` is less than `$o` as per the Unicode code order.
-
-**See also**<br><a href="#string:notLessThan">string:notLessThan</a>
-
-**Schema**<br>`$s+ string:lessThan $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22Cat%22+.%0A%3ALet+%3Aparam2+%22Penguin%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AlessThan+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Checks whether the string "Cat" is less than the string "Penguin" .
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix string: <http://www.w3.org/2000/10/swap/string#> .
-
-:Let :param1 "Cat" .
-:Let :param2 "Penguin".
-{
-    :Let :param1 ?param1 .
-    :Let :param2 ?param2 .
-    ?param1 string:lessThan ?param2 .
-}
-=>
-{
-    :result :is true .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is true . 
-            
-```
-    </div>
-</div>
-
-### string:matches ### {#string:matches}
-Checks whether the subject string matches the object regular expression.
-The regular expression follows the perl, python style.
-
-`true` if and only if string `$s` matches the regular expression `$o`
-
-**See also**<br><a href="#string:notMatches">string:notMatches</a>
-
-**Schema**<br>`$s+ string:matches $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22.%2A%28l%29%2Bo+wo.%2A%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3Amatches+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Checks whether the string "hello world!" matches the regular expression ".*(l)+o wo.*".
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix string: <http://www.w3.org/2000/10/swap/string#> .
-
-:Let :param1 "hello world!" .
-:Let :param2 ".*(l)+o wo.*".
-{
-    :Let :param1 ?param1 .
-    :Let :param2 ?param2 .
-    ?param1 string:matches ?param2 .
-}
-=>
-{
-    :result :is true .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is true . 
-            
-```
-    </div>
-</div>
-
-### string:notEqualIgnoringCase ### {#string:notEqualIgnoringCase}
-Checks whether the subject string is not the same as the object string, ignoring differences between lowercase and uppercase.
-
-`true` if and only if `$s` is not the same string as `$o` when ignoring case differences.
-
-**Schema**<br>`$s+ string:notEqualIgnoringCase $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22hELLo+dunia%21%22+.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AnotEqualIgnoringCase+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Checks whether the string "hello world!" is not equal to "hELLo dunia!" ignorning the case .
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix string: <http://www.w3.org/2000/10/swap/string#> .
-
-:Let :param1 "hello world!" .
-:Let :param2 "hELLo dunia!" .
-{
-    :Let :param1 ?param1 .
-    :Let :param2 ?param2 .
-    ?param1 string:notEqualIgnoringCase ?param2 .
-}
-=>
-{
-    :result :is true .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is true . 
-            
-```
-    </div>
-</div>
-
-### string:notGreaterThan ### {#string:notGreaterThan}
-Checks whether the subject string is not greater than the object string, according to Unicode code order.
-You can use this as an equivalent of a lessThanOrEqual operator.
-
-`true` if and only if `$s` is not greater than `$o` as per the Unicode code order.
-
-**See also**<br><a href="#string:greaterThan">string:greaterThan</a>
-
-**Schema**<br>`$s+ string:notGreaterThan $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22Cat%22+.%0A%3ALet+%3Aparam2+%22Penguin%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AnotGreaterThan+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Checks whether the string "Cat" is not greater than the string "Penguin" .
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix string: <http://www.w3.org/2000/10/swap/string#> .
-
-:Let :param1 "Cat" .
-:Let :param2 "Penguin".
-{
-    :Let :param1 ?param1 .
-    :Let :param2 ?param2 .
-    ?param1 string:notGreaterThan ?param2 .
-}
-=>
-{
-    :result :is true .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is true . 
-            
-```
-    </div>
-</div>
-
-### string:notLessThan ### {#string:notLessThan}
-Checks whether the subject string is not less than the object string, according to Unicode code order.
-You can use this as an equivalent of a greaterThanOrEqual operator.
-
-`true` if and only if `$s` is not less than `$o` as per the Unicode code order.
-
-**See also**<br><a href="#string:lessThan">string:lessThan</a>
-
-**Schema**<br>`$s+ string:notLessThan $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22Penguin%22.%0A%3ALet+%3Aparam2+%22Cat%22+.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AnotLessThan+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Checks whether the string "Penguin" is not less than the string "Cat" .
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix string: <http://www.w3.org/2000/10/swap/string#> .
-
-:Let :param1 "Penguin".
-:Let :param2 "Cat" .
-{
-    :Let :param1 ?param1 .
-    :Let :param2 ?param2 .
-    ?param1 string:notLessThan ?param2 .
-}
-=>
-{
-    :result :is true .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is true . 
-            
-```
-    </div>
-</div>
-
-### string:notMatches ### {#string:notMatches}
-Checks whether the subject string does not match the object regular expression.
-The regular expression follows the perl, python style.
-
-`true` if and only if string `$s` does not match the regular expression `$o`
-
-**See also**<br><a href="#string:matches">string:matches</a>
-
-**Schema**<br>`$s+ string:notMatches $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22.%2A%28l%29%2Bo+dunia.%2A%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AnotMatches+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Checks whether the string "hello world!" no matches the regular expression ".*(l)+o dunia.*".
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix string: <http://www.w3.org/2000/10/swap/string#> .
-
-:Let :param1 "hello world!" .
-:Let :param2 ".*(l)+o dunia.*".
-{
-    :Let :param1 ?param1 .
-    :Let :param2 ?param2 .
-    ?param1 string:notMatches ?param2 .
-}
-=>
-{
-    :result :is true .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is true . 
-            
-```
-    </div>
-</div>
-
-### string:replace ### {#string:replace}
-Calculates the object as the result of, given the strings in the subject list, replacing all occurrences of the second string in the first string with the third string.
-
-`true` if and only if `$o` is the result of replacing all occurrences of `$s.2` in `$s.1` with `$s.3`
-
-**Schema**<br>`( $s.1+ $s.2+ $s.3+ )+ string:replace $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.1`: `xsd:string`, `$s.2`: `xsd:string`, `$s.3`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Adata+%22hello+world%21%22+.%0A%3ALet+%3Asearch+%22%28l%29%22+.%0A%3ALet+%3Areplace+%22%5B%241%5D%22+.%0A%7B%0A++++%3ALet+%3Adata+%3Fdata+.%0A++++%3ALet+%3Asearch+%3Fsearch+.%0A++++%3ALet+%3Areplace+%3Freplace+.%0A++++%28%3Fdata+%3Fsearch+%3Freplace%29+string%3Areplace+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Replace all "l"-s in the string "hello world!" with the bracket version "[l]" .
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix string: <http://www.w3.org/2000/10/swap/string#> .
-
-:Let :data "hello world!" .
-:Let :search "(l)" .
-:Let :replace "[$1]" .
-{
-    :Let :data ?data .
-    :Let :search ?search .
-    :Let :replace ?replace .
-    (?data ?search ?replace) string:replace ?result .
-}
-=>
-{
-    :result :is ?result .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is "he[l][l]o wor[l]d!". 
-            
-```
-    </div>
-</div>
-
-### string:scrape ### {#string:scrape}
-Calculates the object as the first matching group when, given the subject list, matching the second string as regular expression (with exactly 1 group) against the first string.
-
-`true` if and only if `$o` is the first matching group when matching `$s.2` as a regular expression against `$s.1`
-
-**Schema**<br>`( $s.1+ $s.2+ )+ string:scrape $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.1`: `xsd:string`, `$s.2`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22https%3A%2F%2Fw3c.github.io%2FN3%2Fspec%2F%22+.+%0A%3ALet+%3Aparam2+%22.%2A%2F%28%5B%5E%2F%5D%2B%2F%29%24%22+.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%28%3Fparam1+%3Fparam2%29+string%3Ascrape+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Extract from the string "https://w3c.github.io/N3/spec/" the last path element using a regular expression .
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix string: <http://www.w3.org/2000/10/swap/string#> .
-
-:Let :param1 "https://w3c.github.io/N3/spec/" . 
-:Let :param2 ".*/([^/]+/)$" .
-{
-    :Let :param1 ?param1 .
-    :Let :param2 ?param2 .
-    (?param1 ?param2) string:scrape ?result .
-}
-=>
-{
-    :result :is ?result .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is "spec/". 
-            
-```
-    </div>
-</div>
-
-### string:startsWith ### {#string:startsWith}
-Checks whether the subject string starts with the object string.
-
-`true` if and only if `$s` starts with `$o`.
-
-**Schema**<br>`$s+ string:startsWith $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
-**Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22hello%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AstartsWith+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Checks whether the string "hello world!" starts with "hello" .
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix string: <http://www.w3.org/2000/10/swap/string#> .
-
-:Let :param1 "hello world!" .
-:Let :param2 "hello".
-{
-    :Let :param1 ?param1 .
-    :Let :param2 ?param2 .
-    ?param1 string:startsWith ?param2 .
-}
-=>
-{
-    :result :is true .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is true . 
             
 ```
     </div>
@@ -2116,6 +1213,101 @@ Literals will be compared exactly: their datatypes must be identical (in case of
 
 **Schema**<br>`$s? log:equalTo $o?`<br><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++_%3Ax+log%3AequalTo+42+.%0A++++%3Fq++log%3AequalTo+%22Cat%22%40en+.%0A%0A++++%23+This+will+fail+because+_%3Ax+is+already+assigned+to+42+.%0A++++%23+_%3Ax+log%3AequalTo+17+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fq+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Assign a value to an existential or universal variable.
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    _:x log:equalTo 42 .
+    ?q  log:equalTo "Cat"@en .
+
+    # This will fail because _:x is already assigned to 42 .
+    # _:x log:equalTo 17 .
+}
+=>
+{
+    :result :is ?q .
+} . 
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is "Cat"@en .
+            
+```
+    </div>
+</div>
+<div class=ex_container >
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%23+This+will+fail%0A++++%22Cat%22+log%3AequalTo+%22Cat%22%40en+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Determine if "Cat" is equal to "Cat"@en .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    # This will fail
+    "Cat" log:equalTo "Cat"@en .
+}
+=>
+{
+    :result :is true .
+} . 
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+# no results
+            
+```
+    </div>
+</div>
+<div class=ex_container >
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%28+%3Fx+%3Fy+%3Fz+%29+log%3AequalTo+%28+1+2+3+%29%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fx+%2C+%3Fy+%2C+%3Fz+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Assign values from the object list to universal variables given in the subject list. 
+This can be compared to "destructuring" or "unpacking" in programming languages such as JavaScript or Python.
+In contrast to those languages, however, it works in either direction in N3.
+This mechanism works because an effort is made to ensure the truth of builtin statements in N3.
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    ( ?x ?y ?z ) log:equalTo ( 1 2 3 )
+}
+=>
+{
+    :result :is ?x , ?y , ?z .
+} . 
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is 1 , 2 , 3 . # objects can be in any order
+            
+```
+    </div>
+</div>
+<div class=ex_container >
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%40prefix+owl%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E+.%0A%0A%3Chttp%3A%2F%2Ffamous.web.site%3E+owl%3AsameAs+%3Chttp%3A%2F%2Fmirror.famous.web.site%3E+.%0A%0A%7B%0A++++%3Chttp%3A%2F%2Ffamous.web.site%3E+log%3AequalTo+%3Chttp%3A%2F%2Ffamous.web.site%3E+.%0A%0A++++%23+But+not%0A++++%23%0A++++%23+%3Chttp%3A%2F%2Ffamous.web.site%3E+log%3AequalTo+%3Chttp%3A%2F%2Fmirror.famous.web.site%3E+.%0A++++%23%0A++++%23+and+not%0A++++%23%0A++++%23+%3Chttp%3A%2F%2Ffamous.web.site%23123%3E+log%3AequalTo+%3Chttp%3A%2F%2Ffamous.web.site%3E+.%0A++++%23%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Determine &lt;http://famous.web.site&gt; is equal to itself .
@@ -2140,6 +1332,37 @@ Determine &lt;http://famous.web.site&gt; is equal to itself .
     #
     # <http://famous.web.site#123> log:equalTo <http://famous.web.site> .
     #
+}
+=>
+{
+    :result :is true .
+} . 
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is true. 
+            
+```
+    </div>
+</div>
+<div class=ex_container >
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++1+log%3AequalTo+1+.%0A++++%22Cat%22+log%3AequalTo+%22Cat%22+.%0A++++%7B+%3AA+%3AB+%3AC+.+%3AD+%3AE+%3AF+.+%7D+log%3AequalTo+%7B+%3AD+%3AE+%3AF+.+%3AA+%3AB+%3AC+.+%7D+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Determine if 1 is equal to 1 and "Cat" is equal to "Cat" and { :A :B :C . :D :E :F } is equal to { :D :E :F . :A :B :C }.
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    1 log:equalTo 1 .
+    "Cat" log:equalTo "Cat" .
+    { :A :B :C . :D :E :F . } log:equalTo { :D :E :F . :A :B :C . } .
 }
 =>
 {
@@ -2184,132 +1407,6 @@ This mechanism works because an effort is made to ensure the truthfulness of bui
 
 @prefix : <http://example.org/>.
 :result :is "War and Peace" , "Leo Tolstoy" , 1225 . # objects can be in any order
-            
-```
-    </div>
-</div>
-<div class=ex_container >
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%28+%3Fx+%3Fy+%3Fz+%29+log%3AequalTo+%28+1+2+3+%29%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fx+%2C+%3Fy+%2C+%3Fz+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Assign values from the object list to universal variables given in the subject list. 
-This can be compared to "destructuring" or "unpacking" in programming languages such as JavaScript or Python.
-In contrast to those languages, however, it works in either direction in N3.
-This mechanism works because an effort is made to ensure the truth of builtin statements in N3.
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#> .
-
-{
-    ( ?x ?y ?z ) log:equalTo ( 1 2 3 )
-}
-=>
-{
-    :result :is ?x , ?y , ?z .
-} . 
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is 1 , 2 , 3 . # objects can be in any order
-            
-```
-    </div>
-</div>
-<div class=ex_container >
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++1+log%3AequalTo+1+.%0A++++%22Cat%22+log%3AequalTo+%22Cat%22+.%0A++++%7B+%3AA+%3AB+%3AC+.+%3AD+%3AE+%3AF+.+%7D+log%3AequalTo+%7B+%3AD+%3AE+%3AF+.+%3AA+%3AB+%3AC+.+%7D+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Determine if 1 is equal to 1 and "Cat" is equal to "Cat" and { :A :B :C . :D :E :F } is equal to { :D :E :F . :A :B :C }.
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#> .
-
-{
-    1 log:equalTo 1 .
-    "Cat" log:equalTo "Cat" .
-    { :A :B :C . :D :E :F . } log:equalTo { :D :E :F . :A :B :C . } .
-}
-=>
-{
-    :result :is true .
-} . 
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is true. 
-            
-```
-    </div>
-</div>
-<div class=ex_container >
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%23+This+will+fail%0A++++%22Cat%22+log%3AequalTo+%22Cat%22%40en+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Determine if "Cat" is equal to "Cat"@en .
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#> .
-
-{
-    # This will fail
-    "Cat" log:equalTo "Cat"@en .
-}
-=>
-{
-    :result :is true .
-} . 
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-# no results
-            
-```
-    </div>
-</div>
-<div class=ex_container >
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++_%3Ax+log%3AequalTo+42+.%0A++++%3Fq++log%3AequalTo+%22Cat%22%40en+.%0A%0A++++%23+This+will+fail+because+_%3Ax+is+already+assigned+to+42+.%0A++++%23+_%3Ax+log%3AequalTo+17+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fq+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Assign a value to an existential or universal variable.
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#> .
-
-{
-    _:x log:equalTo 42 .
-    ?q  log:equalTo "Cat"@en .
-
-    # This will fail because _:x is already assigned to 42 .
-    # _:x log:equalTo 17 .
-}
-=>
-{
-    :result :is ?q .
-} . 
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is "Cat"@en .
             
 ```
     </div>
@@ -2481,9 +1578,9 @@ Checks whether the subject and object N3 terms are _not_ the same (comparison oc
 
 **Schema**<br>`$s+ log:notEqualTo $o+`<br><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%22Cat%22+log%3AnotEqualTo+%22Cat%22%40en+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A+++%0A++++%7B+%3AA+%3AB+%3AC+.+%7D+log%3AnotEqualTo+%7B+%3AA+%3AB+%3Fc+%7D+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
-Determine if "Cat" is not equal to "Cat"@en .
+Check whether two graph terms, one containing a universal variable, are not equal.
             
         <p><b>Formula:</b>
 ```
@@ -2492,19 +1589,20 @@ Determine if "Cat" is not equal to "Cat"@en .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 {
-    "Cat" log:notEqualTo "Cat"@en .
+   
+    { :A :B :C . } log:notEqualTo { :A :B ?c } .
 }
 =>
 {
     :result :is true .
-} . 
+} .
             
 ```
         <p><b>Result:</b>
 ```
 
 @prefix : <http://example.org/>.
-:result :is true .
+# no result (?c can be unified with :C)
             
 ```
     </div>
@@ -2540,36 +1638,6 @@ Check if an existential or universal variable is not equal to a value.
     </div>
 </div>
 <div class=ex_container >
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A+++%0A++++%7B+%3AA+%3AB+%3AC+.+%7D+log%3AnotEqualTo+%7B+%3AA+%3AB+%3Fc+%7D+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Check whether two graph terms, one containing a universal variable, are not equal.
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#> .
-
-{
-   
-    { :A :B :C . } log:notEqualTo { :A :B ?c } .
-}
-=>
-{
-    :result :is true .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-# no result (?c can be unified with :C)
-            
-```
-    </div>
-</div>
-<div class=ex_container >
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++1+log%3AnotEqualTo+2+.%0A++++%22Cat%22+log%3AnotEqualTo+%22CAT%22+.%0A++++%7B+%3AA+%3AB+%3AC+.+%7D+log%3AnotEqualTo+%7B+%3AC+%3AB+%3AA+.+%7D+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Determine if 1 is not equal to 2 and "Cat" is not equal to "CAT" and { :A :B :C . } is not equal to { :C :B :A }.
@@ -2600,6 +1668,35 @@ Determine if 1 is not equal to 2 and "Cat" is not equal to "CAT" and { :A :B :C 
 ```
     </div>
 </div>
+<div class=ex_container >
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%22Cat%22+log%3AnotEqualTo+%22Cat%22%40en+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Determine if "Cat" is not equal to "Cat"@en .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    "Cat" log:notEqualTo "Cat"@en .
+}
+=>
+{
+    :result :is true .
+} . 
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is true .
+            
+```
+    </div>
+</div>
 
 ### log:notIncludes ### {#log:notIncludes}
 Checks whether the subject graph term _does not_ include the object graph term (taking into account variables)
@@ -2610,6 +1707,35 @@ Checks whether the subject graph term _does not_ include the object graph term (
 
 **Schema**<br>`$s+ log:notIncludes $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `log:Formula`<br>`$o`: `log:Formula`</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%7B+%3AFelix+a+%3ACat+%7D+log%3AnotIncludes+%7B+%3FX+%3Aeats+%3FY+%7D+.%0A%7D+%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Check whether the formula { :Felix a :Cat } does not include { ?X :eats ?Y }.
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{ 
+    { :Felix a :Cat } log:notIncludes { ?X :eats ?Y } .
+} 
+=>
+{
+    :result :is true .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is true.
+            
+```
+    </div>
+</div>
+<div class=ex_container >
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%23+Dynamic+evaluation+of+%3FX+and+%3FY%0A++++%3FX+log%3AnotIncludes+%3FY+.%0A++++%3FX+log%3AequalTo+%7B+%3Aa+%3Ab+%3Ac+%7D.%0A++++%3FY+log%3AequalTo+%7B+%3Aa+%3Ab+%3Ad+%7D.%0A%7D+%0A%3D%3E++++++++++++++%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Check whether the formula { :a :b :c } does not include { :a :b :d }.
@@ -2627,35 +1753,6 @@ Check whether the formula { :a :b :c } does not include { :a :b :d }.
     ?Y log:equalTo { :a :b :d }.
 } 
 =>              
-{
-    :result :is true .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is true.
-            
-```
-    </div>
-</div>
-<div class=ex_container >
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%7B+%3AFelix+a+%3ACat+%7D+log%3AnotIncludes+%7B+%3FX+%3Aeats+%3FY+%7D+.%0A%7D+%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Check whether the formula { :Felix a :Cat } does not include { ?X :eats ?Y }.
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#> .
-
-{ 
-    { :Felix a :Cat } log:notIncludes { ?X :eats ?Y } .
-} 
-=>
 {
     :result :is true .
 } .
@@ -3853,7 +2950,7 @@ Calculates the object as the sine value of the subject.
 
 `true` if and only if `$o` is the sine value of `$s`.
 
-**See also**<br><a href="#math:sinh">math:sinh</a><br><a href="#math:asin">math:asin</a>
+**See also**<br><a href="#math:asin">math:asin</a><br><a href="#math:sinh">math:sinh</a>
 
 **Schema**<br>`$s? math:sin $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
@@ -3977,7 +3074,7 @@ Calculates the object as the tangent value of the subject.
 
 `true` if and only if `$o` is the tangent value of `$s`.
 
-**See also**<br><a href="#math:atan">math:atan</a><br><a href="#math:tanh">math:tanh</a>
+**See also**<br><a href="#math:tanh">math:tanh</a><br><a href="#math:atan">math:atan</a>
 
 **Schema**<br>`$s? math:tan $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
@@ -4020,7 +3117,7 @@ Calculates the object as the hyperbolic tangent value of the subject.
 
 `true` if and only if `$o` is the hyperbolic tangent value of `$s`.
 
-**See also**<br><a href="#math:tan">math:tan</a><br><a href="#math:atan">math:atan</a>
+**See also**<br><a href="#math:atan">math:atan</a><br><a href="#math:tan">math:tan</a>
 
 **Schema**<br>`$s? math:tanh $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
@@ -4053,6 +3150,949 @@ Calculate the hyperbolic tanget of 0.549306 .
 @prefix : <http://example.org/>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 :result :is "0.49999989174945103"^^xsd:double. 
+            
+```
+    </div>
+</div>
+
+## string ## {#string}
+### string:concatenation ### {#string:concatenation}
+Concatenates the strings from the subject list into a single string as object.
+
+`true` if and only if the string concatenation of `$s.i` equals `$o`.
+
+**Schema**<br>`( $s.i+ )+ string:concatenation $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.i`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam+%28+%22hello%22+%22+%22+%22world%21%22+%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+string%3Aconcatenation+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Concatenates the string "hello", " " and "world!".
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :param ( "hello" " " "world!" ) .
+
+{
+    :Let :param ?param .
+    ?param string:concatenation ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is "hello world!". 
+            
+```
+    </div>
+</div>
+
+### string:contains ### {#string:contains}
+Checks whether the subject string contains the object string.
+
+`true` if and only if `$s` contains `$o`.
+
+**See also**<br><a href="#string:containsIgnoringCase">string:containsIgnoringCase</a>
+
+**Schema**<br>`$s+ string:contains $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22llo+worl%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3Acontains+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Checks whether the string "hello world!" contains the string "llo worl".
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :param1 "hello world!" .
+:Let :param2 "llo worl".
+{
+    :Let :param1 ?param1 .
+    :Let :param2 ?param2 .
+    ?param1 string:contains ?param2 .
+}
+=>
+{
+    :result :is true .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is true . 
+            
+```
+    </div>
+</div>
+
+### string:containsIgnoringCase ### {#string:containsIgnoringCase}
+Checks whether the subject string contains the object string, ignoring differences between lowercase and uppercase.
+
+`true` if and only if `$s` contains `$o` when ignoring case differences.
+
+**See also**<br><a href="#string:contains">string:contains</a>
+
+**Schema**<br>`$s+ string:containsIgnoringCase $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22lLO+woRl%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AcontainsIgnoringCase+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Checks whether the string "hello world!" contains the string "lLO woRl".
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :param1 "hello world!" .
+:Let :param2 "lLO woRl".
+{
+    :Let :param1 ?param1 .
+    :Let :param2 ?param2 .
+    ?param1 string:containsIgnoringCase ?param2 .
+}
+=>
+{
+    :result :is true .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is true . 
+            
+```
+    </div>
+</div>
+
+### string:endsWith ### {#string:endsWith}
+Checks whether the subject string ends with the object string.
+
+`true` if and only if `$s` ends with `$o`.
+
+**Schema**<br>`$s+ string:endsWith $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22orld%21%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AendsWith+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Checks whether the string "hello world!" ends with "orld!".
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :param1 "hello world!" .
+:Let :param2 "orld!".
+{
+    :Let :param1 ?param1 .
+    :Let :param2 ?param2 .
+    ?param1 string:endsWith ?param2 .
+}
+=>
+{
+    :result :is true .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is true . 
+            
+```
+    </div>
+</div>
+
+### string:equalIgnoringCase ### {#string:equalIgnoringCase}
+Checks whether the subject string is the same as the object string, ignoring differences between lowercase and uppercase.
+
+`true` if and only if `$s` is the same string as `$o` when ignoring case differences.
+
+**Schema**<br>`$s+ string:equalIgnoringCase $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22hELLo+wORld%21%22+.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AequalIgnoringCase+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Checks whether the string "hello world!" is equal to "hELLo wORld!" ignoring the case .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :param1 "hello world!" .
+:Let :param2 "hELLo wORld!" .
+{
+    :Let :param1 ?param1 .
+    :Let :param2 ?param2 .
+    ?param1 string:equalIgnoringCase ?param2 .
+}
+=>
+{
+    :result :is true .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is true . 
+            
+```
+    </div>
+</div>
+
+### string:format ### {#string:format}
+Calculates the object as the result of replacing the tags in the first string from the subject list with the remaining strings from the subject list.
+See C's sprintf function for details on these tags.
+
+`true` if and only if `$o` is the result of replacing the tags found in `$s.(i=1)` with the strings `$s.(i>1)`
+
+**Schema**<br>`( $s.i+ )+ string:format $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.i`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam+%28+%22%25s%3A%2F%2F%25s%2F%25s%22+%22https%22+%22w3c.github.io%22+%22N3%2Fspec%2F%22+%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+string%3Aformat+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Calculate the result of applying the format "%s://%s/%s" to the strings "https", "w3c.github.io" and "N3/spec" .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :param ( "%s://%s/%s" "https" "w3c.github.io" "N3/spec/" ) .
+
+{
+    :Let :param ?param .
+    ?param string:format ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is "https://w3c.github.io/N3/spec/". 
+            
+```
+    </div>
+</div>
+
+### string:greaterThan ### {#string:greaterThan}
+Checks whether the subject string is greater than the object string, according to Unicode code order.
+
+`true` if and only if `$s` is greater than `$o` as per the Unicode code order.
+
+**See also**<br><a href="#string:notGreaterThan">string:notGreaterThan</a>
+
+**Schema**<br>`$s+ string:greaterThan $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22Penguin%22+.%0A%3ALet+%3Aparam2+%22Cat%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AgreaterThan+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Checks whether the string "Pengiun" is greater than the string "Cat" .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :param1 "Penguin" .
+:Let :param2 "Cat".
+{
+    :Let :param1 ?param1 .
+    :Let :param2 ?param2 .
+    ?param1 string:greaterThan ?param2 .
+}
+=>
+{
+    :result :is true .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is true . 
+            
+```
+    </div>
+</div>
+
+### string:lessThan ### {#string:lessThan}
+Checks whether the subject string is less than the object string, according to Unicode code order.
+
+`true` if and only if `$s` is less than `$o` as per the Unicode code order.
+
+**See also**<br><a href="#string:notLessThan">string:notLessThan</a>
+
+**Schema**<br>`$s+ string:lessThan $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22Cat%22+.%0A%3ALet+%3Aparam2+%22Penguin%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AlessThan+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Checks whether the string "Cat" is less than the string "Penguin" .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :param1 "Cat" .
+:Let :param2 "Penguin".
+{
+    :Let :param1 ?param1 .
+    :Let :param2 ?param2 .
+    ?param1 string:lessThan ?param2 .
+}
+=>
+{
+    :result :is true .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is true . 
+            
+```
+    </div>
+</div>
+
+### string:matches ### {#string:matches}
+Checks whether the subject string matches the object regular expression.
+The regular expression follows the perl, python style.
+
+`true` if and only if string `$s` matches the regular expression `$o`
+
+**See also**<br><a href="#string:notMatches">string:notMatches</a>
+
+**Schema**<br>`$s+ string:matches $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22.%2A%28l%29%2Bo+wo.%2A%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3Amatches+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Checks whether the string "hello world!" matches the regular expression ".*(l)+o wo.*".
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :param1 "hello world!" .
+:Let :param2 ".*(l)+o wo.*".
+{
+    :Let :param1 ?param1 .
+    :Let :param2 ?param2 .
+    ?param1 string:matches ?param2 .
+}
+=>
+{
+    :result :is true .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is true . 
+            
+```
+    </div>
+</div>
+
+### string:notEqualIgnoringCase ### {#string:notEqualIgnoringCase}
+Checks whether the subject string is not the same as the object string, ignoring differences between lowercase and uppercase.
+
+`true` if and only if `$s` is not the same string as `$o` when ignoring case differences.
+
+**Schema**<br>`$s+ string:notEqualIgnoringCase $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22hELLo+dunia%21%22+.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AnotEqualIgnoringCase+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Checks whether the string "hello world!" is not equal to "hELLo dunia!" ignorning the case .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :param1 "hello world!" .
+:Let :param2 "hELLo dunia!" .
+{
+    :Let :param1 ?param1 .
+    :Let :param2 ?param2 .
+    ?param1 string:notEqualIgnoringCase ?param2 .
+}
+=>
+{
+    :result :is true .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is true . 
+            
+```
+    </div>
+</div>
+
+### string:notGreaterThan ### {#string:notGreaterThan}
+Checks whether the subject string is not greater than the object string, according to Unicode code order.
+You can use this as an equivalent of a lessThanOrEqual operator.
+
+`true` if and only if `$s` is not greater than `$o` as per the Unicode code order.
+
+**See also**<br><a href="#string:greaterThan">string:greaterThan</a>
+
+**Schema**<br>`$s+ string:notGreaterThan $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22Cat%22+.%0A%3ALet+%3Aparam2+%22Penguin%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AnotGreaterThan+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Checks whether the string "Cat" is not greater than the string "Penguin" .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :param1 "Cat" .
+:Let :param2 "Penguin".
+{
+    :Let :param1 ?param1 .
+    :Let :param2 ?param2 .
+    ?param1 string:notGreaterThan ?param2 .
+}
+=>
+{
+    :result :is true .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is true . 
+            
+```
+    </div>
+</div>
+
+### string:notLessThan ### {#string:notLessThan}
+Checks whether the subject string is not less than the object string, according to Unicode code order.
+You can use this as an equivalent of a greaterThanOrEqual operator.
+
+`true` if and only if `$s` is not less than `$o` as per the Unicode code order.
+
+**See also**<br><a href="#string:lessThan">string:lessThan</a>
+
+**Schema**<br>`$s+ string:notLessThan $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22Penguin%22.%0A%3ALet+%3Aparam2+%22Cat%22+.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AnotLessThan+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Checks whether the string "Penguin" is not less than the string "Cat" .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :param1 "Penguin".
+:Let :param2 "Cat" .
+{
+    :Let :param1 ?param1 .
+    :Let :param2 ?param2 .
+    ?param1 string:notLessThan ?param2 .
+}
+=>
+{
+    :result :is true .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is true . 
+            
+```
+    </div>
+</div>
+
+### string:notMatches ### {#string:notMatches}
+Checks whether the subject string does not match the object regular expression.
+The regular expression follows the perl, python style.
+
+`true` if and only if string `$s` does not match the regular expression `$o`
+
+**See also**<br><a href="#string:matches">string:matches</a>
+
+**Schema**<br>`$s+ string:notMatches $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22.%2A%28l%29%2Bo+dunia.%2A%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AnotMatches+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Checks whether the string "hello world!" no matches the regular expression ".*(l)+o dunia.*".
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :param1 "hello world!" .
+:Let :param2 ".*(l)+o dunia.*".
+{
+    :Let :param1 ?param1 .
+    :Let :param2 ?param2 .
+    ?param1 string:notMatches ?param2 .
+}
+=>
+{
+    :result :is true .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is true . 
+            
+```
+    </div>
+</div>
+
+### string:replace ### {#string:replace}
+Calculates the object as the result of, given the strings in the subject list, replacing all occurrences of the second string in the first string with the third string.
+
+`true` if and only if `$o` is the result of replacing all occurrences of `$s.2` in `$s.1` with `$s.3`
+
+**Schema**<br>`( $s.1+ $s.2+ $s.3+ )+ string:replace $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.1`: `xsd:string`, `$s.2`: `xsd:string`, `$s.3`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Adata+%22hello+world%21%22+.%0A%3ALet+%3Asearch+%22%28l%29%22+.%0A%3ALet+%3Areplace+%22%5B%241%5D%22+.%0A%7B%0A++++%3ALet+%3Adata+%3Fdata+.%0A++++%3ALet+%3Asearch+%3Fsearch+.%0A++++%3ALet+%3Areplace+%3Freplace+.%0A++++%28%3Fdata+%3Fsearch+%3Freplace%29+string%3Areplace+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Replace all "l"-s in the string "hello world!" with the bracket version "[l]" .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :data "hello world!" .
+:Let :search "(l)" .
+:Let :replace "[$1]" .
+{
+    :Let :data ?data .
+    :Let :search ?search .
+    :Let :replace ?replace .
+    (?data ?search ?replace) string:replace ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is "he[l][l]o wor[l]d!". 
+            
+```
+    </div>
+</div>
+
+### string:scrape ### {#string:scrape}
+Calculates the object as the first matching group when, given the subject list, matching the second string as regular expression (with exactly 1 group) against the first string.
+
+`true` if and only if `$o` is the first matching group when matching `$s.2` as a regular expression against `$s.1`
+
+**Schema**<br>`( $s.1+ $s.2+ )+ string:scrape $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.1`: `xsd:string`, `$s.2`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22https%3A%2F%2Fw3c.github.io%2FN3%2Fspec%2F%22+.+%0A%3ALet+%3Aparam2+%22.%2A%2F%28%5B%5E%2F%5D%2B%2F%29%24%22+.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%28%3Fparam1+%3Fparam2%29+string%3Ascrape+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Extract from the string "https://w3c.github.io/N3/spec/" the last path element using a regular expression .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :param1 "https://w3c.github.io/N3/spec/" . 
+:Let :param2 ".*/([^/]+/)$" .
+{
+    :Let :param1 ?param1 .
+    :Let :param2 ?param2 .
+    (?param1 ?param2) string:scrape ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is "spec/". 
+            
+```
+    </div>
+</div>
+
+### string:startsWith ### {#string:startsWith}
+Checks whether the subject string starts with the object string.
+
+`true` if and only if `$s` starts with `$o`.
+
+**Schema**<br>`$s+ string:startsWith $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:string`<br>`$o`: `xsd:string`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22hello%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AstartsWith+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Checks whether the string "hello world!" starts with "hello" .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :param1 "hello world!" .
+:Let :param2 "hello".
+{
+    :Let :param1 ?param1 .
+    :Let :param2 ?param2 .
+    ?param1 string:startsWith ?param2 .
+}
+=>
+{
+    :result :is true .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is true . 
+            
+```
+    </div>
+</div>
+
+## time ## {#time}
+### time:day ### {#time:day}
+Gets as object the integer day component of the subject xsd:dateTime.
+
+`true` if and only if `$o` is the integer day component of `$s`.
+
+**Schema**<br>`$s+ time:day $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:dateTime`<br>`$o`: `xsd:integer`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Aday+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Return the day component of the date "2023-04-01T18:06:04Z" .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix time: <http://www.w3.org/2000/10/swap/time#> .
+
+:Let :param "2023-04-01T18:06:04Z"^^xsd:dateTime .
+
+{
+    :Let :param ?param .
+    ?param time:day ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is 1. 
+            
+```
+    </div>
+</div>
+
+### time:hour ### {#time:hour}
+Gets as object the integer hour component of the subject xsd:dateTime.
+
+`true` if and only if `$o` is the integer hour component of `$s`.
+
+**Schema**<br>`$s+ time:hour $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:dateTime`<br>`$o`: `xsd:integer`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Ahour+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Return the hour component of the date "2023-04-01T18:06:04Z" .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix time: <http://www.w3.org/2000/10/swap/time#> .
+
+:Let :param "2023-04-01T18:06:04Z"^^xsd:dateTime .
+
+{
+    :Let :param ?param .
+    ?param time:hour ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is 18. 
+            
+```
+    </div>
+</div>
+
+### time:minute ### {#time:minute}
+Gets as object the integer minutes component of the subject xsd:dateTime.
+
+`true` if and only if `$o` is the integer minutes component of `$s`.
+
+**Schema**<br>`$s+ time:minute $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:dateTime`<br>`$o`: `xsd:integer`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Aminute+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Return the minute component of the date "2023-04-01T18:06:04Z" .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix time: <http://www.w3.org/2000/10/swap/time#> .
+
+:Let :param "2023-04-01T18:06:04Z"^^xsd:dateTime .
+
+{
+    :Let :param ?param .
+    ?param time:minute ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is 6. 
+            
+```
+    </div>
+</div>
+
+### time:month ### {#time:month}
+Gets as object the integer month component of the subject xsd:dateTime.
+
+`true` if and only if `$o` is the integer month component of `$s`.
+
+**Schema**<br>`$s+ time:month $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:dateTime`<br>`$o`: `xsd:integer`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Amonth+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Return the month component of the date "2023-04-01T18:06:04Z" .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix time: <http://www.w3.org/2000/10/swap/time#> .
+
+:Let :param "2023-04-01T18:06:04Z"^^xsd:dateTime .
+
+{
+    :Let :param ?param .
+    ?param time:month ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is 4. 
+            
+```
+    </div>
+</div>
+
+### time:second ### {#time:second}
+Gets as object the integer seconds component of the subject xsd:dateTime.
+
+`true` if and only if `$o` is the integer seconds component of `$s`.
+
+**Schema**<br>`$s+ time:second $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:dateTime`<br>`$o`: `xsd:integer`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Asecond+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Return the seconds component of the date "2023-04-01T18:06:04Z" .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix time: <http://www.w3.org/2000/10/swap/time#> .
+
+:Let :param "2023-04-01T18:06:04Z"^^xsd:dateTime .
+
+{
+    :Let :param ?param .
+    ?param time:second ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is 4. 
+            
+```
+    </div>
+</div>
+
+### time:timeZone ### {#time:timeZone}
+Gets as object the trailing timezone offset of the subject xsd:dateTime (e.g., "-05:00").
+
+`true` if and only if `$o` is the timezone offset of `$s`.
+
+**Schema**<br>`$s+ time:timeZone $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:dateTime`<br>`$o`: `xsd:string`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Aminute+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Return the time zone component of the date "2023-04-01T18:06:04Z" .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix time: <http://www.w3.org/2000/10/swap/time#> .
+
+:Let :param "2023-04-01T18:06:04Z"^^xsd:dateTime .
+
+{
+    :Let :param ?param .
+    ?param time:minute ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is "Z". 
+            
+```
+    </div>
+</div>
+
+### time:year ### {#time:year}
+Gets as object the integer year component of the subject xsd:dateTime.
+
+`true` if and only if `$o` is the integer year component of `$s`.
+
+**Schema**<br>`$s+ time:year $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:dateTime`<br>`$o`: `xsd:integer`</div></div><br>
+**Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Ayear+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Return the minute component of the date "2023-04-01T18:06:04Z" .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix time: <http://www.w3.org/2000/10/swap/time#> .
+
+:Let :param "2023-04-01T18:06:04Z"^^xsd:dateTime .
+
+{
+    :Let :param ?param .
+    ?param time:year ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is 2023. 
             
 ```
     </div>

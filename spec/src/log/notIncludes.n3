@@ -67,8 +67,8 @@ Check whether the formula { :a :b :c } does not include { :a :b :d }.
             fno:predicate "$s" ;
             fno:mode "+" ;
             fnon:position fnon:subject ;
-            fno:type log:Formula
-
+            fno:type log:Formula ;
+            dcterms:description "Can also be left as a variable to use current N3 document as scope." ;
         ] [ a fno:Parameter ;
             fno:predicate "$o" ;
             fno:mode "+" ;

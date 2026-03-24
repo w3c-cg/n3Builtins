@@ -5,10 +5,10 @@
   <title>Notation3 Builtin Functions</title>
   <meta content="CG-FINAL" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-final" rel="stylesheet">
-  <meta content="Bikeshed version 3c53a5b02, updated Thu Nov 27 17:03:30 2025 +0000" name="generator">
+  <meta content="Bikeshed version 0ef803fdf, updated Tue Jan 6 11:59:39 2026 -0800" name="generator">
   <link href="https://w3c-cg.github.io/n3Builtins/" rel="canonical">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="bf156b66a6b50edf4d61c9edb574ba72237a97c9" name="revision">
+  <meta content="912f7e22fd55912938a91841990fce7cd42c95bf" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>
@@ -585,7 +585,7 @@ dfn > a.self-link::before      { content: "#"; }
 </p>
    <h1 class="no-ref p-name" id="title">Notation3 Builtin Functions</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#CG-FINAL">Final Community Group Report</a>,
-    <time class="dt-updated" datetime="2026-01-11">11 January 2026</time></p>
+    <time class="dt-updated" datetime="2026-03-24">24 March 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -774,7 +774,6 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
       Builtins are grouped into distinct vocabularies depending on the N3 triple elements they operate on
       (e.g., string, list), or their particular topic (e.g., time, cryptography, log).
       Builtins are denoted by a controlled IRI defined in one of the core builtin namespaces:</p>
-   <p></p>
    <ul>
     <li><a href="http://www.w3.org/2000/10/swap/crypto#">Crypto</a> –
         <a href="http://www.w3.org/2000/10/swap/crypto#">http://www.w3.org/2000/10/swap/crypto#</a>,
@@ -850,7 +849,6 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
     <li>A value of type <code>xs:decimal</code> (or any type derived from <code>xs:decimal</code>) can be promoted to either
             of the types <code>xs:float</code> or <code>xs:double</code>.
    </ul>
-   <p></p>
    <p><b>Numeric type substitution</b>: if <i>all values</i> have the same numeric datatype, and this
           datatype <a href="https://www.w3.org/TR/xmlschema-2/#dt-derived">is derived from</a> the domain
           datatype (e.g., <code>xs:integer</code> is derived from <code>xs:decimal</code>), then the values can be used without any
@@ -874,7 +872,6 @@ Please send them to <a href="mailto:public-n3-dev@w3.org">public-n3-dev@w3.org</
             the <code>xs:integer</code> datatype will simply be substituted for <code>xs:numeric</code>. If the builtin has an
             output, then the calculated value for the output will also have datatype <code>xs:integer</code>.
    </ul>
-   <p></p>
    <h4 class="heading settled" data-level="2.2.2" id="typesofdatatypecasting"><span class="secno">2.2.2. </span><span class="content">Other kinds of datatype casting</span><a class="self-link" href="#typesofdatatypecasting"></a></h4>
    <p>If the non-numeric <a href="#value-datatype" id="ref-for-value-datatype③">value datatype</a> does not match the <a href="#domain-datatype" id="ref-for-domain-datatype③">domain datatype</a>, it may be
           possible to cast the value datatype to the domain datatype:</p>
@@ -983,26 +980,24 @@ Gets as object the <a href="https://en.wikipedia.org/wiki/SHA-1">SHA-1 hash</a> 
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E+.%0A%40prefix+crypto%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fcrypto%23%3E+.%0A%0A%7B+%22hello+world%22+crypto%3Asha+%3Fsha+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fsha+.+%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-67092a3a">
      <a class="self-link" href="#example-67092a3a"></a>
-     <p></p>
+        
      <p>
 Calculate the SHA-1 of the string "hello world".
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/> .
+<pre>@prefix : &lt;http://example.org/> .
 @prefix crypto: &lt;http://www.w3.org/2000/10/swap/crypto#> .
 
 { "hello world" crypto:sha ?sha . } => { :result :is ?sha . } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is "2aae6c35c94fcfb415dbe95f408b9ce91ee846ed" .
-            
+
 </pre>
     </div>
    </div>
@@ -1026,26 +1021,24 @@ Appends the lists from the subject list into a single list as object.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281+2%29+%283+4%29+%29+list%3Aappend+%3Flist+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Flist+.+%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-28c33490">
      <a class="self-link" href="#example-28c33490"></a>
-     <p></p>
+        
      <p>
 Append (3 4) to the list (1 2).
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
 
 { ( (1 2) (3 4) ) list:append ?list . } => { :result :is ?list . } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is (1 2 3 4). 
-            
+
 </pre>
     </div>
    </div>
@@ -1061,19 +1054,17 @@ What do we need to prepend to (3 4) to get (1 2 3 4)?
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
 
 { ( ?what (3 4) ) list:append (1 2 3 4) . } => { :result :is ?what . } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is (1 2). 
-            
+
 </pre>
     </div>
    </div>
@@ -1089,19 +1080,17 @@ What do we need to append to (1 2) to get (1 2 3 4)?
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
 
 { ( (1 2) ?what ) list:append (1 2 3 4) . } => { :result :is ?what . } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is (3 4). 
-            
+
 </pre>
     </div>
    </div>
@@ -1117,19 +1106,17 @@ Is the list (1 2 3 4) equal to appending (1), (2 3) , (4)?
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
 
 { ( (1) (2 3) (4) ) list:append (1 2 3 4) . } => { :result :is true . } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true. 
-            
+
 </pre>
     </div>
    </div>
@@ -1152,26 +1139,24 @@ Gets the first element of the subject list as object.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%28%27a%27%29+%7B+%3Aa+%3Ab+%3Ac+%7D+42+%29+list%3Afirst+%3Fwhat+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fwhat+.+%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-6713e9ca">
      <a class="self-link" href="#example-6713e9ca"></a>
-     <p></p>
+        
      <p>
 What is the first element of ( (<u class="link-error property" data-lt="a" title="LINK ERROR: No &apos;property&apos; refs found for &apos;a&apos;.">a</u>) { :a :b :c } 42 )?
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
 
 { ( ('a') { :a :b :c } 42 ) list:first ?what . } => { :result :is ?what . } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is ('a'). 
-            
+
 </pre>
     </div>
    </div>
@@ -1194,26 +1179,24 @@ Checks whether the subject is a member of the object list.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%22cat%22+list%3Ain+%28+%22dog%22+%22penguin%22+%22cat%22+%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+true+.+%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-e18ded9b">
      <a class="self-link" href="#example-e18ded9b"></a>
-     <p></p>
+        
      <p>
 Does ( "dog" "penguin" "cat" ) contain a "cat"?
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
 
 { "cat" list:in ( "dog" "penguin" "cat" ) . } => { :result :is true . } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true. 
-            
+
 </pre>
     </div>
    </div>
@@ -1229,21 +1212,19 @@ What are the members of ( "dog" "penguin" "cat" )?
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
 
 { ?what list:in ( "dog" "penguin" "cat" ) . } => { :result :is ?what . } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is "dog" .
 :result :is "penguin" . 
 :result :is "cat" .
-            
+
 </pre>
     </div>
    </div>
@@ -1266,28 +1247,26 @@ Iterates over each member of the subject list, getting their index/value pairs a
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28%22dog%22+%22penguin%22+%22cat%22%29+list%3Aiterate+%28%3Findex+%3Fmember%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%28%3Findex+%3Fmember%29+.+%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-981bcfc3">
      <a class="self-link" href="#example-981bcfc3"></a>
-     <p></p>
+        
      <p>
 Iterate over the list ("dog" "penguin" "cat").
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
 
 { ("dog" "penguin" "cat") list:iterate (?index ?member) . } => { :result :is (?index ?member) . } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is (0 "dog") .
 :result :is (1 "penguin") .
 :result :is (2 "cat") .
-            
+
 </pre>
     </div>
    </div>
@@ -1303,8 +1282,7 @@ What is the index of "cat" in the list ("dog" "penguin" "cat")?
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
 
 :let :param ("dog" "penguin" "cat") .
@@ -1316,14 +1294,13 @@ What is the index of "cat" in the list ("dog" "penguin" "cat")?
 { 
     :result :is ?index . 
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 2 .
-            
+
 </pre>
     </div>
    </div>
@@ -1339,8 +1316,7 @@ Is "cat" the third item in the list ("dog" "penguin" "cat")?
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
 
 :let :param ("dog" "penguin" "cat") .
@@ -1352,14 +1328,13 @@ Is "cat" the third item in the list ("dog" "penguin" "cat")?
 { 
     :result :is true . 
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true .
-            
+
 </pre>
     </div>
    </div>
@@ -1382,15 +1357,14 @@ Gets the last element of the subject list as object.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%281+2+3+4%29.%0A%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.%0A++++%3Fparam+list%3Alast+4+.+%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+true+.+%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-9707b5d9">
      <a class="self-link" href="#example-9707b5d9"></a>
-     <p></p>
+        
      <p>
 Test if the last element of the list (1 2 3 4) is 4.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
 
 :let :param (1 2 3 4).
@@ -1403,14 +1377,13 @@ Test if the last element of the list (1 2 3 4) is 4.
 { 
     :result :is true . 
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true. 
-            
+
 </pre>
     </div>
    </div>
@@ -1426,19 +1399,17 @@ Extract the last element of the list (1 2 3 4).
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
 
 { (1 2 3 4) list:last ?last . } => { :result :is ?last . } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 4. 
-            
+
 </pre>
     </div>
    </div>
@@ -1460,26 +1431,24 @@ Gets the length of the subject list as object.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%281+2+3+4%29+list%3Alength+%3Flength+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Flength+.+%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-145cc357">
      <a class="self-link" href="#example-145cc357"></a>
-     <p></p>
+        
      <p>
 Calculate the length of the list (1 2 3 4).
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
 
 { (1 2 3 4) list:length ?length . } => { :result :is ?length . } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 4. 
-            
+
 </pre>
     </div>
    </div>
@@ -1502,28 +1471,26 @@ Checks whether the subject list contains the object.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28%22dog%22+%22penguin%22+%22cat%22%29+list%3Amember+%3Fmember+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fmember+.+%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-bf32ebbe">
      <a class="self-link" href="#example-bf32ebbe"></a>
-     <p></p>
+        
      <p>
 Determine the members of the list ("dog" "penguin" "cat").
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
 
 { ("dog" "penguin" "cat") list:member ?member . } => { :result :is ?member . } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is "dog".
 :result :is "penguin".
 :result :is "cat".
-            
+
 </pre>
     </div>
    </div>
@@ -1539,8 +1506,7 @@ Is "cat" a member of the list ("dog" "penguin" "cat")?
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
 
 :let :param ("dog" "penguin" "cat") .
@@ -1553,14 +1519,13 @@ Is "cat" a member of the list ("dog" "penguin" "cat")?
 { 
     :result :is true . 
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true.
-            
+
 </pre>
     </div>
    </div>
@@ -1582,15 +1547,14 @@ Gets the member of the subject list at the given subject index as object (index 
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22cat%22+%22penguin%22+%22cat%22%29.%0A%0A%7B%0A++++%3Alet+%3Aparam+%3Fparam+.%0A++++%28+%3Fparam+%3Findex+%29+list%3AmemberAt+%22cat%22+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Findex+.+%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-76ae0b95">
      <a class="self-link" href="#example-76ae0b95"></a>
-     <p></p>
+        
      <p>
 Find the index of "cat" in the list ("dog" "cat" "penguin" "cat").
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
 
 :let :param ("dog" "cat" "penguin" "cat").
@@ -1603,15 +1567,14 @@ Find the index of "cat" in the list ("dog" "cat" "penguin" "cat").
 { 
     :result :is ?index . 
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 1 .
 :result :is 3 .
-            
+
 </pre>
     </div>
    </div>
@@ -1627,8 +1590,7 @@ Get the third member of the list ("dog" "penguin" "cat").
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
 
 :let :param ("dog" "penguin" "cat").
@@ -1641,14 +1603,13 @@ Get the third member of the list ("dog" "penguin" "cat").
 { 
     :result :is ?third . 
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is "cat" .
-            
+
 </pre>
     </div>
    </div>
@@ -1671,15 +1632,14 @@ Removes each occurrence of the subject member from the subject list, and returns
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22+%22penguin%22%29+.%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%28+%3Fparam+%22parakeet%22+%29+list%3Aremove+%3Flist+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Flist+.+%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-9c4bd3be">
      <a class="self-link" href="#example-9c4bd3be"></a>
-     <p></p>
+        
      <p>
 Remove non-existent "parakeet" from the list ("dog" "penguin" "cat" "penguin").
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
 
 :let :param ("dog" "penguin" "cat" "penguin") .
@@ -1691,14 +1651,13 @@ Remove non-existent "parakeet" from the list ("dog" "penguin" "cat" "penguin").
 { 
     :result :is ?list . 
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is ("dog" "penguin" "cat" "penguin").
-            
+
 </pre>
     </div>
    </div>
@@ -1714,8 +1673,7 @@ Remove "penguin" from the list ("dog" "penguin" "cat" "penguin").
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix list: &lt;http://www.w3.org/2000/10/swap/list#> .
 
 :let :param ("dog" "penguin" "cat" "penguin") .
@@ -1727,14 +1685,13 @@ Remove "penguin" from the list ("dog" "penguin" "cat" "penguin").
 { 
     :result :is ?list . 
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is ("dog" "cat").
-            
+
 </pre>
     </div>
    </div>
@@ -1760,15 +1717,14 @@ This applies scoped quantification.</p>
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam+%22Huey%22+.%0A%3ALet+%3Aparam+%22Dewey%22+.%0A%3ALet+%3Aparam+%22Louie%22+.%0A%0A%7B%0A++++%28+%3Fparam+%7B+%3ALet+%3Aparam+%3Fparam+%7D+%3FallParams+%29+log%3AcollectAllIn+_%3Ax+.%0A%0A++++%23+Variable+to+be+collected+can+also+be+part+of+a+list+or+graph+term%0A++++%28+%28%3Fparam%29+%7B+%3ALet+%3Aparam+%3Fparam+%7D+%3FnestedParams+%29+log%3AcollectAllIn+_%3Ax+.%0A%0A++++%23+Add+some+extra+criteria+on+variable+values+to+be+collected%0A++++%28+%3Fparam%0A++++++++%7B+%0A++++++++++++%3ALet+%3Aparam+%3Fparam+.%0A++++++++++++%3Fparam+string%3AlessThan+%22Louie%22++.%0A++++++++%7D+%0A++++++%3FfilteredParams+%29+log%3AcollectAllIn+_%3Ax+.%0A%7D%0A%3D%3E+%0A%7B+++%0A++++%3Aresult1+%3Ais+%3FallParams+.%0A++++%3Aresult2+%3Ais+%3FnestedParams+.%0A++++%3Aresult3+%3Ais+%3FfilteredParams+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-ec213749">
      <a class="self-link" href="#example-ec213749"></a>
-     <p></p>
+        
      <p>
 Set of basic examples for log:collectAllIn.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 @prefix string: &lt;http://www.w3.org/2000/10/swap/string#> .
 
@@ -1800,8 +1756,7 @@ Set of basic examples for log:collectAllIn.
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 
 :result1 :is ("Huey" "Dewey" "Louie").
 :result2 :is (("Huey") ("Dewey") ("Louie")).
@@ -1822,8 +1777,7 @@ Example where the list is already given; in that case, the collected list will b
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 @prefix string: &lt;http://www.w3.org/2000/10/swap/string#> .
 
@@ -1838,12 +1792,11 @@ Example where the list is already given; in that case, the collected list will b
 {   
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 
 :result :is true .
 
@@ -1869,15 +1822,14 @@ by applying any rules it contains to the data it contains.</p>
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%3Alet+%3Aparam+%7B+%0A++++%3AFelix+a+%3ACat+.+%0A++++%7B+%3FX+a+%3ACat+.+%7D+%3D%3E+%7B+%3FX+%3Asays+%22Meow%22+.+%7D+.%0A%7D+.%0A%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.%0A++++%3Fparam+log%3Aconclusion+%3Fconclusion+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Fconclusion+.+%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-47cd74ab">
      <a class="self-link" href="#example-47cd74ab"></a>
-     <p></p>
+        
      <p>
 Draw all conclusions from the formula ":Felix a :Cat . { ?X a :Cat } => { ?X :says "Meow" . }".
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 :let :param { 
@@ -1893,18 +1845,17 @@ Draw all conclusions from the formula ":Felix a :Cat . { ?X a :Cat } => { ?X :sa
 { 
     :result :is ?conclusion . 
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is {
     :Felix a :Cat. 
     :Felix :says "Meow". 
     { ?S a :Cat . } => { ?S :says "Meow" . } .
 } .
-            
+
 </pre>
     </div>
    </div>
@@ -1926,15 +1877,14 @@ Merges the graph terms from the subject list into a single graph term as object.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%28+%7B+%3AFelix+a+%3ACat+.+%7D%0A++++++%7B+%3APluto+a+%3ADog+.+%7D++%0A++++++%7B+%3APingu+a+%3APenguin+.+%7D%0A++++%29+log%3Aconjunction+%3Fmerged+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Fmerged+.+%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-9ff86bc1">
      <a class="self-link" href="#example-9ff86bc1"></a>
-     <p></p>
+        
      <p>
 Merge the formulas "{ :Felix a :Cat . }" , "{ :Pluto a :Dog . }", "{ :Pingu a :Penguin . }" .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 { 
@@ -1947,18 +1897,17 @@ Merge the formulas "{ :Felix a :Cat . }" , "{ :Pluto a :Dog . }", "{ :Pingu a :P
 { 
     :result :is ?merged . 
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is { 
     :Felix a :Cat . 
     :Pingu a :Penguin . 
     :Pluto a :Dog . 
 } .
-            
+
 </pre>
     </div>
    </div>
@@ -1980,15 +1929,14 @@ Dereferences the subject IRI and retrieves the online resource as the object str
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%3Chttps%3A%2F%2Fwww.w3.org%2FPeople%2FBerners-Lee%2Fcard%3E+log%3Acontent+%3Fcontent+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Fcontent+.+%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-674a3220">
      <a class="self-link" href="#example-674a3220"></a>
-     <p></p>
+        
      <p>
 Fetch the content of https://www.w3.org/People/Berners-Lee/card.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 { 
@@ -1998,13 +1946,12 @@ Fetch the content of https://www.w3.org/People/Berners-Lee/card.
 { 
     :result :is ?content . 
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-:result :is "...the content of https://www.w3.org/People/Berners-Lee/card ...". 
-            
+<pre>:result :is "...the content of https://www.w3.org/People/Berners-Lee/card ...". 
+
 </pre>
     </div>
    </div>
@@ -2027,15 +1974,14 @@ Creates a datatyped literal as object, based on the string value and datatype IR
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%28+%3Fstring+%3Ftype+%29+log%3Adtlit+%221971-05-05%22%5E%5Exsd%3Adate+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%28+%3Fstring+%3Ftype+%29+.+%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-a2cb4e23">
      <a class="self-link" href="#example-a2cb4e23"></a>
-     <p></p>
+        
      <p>
 Parse the datatyped literal "1971-05-05"^^xsd:date into a string and data type IRI.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#> .
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
@@ -2046,15 +1992,14 @@ Parse the datatyped literal "1971-05-05"^^xsd:date into a string and data type I
 { 
     :result :is ( ?string ?type ) . 
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#> .
 :result :is ("1971-05-05" xsd:date).
-            
+
 </pre>
     </div>
    </div>
@@ -2070,21 +2015,19 @@ Create a datatyped literal from the string "1971-05-05" and the type xsd:date.
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#> .
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 { ( "1971-05-05" xsd:date ) log:dtlit ?typed } => { :result :is ?typed . } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#> .
 :result :is "1971-05-05"^^xsd:date.
-            
+
 </pre>
     </div>
    </div>
@@ -2105,15 +2048,14 @@ Literals will be compared exactly: their datatypes must be identical (in case of
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++_%3Ax+log%3AequalTo+42+.%0A++++%3Fq++log%3AequalTo+%22Cat%22%40en+.%0A%0A++++%23+This+will+fail+because+_%3Ax+is+already+assigned+to+42+.%0A++++%23+_%3Ax+log%3AequalTo+17+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fq+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-ec3c9a8b">
      <a class="self-link" href="#example-ec3c9a8b"></a>
-     <p></p>
+        
      <p>
 Assign a value to an existential or universal variable.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 {
@@ -2127,14 +2069,13 @@ Assign a value to an existential or universal variable.
 {
     :result :is ?q .
 } . 
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is "Cat"@en .
-            
+
 </pre>
     </div>
    </div>
@@ -2150,8 +2091,7 @@ Determine if "Cat" is equal to "Cat"@en .
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 {
@@ -2162,14 +2102,13 @@ Determine if "Cat" is equal to "Cat"@en .
 {
     :result :is true .
 } . 
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 # no results
-            
+
 </pre>
     </div>
    </div>
@@ -2188,8 +2127,7 @@ This mechanism works because an effort is made to ensure the truth of builtin st
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 {
@@ -2199,14 +2137,13 @@ This mechanism works because an effort is made to ensure the truth of builtin st
 {
     :result :is ?x , ?y , ?z .
 } . 
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 1 , 2 , 3 . # objects can be in any order
-            
+
 </pre>
     </div>
    </div>
@@ -2222,8 +2159,7 @@ Determine &lt;http://famous.web.site> is equal to itself .
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 @prefix owl: &lt;http://www.w3.org/2002/07/owl#> .
 
@@ -2245,14 +2181,13 @@ Determine &lt;http://famous.web.site> is equal to itself .
 {
     :result :is true .
 } . 
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true. 
-            
+
 </pre>
     </div>
    </div>
@@ -2268,8 +2203,7 @@ Determine if 1 is equal to 1 and "Cat" is equal to "Cat" and { :A :B :C . :D :E 
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 {
@@ -2281,14 +2215,13 @@ Determine if 1 is equal to 1 and "Cat" is equal to "Cat" and { :A :B :C . :D :E 
 {
     :result :is true .
 } . 
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true. 
-            
+
 </pre>
     </div>
    </div>
@@ -2307,8 +2240,7 @@ This mechanism works because an effort is made to ensure the truthfulness of bui
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 {
@@ -2318,14 +2250,13 @@ This mechanism works because an effort is made to ensure the truthfulness of bui
 {
     :result :is ?title , ?author , ?numPages .
 } . 
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is "War and Peace" , "Leo Tolstoy" , 1225 . # objects can be in any order
-            
+
 </pre>
     </div>
    </div>
@@ -2351,15 +2282,14 @@ This applies a scoped quantification.</p>
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%3Ac+a+%3ACompositeTask+%3B%0A++++%3AsubTask+%3As1+%2C+%3As2+%2C+%3As3+.%0A%3As1+%3Astate+%3ACompleted+.%0A%3As2+%3Astate+%3ACompleted+.+%0A%3As3+%3Astate+%3ACompleted+.%0A%0A%7B%0A++++%3Fc+a+%3ACompositeTask+.%0A++++%28+%7B+%3Fc+%3AsubTask+%3Fs+%7D+%7B+%3Fs+%3Astate+%3ACompleted+%7D+%29+log%3AforAllIn+_%3At+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-fe0ec0cb">
      <a class="self-link" href="#example-fe0ec0cb"></a>
-     <p></p>
+        
      <p>
 For each subtask of a composite task, check whether the subtask is completed. 
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 :c a :CompositeTask ;
@@ -2376,14 +2306,13 @@ For each subtask of a composite task, check whether the subtask is completed.
 {
     :result :is true .
 } . 
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true. 
-            
+
 </pre>
     </div>
    </div>
@@ -2409,15 +2338,14 @@ Variable substitution is applied recursively to nested compound terms such as gr
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%7B+%3AFelix+a+%3ACat+%7D+log%3Aincludes+%7B+%3FX+a+%3ACat+%7D+.%0A%7D+%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3FX+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-6bc451ae">
      <a class="self-link" href="#example-6bc451ae"></a>
-     <p></p>
+        
      <p>
 Check whether the formula { :Felix a :Cat } includes { ?X a :Cat }.
 
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 { 
@@ -2431,10 +2359,9 @@ Check whether the formula { :Felix a :Cat } includes { ?X a :Cat }.
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is :Felix .
-            
+
 </pre>
     </div>
    </div>
@@ -2450,8 +2377,7 @@ Check whether the current N3 document includes { ?X a :Cat }.
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 :Felix a :Cat .
@@ -2469,8 +2395,7 @@ Check whether the current N3 document includes { ?X a :Cat }.
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#>.
 
 :result :is :Felix.
@@ -2500,25 +2425,23 @@ Creates a language-tagged literal as object, based on the string value and langu
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%7B+%28%22hello%22+%22en%22%29+log%3Alanglit+%3FX+%7D+%3D%3E+%7B+%3FX+a+%3AResult+%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-9205ff75">
      <a class="self-link" href="#example-9205ff75"></a>
-     <p></p>
+        
      <p>
 Create a language-tagged literal from the string "hello" and language tag "en".
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 { ("hello" "en") log:langlit ?X } => { ?X a :Result } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 "hello"@en a :Result .
-            
+
 </pre>
     </div>
    </div>
@@ -2536,33 +2459,31 @@ Checks whether the subject and object N3 terms are _not_ the same (comparison oc
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A+++%0A++++%7B+%3AA+%3AB+%3AC+.+%7D+log%3AnotEqualTo+%7B+%3AA+%3AB+%3Fc+%7D+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-f386d2ff">
      <a class="self-link" href="#example-f386d2ff"></a>
-     <p></p>
+        
      <p>
 Check whether two graph terms, one containing a universal variable, are not equal.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 {
-   
+
     { :A :B :C . } log:notEqualTo { :A :B ?c } .
 }
 =>
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 # no result (?c can be unified with :C)
-            
+
 </pre>
     </div>
    </div>
@@ -2578,8 +2499,7 @@ Check if an existential or universal variable is not equal to a value.
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 {
@@ -2590,14 +2510,13 @@ Check if an existential or universal variable is not equal to a value.
 {
     :result :is true .
 } . 
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 # no result (the variables _:x and ?q are not bounded) 
-            
+
 </pre>
     </div>
    </div>
@@ -2613,8 +2532,7 @@ Determine if 1 is not equal to 2 and "Cat" is not equal to "CAT" and { :A :B :C 
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 {
@@ -2626,14 +2544,13 @@ Determine if 1 is not equal to 2 and "Cat" is not equal to "CAT" and { :A :B :C 
 {
     :result :is true .
 } . 
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true .
-            
+
 </pre>
     </div>
    </div>
@@ -2649,8 +2566,7 @@ Determine if "Cat" is not equal to "Cat"@en .
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 {
@@ -2660,14 +2576,13 @@ Determine if "Cat" is not equal to "Cat"@en .
 {
     :result :is true .
 } . 
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true .
-            
+
 </pre>
     </div>
    </div>
@@ -2690,15 +2605,14 @@ Checks whether the subject graph term _does not_ include the object graph term (
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%7B+%3AFelix+a+%3ACat+%7D+log%3AnotIncludes+%7B+%3FX+%3Aeats+%3FY+%7D+.%0A%7D+%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-d207eca9">
      <a class="self-link" href="#example-d207eca9"></a>
-     <p></p>
+        
      <p>
 Check whether the formula { :Felix a :Cat } does not include { ?X :eats ?Y }.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 { 
@@ -2708,14 +2622,13 @@ Check whether the formula { :Felix a :Cat } does not include { ?X :eats ?Y }.
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true.
-            
+
 </pre>
     </div>
    </div>
@@ -2731,8 +2644,7 @@ Check whether the formula { :a :b :c } does not include { :a :b :d }.
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 { 
@@ -2745,14 +2657,13 @@ Check whether the formula { :a :b :c } does not include { :a :b :d }.
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true.
-            
+
 </pre>
     </div>
    </div>
@@ -2774,7 +2685,7 @@ The N3 reasoner will print the object strings in the order of the subject keys, 
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A_%3A2+log%3AoutputString+%22This+is+the+second+line%5Cn%22+.%0A_%3A1+log%3AoutputString+%22This+is+the+first+line%5Cn%22+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-cebf4581">
      <a class="self-link" href="#example-cebf4581"></a>
-     <p></p>
+        
      <p>
 Print the two string "This is the first line
 " , "This is the second line
@@ -2783,21 +2694,19 @@ Print the two string "This is the first line
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 _:2 log:outputString "This is the second line\n" .
 _:1 log:outputString "This is the first line\n" .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-# If the reasoner support the outputString options
+<pre># If the reasoner support the outputString options
 This is the first line
 This is the second line
-            
+
 </pre>
     </div>
    </div>
@@ -2821,15 +2730,14 @@ Parses the subject string into an object graph term.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%3ALet+%3Aparam+%22%22%22%0A%40prefix+%3A+%3Curn%3Aexample%3A%3E+.%0A%3ASocrates+a+%3AHuman+.%0A%22%22%22+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3FX+.%0A++++%3FX+log%3AparsedAsN3+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3FY+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-38685dd3">
      <a class="self-link" href="#example-38685dd3"></a>
-     <p></p>
+        
      <p>
 Parse the string ':Socrates a :Human .' as N3.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 :Let :param """
@@ -2845,14 +2753,13 @@ Parse the string ':Socrates a :Human .' as N3.
 {
     :result :is ?Y .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is { &lt;urn:example:Socrates> a &lt;urn:example:Human> . } .
-            
+
 </pre>
     </div>
    </div>
@@ -2875,15 +2782,14 @@ N3 resource types include <code>log:Formula</code>, <code>log:Literal</code>, <c
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%281+2+3+4%29+log%3ArawType+%3FlistType+.%0A++++%7B+%3As+%3Ap+%3Ao+%7D+log%3ArawType+%3FgraphType+.%0A%7D+%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%28+%3FlistType+%3FgraphType+%29+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-fff13110">
      <a class="self-link" href="#example-fff13110"></a>
-     <p></p>
+        
      <p>
 Get the type of lists and graph terms.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 {
@@ -2894,16 +2800,15 @@ Get the type of lists and graph terms.
 {
     :result :is ( ?listType ?graphType ) .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 :result :is ( rdf:List log:Formula ) .
-            
+
 </pre>
     </div>
    </div>
@@ -2919,8 +2824,7 @@ Get the type of resources.
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 {
@@ -2930,15 +2834,14 @@ Get the type of resources.
 {
     :result :is ?resourceType .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 :result :is log:Other.
-            
+
 </pre>
     </div>
    </div>
@@ -2954,8 +2857,7 @@ Get the type of literal resources.
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 {
@@ -2968,15 +2870,14 @@ Get the type of literal resources.
 {
     :result :is ( ?stringType ?integerType ?trueType ?falseType ) .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 :result :is ( log:Literal log:Literal log:Literal log:Literal ) .
-            
+
 </pre>
     </div>
    </div>
@@ -2998,7 +2899,7 @@ Gets as object the graph term that results from parsing an online (N3) string, f
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%3Csemantics.data%3E+log%3Asemantics+%3Fsemantics+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fsemantics+%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-b12a9a99">
      <a class="self-link" href="#example-b12a9a99"></a>
-     <p></p>
+        
      <p>
 Read the contents of the file <code>&lt;semantics.data></code> and parse it as Notation3.
 We assume <code>&lt;semantics.data></code> contains the text:
@@ -3008,19 +2909,17 @@ We assume <code>&lt;semantics.data></code> contains the text:
 </pre>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 { &lt;semantics.data> log:semantics ?semantics . } => { :result :is ?semantics } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is { :Socrates a :Human . } .
-            
+
 </pre>
     </div>
    </div>
@@ -3042,26 +2941,24 @@ Either gets as object the graph term that results from parsing an online (N3) st
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%3Cerror.data%3E+log%3AsemanticsOrError+%3Fsemantics+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fsemantics+%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-55f2c0fc">
      <a class="self-link" href="#example-55f2c0fc"></a>
-     <p></p>
+        
      <p>
 Read the contents a non existing <code>&lt;error.data></code> and parse it as Notation3 (which of course will fail).
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 { &lt;error.data> log:semanticsOrError ?semantics } => { :result :is ?semantics } .
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 
 :result :is "error(existence_error(source_sink,/error.data),context(system:open/4,No such file or directory))" .
-            
+
 </pre>
     </div>
    </div>
@@ -3078,26 +2975,24 @@ Gets as object a skolem IRI that is a function of the subject (commonly a list) 
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%28%3Aabc+77+%22xyz%22%29+log%3Askolem+%3Fskolem+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fskolem+%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-6f08a3d5">
      <a class="self-link" href="#example-6f08a3d5"></a>
-     <p></p>
+        
      <p>
 Generate a unique Skolem IRI from the list (:abc 77 "xyz") .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 { (:abc 77 "xyz") log:skolem ?skolem . } => { :result :is ?skolem } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is &lt;http://www.w3.org/2000/10/swap/genid#zmgk3Vt_z_u7FQlk1NmqIw> . 
-            
+
 </pre>
     </div>
    </div>
@@ -3117,31 +3012,26 @@ Gets as object the string representation of the subject URI.
    <div class="ex_container" style="margin-top: 5px">
     
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%3Chttps%3A%2F%2Fwww.w3.org%3E+log%3Auri+%3Furi+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Furi+.+%7D+." target="_blank">try in editor 🚀</a>
-    <div class="example" id="example-99dd97aa">
-     <a class="self-link" href="#example-99dd97aa"></a>
-     <p></p>
+    <div class="example" id="example-7f99532b">
+     <a class="self-link" href="#example-7f99532b"></a>
+        
      <p>
-      
-Parse the URI 
-      <httpsU0003A www.w3.org> into a string .
+Parse the URI &lt;https://www.w3.org> into a string .
             
-        </httpsU0003A>
-     </p>
+        </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix log: &lt;http://www.w3.org/2000/10/swap/log#> .
 
 { &lt;https://www.w3.org> log:uri ?uri . } => { :result :is ?uri . } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is "https://www.w3.org" .
-            
+
 </pre>
     </div>
    </div>
@@ -3164,15 +3054,14 @@ Calculates as object the absolute value of the subject.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+-2+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3AabsoluteValue+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-69a5c96c">
      <a class="self-link" href="#example-69a5c96c"></a>
-     <p></p>
+        
      <p>
 Calculate the absolute value of the value -2.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param -2 .
@@ -3185,14 +3074,13 @@ Calculate the absolute value of the value -2.
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 2. 
-            
+
 </pre>
     </div>
    </div>
@@ -3215,15 +3103,14 @@ Calculates the object as the arc cosine value of the subject.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+1+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aacos+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-fa2e3560">
      <a class="self-link" href="#example-fa2e3560"></a>
-     <p></p>
+        
      <p>
 Calculate the arc cosine of the value 1.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param 1 .
@@ -3236,14 +3123,13 @@ Calculate the arc cosine of the value 1.
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 0.0 .
-            
+
 </pre>
     </div>
    </div>
@@ -3266,15 +3152,14 @@ Calculates the object as the arc sine value of the subject.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+1+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aasin+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-fc1c0ba2">
      <a class="self-link" href="#example-fc1c0ba2"></a>
-     <p></p>
+        
      <p>
 Calculate the arc sine of the value 1.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param 1 .
@@ -3287,14 +3172,13 @@ Calculate the arc sine of the value 1.
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 1.5707963267948966 .
-            
+
 </pre>
     </div>
    </div>
@@ -3317,15 +3201,14 @@ Calculates the object as the arc tangent value of the subject.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+1+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aatan+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-4e7243c1">
      <a class="self-link" href="#example-4e7243c1"></a>
-     <p></p>
+        
      <p>
 Calculate the arc tangent of the value 1.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param 1 .
@@ -3338,14 +3221,13 @@ Calculate the arc tangent of the value 1.
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 0.7853981633974483 .
-            
+
 </pre>
     </div>
    </div>
@@ -3368,15 +3250,14 @@ Calculates the object as the cosine value of the subject.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+0+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Acos+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-d3e210b1">
      <a class="self-link" href="#example-d3e210b1"></a>
-     <p></p>
+        
      <p>
 Calculate the cosine of the value 0.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param 0 .
@@ -3389,14 +3270,13 @@ Calculate the cosine of the value 0.
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 1.0 .
-            
+
 </pre>
     </div>
    </div>
@@ -3419,15 +3299,14 @@ Calculates the object as the hyperbolic cosine value of the subject.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+0+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Acosh+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-e047b640">
      <a class="self-link" href="#example-e047b640"></a>
-     <p></p>
+        
      <p>
 Calculate the hyperbolic cosine of the value 0.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param 0 .
@@ -3440,14 +3319,13 @@ Calculate the hyperbolic cosine of the value 0.
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 1.0 .
-            
+
 </pre>
     </div>
    </div>
@@ -3469,15 +3347,14 @@ Calculates the object as the value in degrees corresponding to the radians value
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+1.57079632679+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Adegrees+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-0483db2f">
      <a class="self-link" href="#example-0483db2f"></a>
-     <p></p>
+        
      <p>
 Calculate the degrees of the radians value 1.57079632679.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param 1.57079632679 .
@@ -3490,14 +3367,13 @@ Calculate the degrees of the radians value 1.57079632679.
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 89.99999999971946 .
-            
+
 </pre>
     </div>
    </div>
@@ -3519,15 +3395,14 @@ Calculates the object by subtracting the second number from the first number giv
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%287+2%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Adifference+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-237d7d5e">
      <a class="self-link" href="#example-237d7d5e"></a>
-     <p></p>
+        
      <p>
 Calculate the value of 7 minus 2.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param (7 2) .
@@ -3540,14 +3415,13 @@ Calculate the value of 7 minus 2.
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 5.
-            
+
 </pre>
     </div>
    </div>
@@ -3570,15 +3444,14 @@ Checks whether the subject and object are the same number.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2842+42%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%28%3FX+%3FY%29+.%0A++++%3FX+math%3AequalTo+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-18a84670">
      <a class="self-link" href="#example-18a84670"></a>
-     <p></p>
+        
      <p>
 Check if the numbers 42 and 42 are equal .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param (42 42) .
@@ -3591,14 +3464,13 @@ Check if the numbers 42 and 42 are equal .
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true . 
-            
+
 </pre>
     </div>
    </div>
@@ -3621,15 +3493,14 @@ You can also use this to calculate the logarithm of the object, with as base the
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%7B%0A++++%287+%3Fresult%29+math%3Aexponentiation+49+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-2eb751e2">
      <a class="self-link" href="#example-2eb751e2"></a>
-     <p></p>
+        
      <p>
 Calculate the logarithm of 49 base 2 .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 {
@@ -3639,14 +3510,13 @@ Calculate the logarithm of 49 base 2 .
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 2.0 .
-            
+
 </pre>
     </div>
    </div>
@@ -3662,8 +3532,7 @@ Calculate the value of 7 raised to the power of 2 .
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param (7 2) .
@@ -3676,14 +3545,13 @@ Calculate the value of 7 raised to the power of 2 .
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 49 .
-            
+
 </pre>
     </div>
    </div>
@@ -3706,15 +3574,14 @@ Checks whether the subject is a number that is greater than the object.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2842+41%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%28%3FX+%3FY%29+.%0A++++%3FX+math%3AgreaterThan+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-4cc8f9dc">
      <a class="self-link" href="#example-4cc8f9dc"></a>
-     <p></p>
+        
      <p>
 Check if 42 is greater than 41 .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param (42 41) .
@@ -3727,14 +3594,13 @@ Check if 42 is greater than 41 .
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true .
-            
+
 </pre>
     </div>
    </div>
@@ -3757,15 +3623,14 @@ Checks whether the subject is a number that is less than the object.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2841+42%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%28%3FX+%3FY%29+.%0A++++%3FX+math%3AlessThan+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-80c9b051">
      <a class="self-link" href="#example-80c9b051"></a>
-     <p></p>
+        
      <p>
 Check if 41 is less than 42 .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param (41 42) .
@@ -3778,14 +3643,13 @@ Check if 41 is less than 42 .
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true .
-            
+
 </pre>
     </div>
    </div>
@@ -3807,15 +3671,14 @@ Calculates the object as the negation of the subject.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+42+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Anegation+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-26b33606">
      <a class="self-link" href="#example-26b33606"></a>
-     <p></p>
+        
      <p>
 Calculate the negation of the value 42 .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param 42 .
@@ -3828,14 +3691,13 @@ Calculate the negation of the value 42 .
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is -42 .
-            
+
 </pre>
     </div>
    </div>
@@ -3858,15 +3720,14 @@ Checks whether the subject and object are not the same number.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2841+42%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%28%3FX+%3FY%29+.%0A++++%3FX+math%3AnotEqualTo+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-f412ccd0">
      <a class="self-link" href="#example-f412ccd0"></a>
-     <p></p>
+        
      <p>
 Check if the numbers 41 and 42 are not equal .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param (41 42) .
@@ -3879,14 +3740,13 @@ Check if the numbers 41 and 42 are not equal .
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true .
-            
+
 </pre>
     </div>
    </div>
@@ -3910,15 +3770,14 @@ You can use this as an equivalent of a lessThanOrEqual operator.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2841+42%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%28%3FX+%3FY%29+.%0A++++%3FX+math%3AnotGreaterThan+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-226cd3e6">
      <a class="self-link" href="#example-226cd3e6"></a>
-     <p></p>
+        
      <p>
 Check if 41 is not greater than 42 .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param (41 42) .
@@ -3931,14 +3790,13 @@ Check if 41 is not greater than 42 .
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true .
-            
+
 </pre>
     </div>
    </div>
@@ -3962,15 +3820,14 @@ You can use this as an equivalent of a greaterThanOrEqual operator.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2842+41%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%28%3FX+%3FY%29+.%0A++++%3FX+math%3AnotLessThan+%3FY+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-9fa486d8">
      <a class="self-link" href="#example-9fa486d8"></a>
-     <p></p>
+        
      <p>
 Check if 42 is not less than 41 .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param (42 41) .
@@ -3983,14 +3840,13 @@ Check if 42 is not less than 41 .
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true .
-            
+
 </pre>
     </div>
    </div>
@@ -4012,15 +3868,14 @@ Calculates the object as the product of the numbers given in the subject list.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%282+4+6+8%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aproduct+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-95ba860f">
      <a class="self-link" href="#example-95ba860f"></a>
-     <p></p>
+        
      <p>
 Calculate the product of 2,4,6, and 8 .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param (2 4 6 8) .
@@ -4033,14 +3888,13 @@ Calculate the product of 2,4,6, and 8 .
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 384.
-            
+
 </pre>
     </div>
    </div>
@@ -4056,8 +3910,7 @@ Calculate the product of 2 and 21.
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param (2 21) .
@@ -4070,14 +3923,13 @@ Calculate the product of 2 and 21.
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 42.
-            
+
 </pre>
     </div>
    </div>
@@ -4099,15 +3951,14 @@ Calculates the object by dividing the first number by the second number given in
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2842+2%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aquotient+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-1b149652">
      <a class="self-link" href="#example-1b149652"></a>
-     <p></p>
+        
      <p>
 Calculate the quotient of 42 and 2.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param (42 2) .
@@ -4120,14 +3971,13 @@ Calculate the quotient of 42 and 2.
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 21. 
-            
+
 </pre>
     </div>
    </div>
@@ -4149,15 +3999,14 @@ Calculates the object as the remainder of the division of the first integer by t
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%2810+3%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aremainder+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-6b6aa7a3">
      <a class="self-link" href="#example-6b6aa7a3"></a>
-     <p></p>
+        
      <p>
 Calculate the remainder of 10 divided by 3.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param (10 3) .
@@ -4170,14 +4019,13 @@ Calculate the remainder of 10 divided by 3.
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 1.
-            
+
 </pre>
     </div>
    </div>
@@ -4200,15 +4048,14 @@ If there are two such numbers, then the one closest to positive infinity is retu
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%0A%3ALet+%3Aparam+%223.3%22%5E%5Exsd%3Adouble+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Arounded+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-23f8f1a9">
      <a class="self-link" href="#example-23f8f1a9"></a>
-     <p></p>
+        
      <p>
 Calculate the rounded version of 3.3.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#> .
 
@@ -4222,14 +4069,13 @@ Calculate the rounded version of 3.3.
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 3. 
-            
+
 </pre>
     </div>
    </div>
@@ -4252,15 +4098,14 @@ Calculates the object as the sine value of the subject.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%0A%3ALet+%3Aparam+%221.57079632679%22%5E%5Exsd%3Adouble+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Asin+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-e4f93bfa">
      <a class="self-link" href="#example-e4f93bfa"></a>
-     <p></p>
+        
      <p>
 Calculate the sin of pi/2 (1.57079632679) .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#> .
 
@@ -4274,15 +4119,14 @@ Calculate the sin of pi/2 (1.57079632679) .
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#> .
 :result :is "1.0"^^xsd:double . 
-            
+
 </pre>
     </div>
    </div>
@@ -4305,15 +4149,14 @@ Calculates the object as the hyperbolic sine value of the subject.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%0A%3ALet+%3Aparam+%220.88137358701954302%22%5E%5Exsd%3Adouble.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Asinh+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-af95bb41">
      <a class="self-link" href="#example-af95bb41"></a>
-     <p></p>
+        
      <p>
 Calculate the sinh of log(1 + sqrt(2)) (0.88137358701954302).
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#> .
 
@@ -4327,14 +4170,13 @@ Calculate the sinh of log(1 + sqrt(2)) (0.88137358701954302).
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 1.0.
-            
+
 </pre>
     </div>
    </div>
@@ -4356,15 +4198,14 @@ Calculates the object as the sum of the numbers given in the subject list.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%281+2+3+4+5+6+7+8+9+10%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Asum+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-9c39bf40">
      <a class="self-link" href="#example-9c39bf40"></a>
-     <p></p>
+        
      <p>
 Calculate the sum of 1,2,3,4,5,6,7,8,9,10.
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 
 :Let :param (1 2 3 4 5 6 7 8 9 10) .
@@ -4377,14 +4218,13 @@ Calculate the sum of 1,2,3,4,5,6,7,8,9,10.
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 55.
-            
+
 </pre>
     </div>
    </div>
@@ -4407,15 +4247,14 @@ Calculates the object as the tangent value of the subject.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%0A%3ALet+%3Aparam+%220.7853981633974483%22%5E%5Exsd%3Adouble+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Atan+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-552d6595">
      <a class="self-link" href="#example-552d6595"></a>
-     <p></p>
+        
      <p>
 Calculate the tangent of the value 0.7853981633974483 .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#> .
 
@@ -4429,15 +4268,14 @@ Calculate the tangent of the value 0.7853981633974483 .
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#> .
 :result :is "0.9999999999999999"^^xsd:double. 
-            
+
 </pre>
     </div>
    </div>
@@ -4460,15 +4298,14 @@ Calculates the object as the hyperbolic tangent value of the subject.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E+.%0A%0A%3ALet+%3Aparam+%220.549306%22%5E%5Exsd%3Adouble+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Atanh+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-8e13629a">
      <a class="self-link" href="#example-8e13629a"></a>
-     <p></p>
+        
      <p>
 Calculate the hyperbolic tanget of 0.549306 .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix math: &lt;http://www.w3.org/2000/10/swap/math#> .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#> .
 
@@ -4482,15 +4319,14 @@ Calculate the hyperbolic tanget of 0.549306 .
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#> .
 :result :is "0.49999989174945103"^^xsd:double. 
-            
+
 </pre>
     </div>
    </div>
@@ -4513,15 +4349,14 @@ Concatenates the strings from the subject list into a single string as object.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam+%28+%22hello%22+%22+%22+%22world%21%22+%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+string%3Aconcatenation+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-a530fbd1">
      <a class="self-link" href="#example-a530fbd1"></a>
-     <p></p>
+        
      <p>
 Concatenates the string "hello", " " and "world!".
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix string: &lt;http://www.w3.org/2000/10/swap/string#> .
 
 :Let :param ( "hello" " " "world!" ) .
@@ -4534,14 +4369,13 @@ Concatenates the string "hello", " " and "world!".
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is "hello world!". 
-            
+
 </pre>
     </div>
    </div>
@@ -4564,15 +4398,14 @@ Checks whether the subject string contains the object string.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22llo+worl%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3Acontains+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-07a6fcf3">
      <a class="self-link" href="#example-07a6fcf3"></a>
-     <p></p>
+        
      <p>
 Checks whether the string "hello world!" contains the string "llo worl".
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix string: &lt;http://www.w3.org/2000/10/swap/string#> .
 
 :Let :param1 "hello world!" .
@@ -4586,14 +4419,13 @@ Checks whether the string "hello world!" contains the string "llo worl".
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true . 
-            
+
 </pre>
     </div>
    </div>
@@ -4616,15 +4448,14 @@ Checks whether the subject string contains the object string, ignoring differenc
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22lLO+woRl%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AcontainsIgnoringCase+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-3dd62a79">
      <a class="self-link" href="#example-3dd62a79"></a>
-     <p></p>
+        
      <p>
 Checks whether the string "hello world!" contains the string "lLO woRl".
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix string: &lt;http://www.w3.org/2000/10/swap/string#> .
 
 :Let :param1 "hello world!" .
@@ -4638,14 +4469,13 @@ Checks whether the string "hello world!" contains the string "lLO woRl".
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true . 
-            
+
 </pre>
     </div>
    </div>
@@ -4667,15 +4497,14 @@ Checks whether the subject string ends with the object string.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22orld%21%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AendsWith+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-63083764">
      <a class="self-link" href="#example-63083764"></a>
-     <p></p>
+        
      <p>
 Checks whether the string "hello world!" ends with "orld!".
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix string: &lt;http://www.w3.org/2000/10/swap/string#> .
 
 :Let :param1 "hello world!" .
@@ -4689,14 +4518,13 @@ Checks whether the string "hello world!" ends with "orld!".
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true . 
-            
+
 </pre>
     </div>
    </div>
@@ -4718,15 +4546,14 @@ Checks whether the subject string is the same as the object string, ignoring dif
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22hELLo+wORld%21%22+.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AequalIgnoringCase+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-31fa5e49">
      <a class="self-link" href="#example-31fa5e49"></a>
-     <p></p>
+        
      <p>
 Checks whether the string "hello world!" is equal to "hELLo wORld!" ignoring the case .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix string: &lt;http://www.w3.org/2000/10/swap/string#> .
 
 :Let :param1 "hello world!" .
@@ -4740,14 +4567,13 @@ Checks whether the string "hello world!" is equal to "hELLo wORld!" ignoring the
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true . 
-            
+
 </pre>
     </div>
    </div>
@@ -4770,15 +4596,14 @@ See C’s sprintf function for details on these tags.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam+%28+%22%25s%3A%2F%2F%25s%2F%25s%22+%22https%22+%22w3c.github.io%22+%22N3%2Fspec%2F%22+%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+string%3Aformat+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-bc79e16e">
      <a class="self-link" href="#example-bc79e16e"></a>
-     <p></p>
+        
      <p>
 Calculate the result of applying the format "%s://%s/%s" to the strings "https", "w3c.github.io" and "N3/spec" .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix string: &lt;http://www.w3.org/2000/10/swap/string#> .
 
 :Let :param ( "%s://%s/%s" "https" "w3c.github.io" "N3/spec/" ) .
@@ -4791,14 +4616,13 @@ Calculate the result of applying the format "%s://%s/%s" to the strings "https",
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is "https://w3c.github.io/N3/spec/". 
-            
+
 </pre>
     </div>
    </div>
@@ -4821,15 +4645,14 @@ Checks whether the subject string is greater than the object string, according t
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22Penguin%22+.%0A%3ALet+%3Aparam2+%22Cat%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AgreaterThan+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-af2400fa">
      <a class="self-link" href="#example-af2400fa"></a>
-     <p></p>
+        
      <p>
 Checks whether the string "Pengiun" is greater than the string "Cat" .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix string: &lt;http://www.w3.org/2000/10/swap/string#> .
 
 :Let :param1 "Penguin" .
@@ -4843,14 +4666,13 @@ Checks whether the string "Pengiun" is greater than the string "Cat" .
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true . 
-            
+
 </pre>
     </div>
    </div>
@@ -4873,15 +4695,14 @@ Checks whether the subject string is less than the object string, according to U
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22Cat%22+.%0A%3ALet+%3Aparam2+%22Penguin%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AlessThan+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-d0f1439d">
      <a class="self-link" href="#example-d0f1439d"></a>
-     <p></p>
+        
      <p>
 Checks whether the string "Cat" is less than the string "Penguin" .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix string: &lt;http://www.w3.org/2000/10/swap/string#> .
 
 :Let :param1 "Cat" .
@@ -4895,14 +4716,13 @@ Checks whether the string "Cat" is less than the string "Penguin" .
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true . 
-            
+
 </pre>
     </div>
    </div>
@@ -4926,15 +4746,14 @@ The regular expression follows the perl, python style.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22.%2A%28l%29%2Bo+wo.%2A%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3Amatches+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-29699ec4">
      <a class="self-link" href="#example-29699ec4"></a>
-     <p></p>
+        
      <p>
 Checks whether the string "hello world!" matches the regular expression ".<em>(l)+o wo.</em>".
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix string: &lt;http://www.w3.org/2000/10/swap/string#> .
 
 :Let :param1 "hello world!" .
@@ -4948,14 +4767,13 @@ Checks whether the string "hello world!" matches the regular expression ".<em>(l
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true . 
-            
+
 </pre>
     </div>
    </div>
@@ -4977,15 +4795,14 @@ Checks whether the subject string is not the same as the object string, ignoring
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22hELLo+dunia%21%22+.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AnotEqualIgnoringCase+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-31f4833e">
      <a class="self-link" href="#example-31f4833e"></a>
-     <p></p>
+        
      <p>
 Checks whether the string "hello world!" is not equal to "hELLo dunia!" ignorning the case .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix string: &lt;http://www.w3.org/2000/10/swap/string#> .
 
 :Let :param1 "hello world!" .
@@ -4999,14 +4816,13 @@ Checks whether the string "hello world!" is not equal to "hELLo dunia!" ignornin
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true . 
-            
+
 </pre>
     </div>
    </div>
@@ -5030,15 +4846,14 @@ You can use this as an equivalent of a lessThanOrEqual operator.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22Cat%22+.%0A%3ALet+%3Aparam2+%22Penguin%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AnotGreaterThan+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-793c2084">
      <a class="self-link" href="#example-793c2084"></a>
-     <p></p>
+        
      <p>
 Checks whether the string "Cat" is not greater than the string "Penguin" .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix string: &lt;http://www.w3.org/2000/10/swap/string#> .
 
 :Let :param1 "Cat" .
@@ -5052,14 +4867,13 @@ Checks whether the string "Cat" is not greater than the string "Penguin" .
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true . 
-            
+
 </pre>
     </div>
    </div>
@@ -5083,15 +4897,14 @@ You can use this as an equivalent of a greaterThanOrEqual operator.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22Penguin%22.%0A%3ALet+%3Aparam2+%22Cat%22+.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AnotLessThan+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-12bfba8f">
      <a class="self-link" href="#example-12bfba8f"></a>
-     <p></p>
+        
      <p>
 Checks whether the string "Penguin" is not less than the string "Cat" .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix string: &lt;http://www.w3.org/2000/10/swap/string#> .
 
 :Let :param1 "Penguin".
@@ -5105,14 +4918,13 @@ Checks whether the string "Penguin" is not less than the string "Cat" .
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true . 
-            
+
 </pre>
     </div>
    </div>
@@ -5136,15 +4948,14 @@ The regular expression follows the perl, python style.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22.%2A%28l%29%2Bo+dunia.%2A%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AnotMatches+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-2cfae82c">
      <a class="self-link" href="#example-2cfae82c"></a>
-     <p></p>
+        
      <p>
 Checks whether the string "hello world!" no matches the regular expression ".<em>(l)+o dunia.</em>".
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix string: &lt;http://www.w3.org/2000/10/swap/string#> .
 
 :Let :param1 "hello world!" .
@@ -5158,14 +4969,13 @@ Checks whether the string "hello world!" no matches the regular expression ".<em
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true . 
-            
+
 </pre>
     </div>
    </div>
@@ -5187,15 +4997,14 @@ Calculates the object as the result of, given the strings in the subject list, r
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Adata+%22hello+world%21%22+.%0A%3ALet+%3Asearch+%22%28l%29%22+.%0A%3ALet+%3Areplace+%22%5B%241%5D%22+.%0A%7B%0A++++%3ALet+%3Adata+%3Fdata+.%0A++++%3ALet+%3Asearch+%3Fsearch+.%0A++++%3ALet+%3Areplace+%3Freplace+.%0A++++%28%3Fdata+%3Fsearch+%3Freplace%29+string%3Areplace+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-a822f6af">
      <a class="self-link" href="#example-a822f6af"></a>
-     <p></p>
+        
      <p>
 Replace all "l"-s in the string "hello world!" with the bracket version "[l]" .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix string: &lt;http://www.w3.org/2000/10/swap/string#> .
 
 :Let :data "hello world!" .
@@ -5211,14 +5020,13 @@ Replace all "l"-s in the string "hello world!" with the bracket version "[l]" .
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is "he[l][l]o wor[l]d!". 
-            
+
 </pre>
     </div>
    </div>
@@ -5240,15 +5048,14 @@ Calculates the object as the first matching group when, given the subject list, 
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22https%3A%2F%2Fw3c.github.io%2FN3%2Fspec%2F%22+.+%0A%3ALet+%3Aparam2+%22.%2A%2F%28%5B%5E%2F%5D%2B%2F%29%24%22+.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%28%3Fparam1+%3Fparam2%29+string%3Ascrape+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-90238f8f">
      <a class="self-link" href="#example-90238f8f"></a>
-     <p></p>
+        
      <p>
 Extract from the string "https://w3c.github.io/N3/spec/" the last path element using a regular expression .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix string: &lt;http://www.w3.org/2000/10/swap/string#> .
 
 :Let :param1 "https://w3c.github.io/N3/spec/" . 
@@ -5262,14 +5069,13 @@ Extract from the string "https://w3c.github.io/N3/spec/" the last path element u
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is "spec/". 
-            
+
 </pre>
     </div>
    </div>
@@ -5291,15 +5097,14 @@ Checks whether the subject string starts with the object string.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+string%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fstring%23%3E+.%0A%0A%3ALet+%3Aparam1+%22hello+world%21%22+.%0A%3ALet+%3Aparam2+%22hello%22.%0A%7B%0A++++%3ALet+%3Aparam1+%3Fparam1+.%0A++++%3ALet+%3Aparam2+%3Fparam2+.%0A++++%3Fparam1+string%3AstartsWith+%3Fparam2+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-1aea19fd">
      <a class="self-link" href="#example-1aea19fd"></a>
-     <p></p>
+        
      <p>
 Checks whether the string "hello world!" starts with "hello" .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix string: &lt;http://www.w3.org/2000/10/swap/string#> .
 
 :Let :param1 "hello world!" .
@@ -5313,14 +5118,13 @@ Checks whether the string "hello world!" starts with "hello" .
 {
     :result :is true .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is true . 
-            
+
 </pre>
     </div>
    </div>
@@ -5343,15 +5147,14 @@ Gets as object the integer day component of the subject xsd:dateTime.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Aday+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-6881bc4a">
      <a class="self-link" href="#example-6881bc4a"></a>
-     <p></p>
+        
      <p>
 Return the day component of the date "2023-04-01T18:06:04Z" .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#>.
 @prefix time: &lt;http://www.w3.org/2000/10/swap/time#> .
 
@@ -5365,14 +5168,13 @@ Return the day component of the date "2023-04-01T18:06:04Z" .
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 1. 
-            
+
 </pre>
     </div>
    </div>
@@ -5394,15 +5196,14 @@ Gets as object the integer hour component of the subject xsd:dateTime.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Ahour+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-b1cc1781">
      <a class="self-link" href="#example-b1cc1781"></a>
-     <p></p>
+        
      <p>
 Return the hour component of the date "2023-04-01T18:06:04Z" .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#>.
 @prefix time: &lt;http://www.w3.org/2000/10/swap/time#> .
 
@@ -5416,14 +5217,13 @@ Return the hour component of the date "2023-04-01T18:06:04Z" .
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 18. 
-            
+
 </pre>
     </div>
    </div>
@@ -5445,15 +5245,14 @@ Gets as object the integer minutes component of the subject xsd:dateTime.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Aminute+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-f81b3e4c">
      <a class="self-link" href="#example-f81b3e4c"></a>
-     <p></p>
+        
      <p>
 Return the minute component of the date "2023-04-01T18:06:04Z" .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#>.
 @prefix time: &lt;http://www.w3.org/2000/10/swap/time#> .
 
@@ -5467,14 +5266,13 @@ Return the minute component of the date "2023-04-01T18:06:04Z" .
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 6. 
-            
+
 </pre>
     </div>
    </div>
@@ -5496,15 +5294,14 @@ Gets as object the integer month component of the subject xsd:dateTime.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Amonth+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-7ce7bc78">
      <a class="self-link" href="#example-7ce7bc78"></a>
-     <p></p>
+        
      <p>
 Return the month component of the date "2023-04-01T18:06:04Z" .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#>.
 @prefix time: &lt;http://www.w3.org/2000/10/swap/time#> .
 
@@ -5518,14 +5315,13 @@ Return the month component of the date "2023-04-01T18:06:04Z" .
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 4. 
-            
+
 </pre>
     </div>
    </div>
@@ -5547,15 +5343,14 @@ Gets as object the integer seconds component of the subject xsd:dateTime.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Asecond+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-70955ed2">
      <a class="self-link" href="#example-70955ed2"></a>
-     <p></p>
+        
      <p>
 Return the seconds component of the date "2023-04-01T18:06:04Z" .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#>.
 @prefix time: &lt;http://www.w3.org/2000/10/swap/time#> .
 
@@ -5569,14 +5364,13 @@ Return the seconds component of the date "2023-04-01T18:06:04Z" .
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 4. 
-            
+
 </pre>
     </div>
    </div>
@@ -5598,15 +5392,14 @@ Gets as object the trailing timezone offset of the subject xsd:dateTime (e.g., "
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Aminute+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-74ccb55e">
      <a class="self-link" href="#example-74ccb55e"></a>
-     <p></p>
+        
      <p>
 Return the time zone component of the date "2023-04-01T18:06:04Z" .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#>.
 @prefix time: &lt;http://www.w3.org/2000/10/swap/time#> .
 
@@ -5620,14 +5413,13 @@ Return the time zone component of the date "2023-04-01T18:06:04Z" .
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is "Z". 
-            
+
 </pre>
     </div>
    </div>
@@ -5649,15 +5441,14 @@ Gets as object the integer year component of the subject xsd:dateTime.
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Ayear+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor 🚀</a>
     <div class="example" id="example-66cf9dcf">
      <a class="self-link" href="#example-66cf9dcf"></a>
-     <p></p>
+        
      <p>
 Return the minute component of the date "2023-04-01T18:06:04Z" .
             
         </p>
      <p><b>Formula:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#>.
 @prefix time: &lt;http://www.w3.org/2000/10/swap/time#> .
 
@@ -5671,21 +5462,19 @@ Return the minute component of the date "2023-04-01T18:06:04Z" .
 {
     :result :is ?result .
 } .
-            
+
 </pre>
      <p><b>Result:</b>
 </p>
-<pre>
-@prefix : &lt;http://example.org/>.
+<pre>@prefix : &lt;http://example.org/>.
 :result :is 2023. 
-            
+
 </pre>
     </div>
    </div>
    <h2 class="appendix heading informative settled" data-level="5" id="acknowledgements"><span class="secno">5. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
    <p>In addition to the editors, the following people have contributed to this specification: 
     Dörthe Arndt, Pierre-Antoine Champin, and Jos De Roo.</p>
-   <p></p>
   </main>
   <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
 <script>/* Boilerplate: script-dom-helper */

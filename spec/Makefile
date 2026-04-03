@@ -27,7 +27,7 @@ watch:
 	@ docker run --rm --platform linux/amd64 -v "`pwd`:/spec" -w /spec netwerkdigitaalerfgoed/bikeshed:1.7.0 sh -c "bikeshed watch"
 
 web:
-	@ curl -s https://api.csswg.org/bikeshed/ -F file=@index.bs -F force=1 > index.html	
+	@ curl -s https://www.w3.org/publications/spec-generator/ -F file=@index.bs -F die-on=nothing -F type=bikeshed-spec > index.html	
 
 builtins:
 	@ find src -type f -name '*.n3' | paste -s -d ' ' - | xargs eye --nope --quiet --pass > builtins.n3

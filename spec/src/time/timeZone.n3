@@ -27,7 +27,7 @@ Return the time zone component of the date "2023-04-01T18:06:04Z" .
 
 {
     :Let :param ?param .
-    ?param time:minute ?result .
+    ?param time:timeZone ?result .
 }
 =>
 {

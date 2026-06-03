@@ -336,9 +336,9 @@ Appends the lists from the subject list into a single list as object.
 
 **Schema**<br>`( $s.i?[*] )+ list:append $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.i`: `rdf:List`<br>`$o`: `rdf:List`</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281+2%29+%283+4%29+%29+list%3Aappend+%3Flist+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Flist+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281+2%29+%3Fwhat+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fwhat+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
-Append (3 4) to the list (1 2).
+What do we need to append to (1 2) to get (1 2 3 4)?
             
         <p><b>Formula:</b>
 ```
@@ -346,14 +346,14 @@ Append (3 4) to the list (1 2).
 @prefix : <http://example.org/>.
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 
-{ ( (1 2) (3 4) ) list:append ?list . } => { :result :is ?list . } .
+{ ( (1 2) ?what ) list:append (1 2 3 4) . } => { :result :is ?what . } .
             
 ```
         <p><b>Result:</b>
 ```
 
 @prefix : <http://example.org/>.
-:result :is (1 2 3 4). 
+:result :is (3 4). 
             
 ```
     </div>
@@ -382,29 +382,6 @@ What do we need to prepend to (3 4) to get (1 2 3 4)?
     </div>
 </div>
 <div class=ex_container >
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281+2%29+%3Fwhat+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fwhat+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-What do we need to append to (1 2) to get (1 2 3 4)?
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix list: <http://www.w3.org/2000/10/swap/list#> .
-
-{ ( (1 2) ?what ) list:append (1 2 3 4) . } => { :result :is ?what . } .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is (3 4). 
-            
-```
-    </div>
-</div>
-<div class=ex_container >
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281%29+%282+3%29+%284%29+%29+list%3Aappend+%281+2+3+4%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+true+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Is the list (1 2 3 4) equal to appending (1), (2 3) , (4)?
@@ -423,6 +400,29 @@ Is the list (1 2 3 4) equal to appending (1), (2 3) , (4)?
 
 @prefix : <http://example.org/>.
 :result :is true. 
+            
+```
+    </div>
+</div>
+<div class=ex_container >
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28+%281+2%29+%283+4%29+%29+list%3Aappend+%3Flist+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Flist+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Append (3 4) to the list (1 2).
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+{ ( (1 2) (3 4) ) list:append ?list . } => { :result :is ?list . } .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is (1 2 3 4). 
             
 ```
     </div>
@@ -469,29 +469,6 @@ Checks whether the subject is a member of the object list.
 
 **Schema**<br>`$s-[*] list:in $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$o`: `rdf:List`</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%22cat%22+list%3Ain+%28+%22dog%22+%22penguin%22+%22cat%22+%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+true+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Does ( "dog" "penguin" "cat" ) contain a "cat"?
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix list: <http://www.w3.org/2000/10/swap/list#> .
-
-{ "cat" list:in ( "dog" "penguin" "cat" ) . } => { :result :is true . } .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is true. 
-            
-```
-    </div>
-</div>
-<div class=ex_container >
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%3Fwhat+list%3Ain+%28+%22dog%22+%22penguin%22+%22cat%22+%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fwhat+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 What are the members of ( "dog" "penguin" "cat" )?
@@ -516,6 +493,29 @@ What are the members of ( "dog" "penguin" "cat" )?
 ```
     </div>
 </div>
+<div class=ex_container >
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%22cat%22+list%3Ain+%28+%22dog%22+%22penguin%22+%22cat%22+%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+true+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Does ( "dog" "penguin" "cat" ) contain a "cat"?
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+{ "cat" list:in ( "dog" "penguin" "cat" ) . } => { :result :is true . } .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is true. 
+            
+```
+    </div>
+</div>
 
 ### list:iterate ### {#list:iterate}
 Iterates over each member of the subject list, getting their index/value pairs as the object.
@@ -525,31 +525,6 @@ Iterates over each member of the subject list, getting their index/value pairs a
 
 **Schema**<br>`$s+ list:iterate ( $o.1?[*] $o.2?[*] )?[*]`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `rdf:List`<br>`$o.1`: `xsd:integer`</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28%22dog%22+%22penguin%22+%22cat%22%29+list%3Aiterate+%28%3Findex+%3Fmember%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%28%3Findex+%3Fmember%29+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Iterate over the list ("dog" "penguin" "cat").
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix list: <http://www.w3.org/2000/10/swap/list#> .
-
-{ ("dog" "penguin" "cat") list:iterate (?index ?member) . } => { :result :is (?index ?member) . } .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is (0 "dog") .
-:result :is (1 "penguin") .
-:result :is (2 "cat") .
-            
-```
-    </div>
-</div>
-<div class=ex_container >
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%7B%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%3Fparam+list%3Aiterate+%28%3Findex+%22cat%22%29+.++%0A%7D%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Findex+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 What is the index of "cat" in the list ("dog" "penguin" "cat")?
@@ -607,6 +582,31 @@ Is "cat" the third item in the list ("dog" "penguin" "cat")?
 
 @prefix : <http://example.org/>.
 :result :is true .
+            
+```
+    </div>
+</div>
+<div class=ex_container >
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28%22dog%22+%22penguin%22+%22cat%22%29+list%3Aiterate+%28%3Findex+%3Fmember%29+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%28%3Findex+%3Fmember%29+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Iterate over the list ("dog" "penguin" "cat").
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+{ ("dog" "penguin" "cat") list:iterate (?index ?member) . } => { :result :is (?index ?member) . } .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is (0 "dog") .
+:result :is (1 "penguin") .
+:result :is (2 "cat") .
             
 ```
     </div>
@@ -715,31 +715,6 @@ Checks whether the subject list contains the object.
 
 **Schema**<br>`$s+ list:member $o-[*]`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `rdf:List`</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28%22dog%22+%22penguin%22+%22cat%22%29+list%3Amember+%3Fmember+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fmember+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Determine the members of the list ("dog" "penguin" "cat").
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix list: <http://www.w3.org/2000/10/swap/list#> .
-
-{ ("dog" "penguin" "cat") list:member ?member . } => { :result :is ?member . } .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is "dog".
-:result :is "penguin".
-:result :is "cat".
-            
-```
-    </div>
-</div>
-<div class=ex_container >
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22%29+.%0A%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.%0A++++%3Fparam+list%3Amember+%22cat%22+.+%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+true+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Is "cat" a member of the list ("dog" "penguin" "cat")?
@@ -767,6 +742,31 @@ Is "cat" a member of the list ("dog" "penguin" "cat")?
 
 @prefix : <http://example.org/>.
 :result :is true.
+            
+```
+    </div>
+</div>
+<div class=ex_container >
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%7B+%28%22dog%22+%22penguin%22+%22cat%22%29+list%3Amember+%3Fmember+.+%7D+%3D%3E+%7B+%3Aresult+%3Ais+%3Fmember+.+%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Determine the members of the list ("dog" "penguin" "cat").
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+{ ("dog" "penguin" "cat") list:member ?member . } => { :result :is ?member . } .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is "dog".
+:result :is "penguin".
+:result :is "cat".
             
 ```
     </div>
@@ -853,37 +853,6 @@ Removes each occurrence of the subject member from the subject list, and returns
 
 **Schema**<br>`( $s.1+ $s.2+ )+ list:remove $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.1`: `rdf:List`</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22+%22penguin%22%29+.%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%28+%3Fparam+%22parakeet%22+%29+list%3Aremove+%3Flist+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Flist+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Remove non-existent "parakeet" from the list ("dog" "penguin" "cat" "penguin").
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix list: <http://www.w3.org/2000/10/swap/list#> .
-
-:let :param ("dog" "penguin" "cat" "penguin") .
-{ 
-    :let :param ?param . 
-    ( ?param "parakeet" ) list:remove ?list .
-} 
-=> 
-{ 
-    :result :is ?list . 
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is ("dog" "penguin" "cat" "penguin").
-            
-```
-    </div>
-</div>
-<div class=ex_container >
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22+%22penguin%22%29+.%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%28+%3Fparam+%22penguin%22+%29+list%3Aremove+%3Flist+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Flist+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Remove "penguin" from the list ("dog" "penguin" "cat" "penguin").
@@ -910,6 +879,37 @@ Remove "penguin" from the list ("dog" "penguin" "cat" "penguin").
 
 @prefix : <http://example.org/>.
 :result :is ("dog" "cat").
+            
+```
+    </div>
+</div>
+<div class=ex_container >
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+list%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flist%23%3E+.%0A%0A%3Alet+%3Aparam+%28%22dog%22+%22penguin%22+%22cat%22+%22penguin%22%29+.%0A%7B+%0A++++%3Alet+%3Aparam+%3Fparam+.+%0A++++%28+%3Fparam+%22parakeet%22+%29+list%3Aremove+%3Flist+.%0A%7D+%0A%3D%3E+%0A%7B+%0A++++%3Aresult+%3Ais+%3Flist+.+%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Remove non-existent "parakeet" from the list ("dog" "penguin" "cat" "penguin").
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:let :param ("dog" "penguin" "cat" "penguin") .
+{ 
+    :let :param ?param . 
+    ( ?param "parakeet" ) list:remove ?list .
+} 
+=> 
+{ 
+    :result :is ?list . 
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is ("dog" "penguin" "cat" "penguin").
             
 ```
     </div>
@@ -1213,39 +1213,6 @@ Literals will be compared exactly: their datatypes must be identical (in case of
 
 **Schema**<br>`$s? log:equalTo $o?`<br><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++_%3Ax+log%3AequalTo+42+.%0A++++%3Fq++log%3AequalTo+%22Cat%22%40en+.%0A%0A++++%23+This+will+fail+because+_%3Ax+is+already+assigned+to+42+.%0A++++%23+_%3Ax+log%3AequalTo+17+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fq+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Assign a value to an existential or universal variable.
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#> .
-
-{
-    _:x log:equalTo 42 .
-    ?q  log:equalTo "Cat"@en .
-
-    # This will fail because _:x is already assigned to 42 .
-    # _:x log:equalTo 17 .
-}
-=>
-{
-    :result :is ?q .
-} . 
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is "Cat"@en .
-            
-```
-    </div>
-</div>
-<div class=ex_container >
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%23+This+will+fail%0A++++%22Cat%22+log%3AequalTo+%22Cat%22%40en+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Determine if "Cat" is equal to "Cat"@en .
@@ -1303,6 +1270,71 @@ This mechanism works because an effort is made to ensure the truth of builtin st
 
 @prefix : <http://example.org/>.
 :result :is 1 , 2 , 3 . # objects can be in any order
+            
+```
+    </div>
+</div>
+<div class=ex_container >
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++_%3Ax+log%3AequalTo+42+.%0A++++%3Fq++log%3AequalTo+%22Cat%22%40en+.%0A%0A++++%23+This+will+fail+because+_%3Ax+is+already+assigned+to+42+.%0A++++%23+_%3Ax+log%3AequalTo+17+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fq+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Assign a value to an existential or universal variable.
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    _:x log:equalTo 42 .
+    ?q  log:equalTo "Cat"@en .
+
+    # This will fail because _:x is already assigned to 42 .
+    # _:x log:equalTo 17 .
+}
+=>
+{
+    :result :is ?q .
+} . 
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is "Cat"@en .
+            
+```
+    </div>
+</div>
+<div class=ex_container >
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%28+%22War+and+Peace%22+%22Leo+Tolstoy%22+1225+%29+log%3AequalTo+%28+%3Ftitle+%3Fauthor+%3FnumPages+%29+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Ftitle+%2C+%3Fauthor+%2C+%3FnumPages+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Assign values from the subject list to universal variables given in the object list. 
+This can be compared to "destructuring" or "unpacking" in programming languages such as JavaScript or Python.
+In contrast to those languages, however, it works in either direction in N3.
+This mechanism works because an effort is made to ensure the truthfulness of builtin statements in N3.
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    ( "War and Peace" "Leo Tolstoy" 1225 ) log:equalTo ( ?title ?author ?numPages ) .
+}
+=>
+{
+    :result :is ?title , ?author , ?numPages .
+} . 
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is "War and Peace" , "Leo Tolstoy" , 1225 . # objects can be in any order
             
 ```
     </div>
@@ -1379,38 +1411,6 @@ Determine if 1 is equal to 1 and "Cat" is equal to "Cat" and { :A :B :C . :D :E 
 ```
     </div>
 </div>
-<div class=ex_container >
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%28+%22War+and+Peace%22+%22Leo+Tolstoy%22+1225+%29+log%3AequalTo+%28+%3Ftitle+%3Fauthor+%3FnumPages+%29+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Ftitle+%2C+%3Fauthor+%2C+%3FnumPages+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Assign values from the subject list to universal variables given in the object list. 
-This can be compared to "destructuring" or "unpacking" in programming languages such as JavaScript or Python.
-In contrast to those languages, however, it works in either direction in N3.
-This mechanism works because an effort is made to ensure the truthfulness of builtin statements in N3.
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#> .
-
-{
-    ( "War and Peace" "Leo Tolstoy" 1225 ) log:equalTo ( ?title ?author ?numPages ) .
-}
-=>
-{
-    :result :is ?title , ?author , ?numPages .
-} . 
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is "War and Peace" , "Leo Tolstoy" , 1225 . # objects can be in any order
-            
-```
-    </div>
-</div>
 
 ### log:forAllIn ### {#log:forAllIn}
 Two clauses are given in the subject list: for every match of the first clause, 
@@ -1418,8 +1418,8 @@ Two clauses are given in the subject list: for every match of the first clause,
 
 `true` if and only if, for every valid substitution of clause `$s.1`, 
     i.e., a substitution of variables with terms that generates an instance of `$s.1` that is contained in the scope, 
-    the instance of `$s.2` generated by the same substitution is also contained in the scope.
-This applies a scoped quantification.
+    the instance of `$s.2` generated by the same substitution is also contained in the scope. When no valid substitution 
+    of clause $s.1 can be found, then the statement is vacuously true. This applies a scoped quantification.
 
 **Schema**<br>`( $s.1+ $s.2+ )+ log:forAllIn $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.1`: `log:Formula`, `$s.2`: `log:Formula`<br>`$o`: (Scope of the builtin. Leave as a variable to use current N3 document as scope.)</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
@@ -1458,13 +1458,46 @@ For each subtask of a composite task, check whether the subtask is completed.
 ```
     </div>
 </div>
+<div class=ex_container >
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%3ABobo+a+%3ADog+.%0A%3AMax+a+%3ADog+.%0A%0A%7B%0A++++%28+%7B+%3Fc+a+%3ACat+%7D+%7B+%3Fc+%3Asays+%22Meow%22+%7D+%29+log%3AforAllIn+_%3At+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+The document contains no Cats, so `$s.1` has no valid substitution. As a result, 
+the statement holds vacuously regardless of `$s.2`.
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Bobo a :Dog .
+:Max a :Dog .
+
+{
+    ( { ?c a :Cat } { ?c :says "Meow" } ) log:forAllIn _:t .
+}
+=>
+{
+    :result :is true .
+} . 
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is true. 
+            
+```
+    </div>
+</div>
 
 ### log:includes ### {#log:includes}
 Checks whether the subject graph term includes the object graph term (taking into account variables). 
 Can also be used to bind variables to values within the graph contents (see examples).
 
 `true` if and only if there exists some substitution which, when applied to `$s` and `$o`, 
-creates graph terms `$s`' and `$o`' such that every statement in `$o`' is also in `$s`''. 
+creates graph terms `$s`' and `$o`' such that every statement in `$o`' is also in `$s`'. 
 Variable substitution is applied recursively to nested compound terms such as graph terms and lists.
 
 **See also**<br><a href="#log:notIncludes">log:notIncludes</a>
@@ -1578,6 +1611,66 @@ Checks whether the subject and object N3 terms are _not_ the same (comparison oc
 
 **Schema**<br>`$s+ log:notEqualTo $o+`<br><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%22Cat%22+log%3AnotEqualTo+%22Cat%22%40en+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Determine if "Cat" is not equal to "Cat"@en .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    "Cat" log:notEqualTo "Cat"@en .
+}
+=>
+{
+    :result :is true .
+} . 
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is true .
+            
+```
+    </div>
+</div>
+<div class=ex_container >
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++1+log%3AnotEqualTo+2+.%0A++++%22Cat%22+log%3AnotEqualTo+%22CAT%22+.%0A++++%7B+%3AA+%3AB+%3AC+.+%7D+log%3AnotEqualTo+%7B+%3AC+%3AB+%3AA+.+%7D+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Determine if 1 is not equal to 2 and "Cat" is not equal to "CAT" and { :A :B :C . } is not equal to { :C :B :A }.
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    1 log:notEqualTo 2 .
+    "Cat" log:notEqualTo "CAT" .
+    { :A :B :C . } log:notEqualTo { :C :B :A . } .
+}
+=>
+{
+    :result :is true .
+} . 
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is true .
+            
+```
+    </div>
+</div>
+<div class=ex_container >
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A+++%0A++++%7B+%3AA+%3AB+%3AC+.+%7D+log%3AnotEqualTo+%7B+%3AA+%3AB+%3Fc+%7D+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Check whether two graph terms, one containing a universal variable, are not equal.
@@ -1637,66 +1730,6 @@ Check if an existential or universal variable is not equal to a value.
 ```
     </div>
 </div>
-<div class=ex_container >
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++1+log%3AnotEqualTo+2+.%0A++++%22Cat%22+log%3AnotEqualTo+%22CAT%22+.%0A++++%7B+%3AA+%3AB+%3AC+.+%7D+log%3AnotEqualTo+%7B+%3AC+%3AB+%3AA+.+%7D+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Determine if 1 is not equal to 2 and "Cat" is not equal to "CAT" and { :A :B :C . } is not equal to { :C :B :A }.
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#> .
-
-{
-    1 log:notEqualTo 2 .
-    "Cat" log:notEqualTo "CAT" .
-    { :A :B :C . } log:notEqualTo { :C :B :A . } .
-}
-=>
-{
-    :result :is true .
-} . 
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is true .
-            
-```
-    </div>
-</div>
-<div class=ex_container >
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%22Cat%22+log%3AnotEqualTo+%22Cat%22%40en+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Determine if "Cat" is not equal to "Cat"@en .
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#> .
-
-{
-    "Cat" log:notEqualTo "Cat"@en .
-}
-=>
-{
-    :result :is true .
-} . 
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is true .
-            
-```
-    </div>
-</div>
 
 ### log:notIncludes ### {#log:notIncludes}
 Checks whether the subject graph term _does not_ include the object graph term (taking into account variables)
@@ -1705,7 +1738,7 @@ Checks whether the subject graph term _does not_ include the object graph term (
 
 **See also**<br><a href="#log:includes">log:includes</a>
 
-**Schema**<br>`$s+ log:notIncludes $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `log:Formula`<br>`$o`: `log:Formula`</div></div><br>
+**Schema**<br>`$s+ log:notIncludes $o+`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `log:Formula`<br>(Can also be left as a variable to use current N3 document as scope.)<br>`$o`: `log:Formula`</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B+%0A++++%7B+%3AFelix+a+%3ACat+%7D+log%3AnotIncludes+%7B+%3FX+%3Aeats+%3FY+%7D+.%0A%7D+%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+true+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
@@ -1855,9 +1888,9 @@ N3 resource types include `log:Formula`, `log:Literal`, `rdf:List` or `log:Other
 
 **Schema**<br>`$s+ log:rawType $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$o`: `log:Uri`</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%281+2+3+4%29+log%3ArawType+%3FlistType+.%0A++++%7B+%3As+%3Ap+%3Ao+%7D+log%3ArawType+%3FgraphType+.%0A%7D+%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%28+%3FlistType+%3FgraphType+%29+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%22Hello%22+log%3ArawType+%3FstringType+.%0A++++42+log%3ArawType+%3FintegerType+.%0A++++true+log%3ArawType+%3FtrueType+.%0A++++false+log%3ArawType+%3FfalseType+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%28+%3FstringType+%3FintegerType+%3FtrueType+%3FfalseType+%29+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
-Get the type of lists and graph terms.
+Get the type of literal resources.
             
         <p><b>Formula:</b>
 ```
@@ -1866,12 +1899,14 @@ Get the type of lists and graph terms.
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 {
-    (1 2 3 4) log:rawType ?listType .
-    { :s :p :o } log:rawType ?graphType .
-} 
+    "Hello" log:rawType ?stringType .
+    42 log:rawType ?integerType .
+    true log:rawType ?trueType .
+    false log:rawType ?falseType .
+}
 =>
 {
-    :result :is ( ?listType ?graphType ) .
+    :result :is ( ?stringType ?integerType ?trueType ?falseType ) .
 } .
             
 ```
@@ -1879,9 +1914,8 @@ Get the type of lists and graph terms.
 ```
 
 @prefix : <http://example.org/>.
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
-:result :is ( rdf:List log:Formula ) .
+:result :is ( log:Literal log:Literal log:Literal log:Literal ) .
             
 ```
     </div>
@@ -1917,9 +1951,9 @@ Get the type of resources.
     </div>
 </div>
 <div class=ex_container >
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%22Hello%22+log%3ArawType+%3FstringType+.%0A++++42+log%3ArawType+%3FintegerType+.%0A++++true+log%3ArawType+%3FtrueType+.%0A++++false+log%3ArawType+%3FfalseType+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%28+%3FstringType+%3FintegerType+%3FtrueType+%3FfalseType+%29+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+log%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Flog%23%3E+.%0A%0A%7B%0A++++%281+2+3+4%29+log%3ArawType+%3FlistType+.%0A++++%7B+%3As+%3Ap+%3Ao+%7D+log%3ArawType+%3FgraphType+.%0A%7D+%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%28+%3FlistType+%3FgraphType+%29+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
-Get the type of literal resources.
+Get the type of lists and graph terms.
             
         <p><b>Formula:</b>
 ```
@@ -1928,14 +1962,12 @@ Get the type of literal resources.
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 {
-    "Hello" log:rawType ?stringType .
-    42 log:rawType ?integerType .
-    true log:rawType ?trueType .
-    false log:rawType ?falseType .
-}
+    (1 2 3 4) log:rawType ?listType .
+    { :s :p :o } log:rawType ?graphType .
+} 
 =>
 {
-    :result :is ( ?stringType ?integerType ?trueType ?falseType ) .
+    :result :is ( ?listType ?graphType ) .
 } .
             
 ```
@@ -1943,8 +1975,9 @@ Get the type of literal resources.
 ```
 
 @prefix : <http://example.org/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
-:result :is ( log:Literal log:Literal log:Literal log:Literal ) .
+:result :is ( rdf:List log:Formula ) .
             
 ```
     </div>
@@ -2120,7 +2153,7 @@ Calculates the object as the arc cosine value of the subject.
 
 `true` if and only if `$o` is the arc cosine value of `$s`.
 
-**See also**<br><a href="#math:cos">math:cos</a><br><a href="#math:cosh">math:cosh</a>
+**See also**<br><a href="#math:cosh">math:cosh</a><br><a href="#math:cos">math:cos</a>
 
 **Schema**<br>`$s? math:acos $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
@@ -2202,7 +2235,7 @@ Calculates the object as the arc tangent value of the subject.
 
 `true` if and only if `$o` is the arc tangent value of `$s`.
 
-**See also**<br><a href="#math:tan">math:tan</a><br><a href="#math:tanh">math:tanh</a>
+**See also**<br><a href="#math:tanh">math:tanh</a><br><a href="#math:tan">math:tan</a>
 
 **Schema**<br>`$s? math:atan $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
@@ -2243,7 +2276,7 @@ Calculates the object as the cosine value of the subject.
 
 `true` if and only if `$o` is the cosine value of `$s`.
 
-**See also**<br><a href="#math:acos">math:acos</a><br><a href="#math:cosh">math:cosh</a>
+**See also**<br><a href="#math:cosh">math:cosh</a><br><a href="#math:acos">math:acos</a>
 
 **Schema**<br>`$s? math:cos $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
@@ -2447,35 +2480,6 @@ You can also use this to calculate the logarithm of the object, with as base the
 
 **Schema**<br>`( $s.1+ $s.2? )+ math:exponentiation $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.1`: (`xsd:decimal` | `xsd:double` | `xsd:float`), `$s.2`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%7B%0A++++%287+%3Fresult%29+math%3Aexponentiation+49+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Calculate the logarithm of 49 base 2 .
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix math: <http://www.w3.org/2000/10/swap/math#> .
-
-{
-    (7 ?result) math:exponentiation 49 .
-}
-=>
-{
-    :result :is ?result .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is 2.0 .
-            
-```
-    </div>
-</div>
-<div class=ex_container >
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%287+2%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aexponentiation+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the value of 7 raised to the power of 2 .
@@ -2503,6 +2507,35 @@ Calculate the value of 7 raised to the power of 2 .
 
 @prefix : <http://example.org/>.
 :result :is 49 .
+            
+```
+    </div>
+</div>
+<div class=ex_container >
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%7B%0A++++%287+%3Fresult%29+math%3Aexponentiation+49+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Calculate the logarithm of 49 base 2 .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+{
+    (7 ?result) math:exponentiation 49 .
+}
+=>
+{
+    :result :is ?result .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is 2.0 .
             
 ```
     </div>
@@ -2761,38 +2794,6 @@ Calculates the object as the product of the numbers given in the subject list.
 
 **Schema**<br>`( $s.i+ )+ math:product $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s.i`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%282+4+6+8%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aproduct+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
-        <p>
-Calculate the product of 2,4,6, and 8 .
-            
-        <p><b>Formula:</b>
-```
-
-@prefix : <http://example.org/>.
-@prefix math: <http://www.w3.org/2000/10/swap/math#> .
-
-:Let :param (2 4 6 8) .
-
-{
-    :Let :param ?param .
-    ?param math:product ?result .
-}
-=>
-{
-    :result :is ?result .
-} .
-            
-```
-        <p><b>Result:</b>
-```
-
-@prefix : <http://example.org/>.
-:result :is 384.
-            
-```
-    </div>
-</div>
-<div class=ex_container >
 <a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%282+21%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aproduct+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Calculate the product of 2 and 21.
@@ -2820,6 +2821,38 @@ Calculate the product of 2 and 21.
 
 @prefix : <http://example.org/>.
 :result :is 42.
+            
+```
+    </div>
+</div>
+<div class=ex_container >
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+math%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fmath%23%3E+.%0A%0A%3ALet+%3Aparam+%282+4+6+8%29+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+math%3Aproduct+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+        <p>
+Calculate the product of 2,4,6, and 8 .
+            
+        <p><b>Formula:</b>
+```
+
+@prefix : <http://example.org/>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :param (2 4 6 8) .
+
+{
+    :Let :param ?param .
+    ?param math:product ?result .
+}
+=>
+{
+    :result :is ?result .
+} .
+            
+```
+        <p><b>Result:</b>
+```
+
+@prefix : <http://example.org/>.
+:result :is 384.
             
 ```
     </div>
@@ -3117,7 +3150,7 @@ Calculates the object as the hyperbolic tangent value of the subject.
 
 `true` if and only if `$o` is the hyperbolic tangent value of `$s`.
 
-**See also**<br><a href="#math:atan">math:atan</a><br><a href="#math:tan">math:tan</a>
+**See also**<br><a href="#math:tan">math:tan</a><br><a href="#math:atan">math:atan</a>
 
 **Schema**<br>`$s? math:tanh $o?`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: (`xsd:decimal` | `xsd:double` | `xsd:float`)<br>`$o`: (`xsd:decimal` | `xsd:double` | `xsd:float`)</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
@@ -4025,7 +4058,7 @@ Gets as object the trailing timezone offset of the subject xsd:dateTime (e.g., "
 
 **Schema**<br>`$s+ time:timeZone $o-`<div class='schema_where'>where:<div class='schema_datatypes'>`$s`: `xsd:dateTime`<br>`$o`: `xsd:string`</div></div><br>
 **Examples**<br><div class=ex_container style="margin-top: 5px">
-<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3Aminute+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
+<a href="https://editor.notation3.org/?formula=%40prefix+%3A+%3Chttp%3A%2F%2Fexample.org%2F%3E.%0A%40prefix+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E.%0A%40prefix+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Ftime%23%3E+.%0A%0A%3ALet+%3Aparam+%222023-04-01T18%3A06%3A04Z%22%5E%5Exsd%3AdateTime+.%0A%0A%7B%0A++++%3ALet+%3Aparam+%3Fparam+.%0A++++%3Fparam+time%3AtimeZone+%3Fresult+.%0A%7D%0A%3D%3E%0A%7B%0A++++%3Aresult+%3Ais+%3Fresult+.%0A%7D+." target="_blank">try in editor &#128640;</a><div class=example>
         <p>
 Return the time zone component of the date "2023-04-01T18:06:04Z" .
             
@@ -4040,7 +4073,7 @@ Return the time zone component of the date "2023-04-01T18:06:04Z" .
 
 {
     :Let :param ?param .
-    ?param time:minute ?result .
+    ?param time:timeZone ?result .
 }
 =>
 {
